@@ -1,0 +1,1487 @@
+{
+ "dividers": [
+  1624,
+  1662,
+  1683,
+  1895,
+  1945,
+  1987
+ ],
+ "taiwan": [
+  {
+   "id": "prehistory",
+   "name": "史前",
+   "from": null,
+   "to": 1624,
+   "range": "約三萬年前—1624",
+   "color": "#8a7a5c"
+  },
+  {
+   "id": "dutch",
+   "name": "荷西",
+   "from": 1624,
+   "to": 1662,
+   "range": "1624—1662",
+   "color": "#c7742b"
+  },
+  {
+   "id": "zheng",
+   "name": "明鄭",
+   "from": 1662,
+   "to": 1683,
+   "range": "1662—1683",
+   "color": "#b5483a"
+  },
+  {
+   "id": "qing",
+   "name": "清領",
+   "from": 1683,
+   "to": 1895,
+   "range": "1683—1895",
+   "color": "#5b7f95"
+  },
+  {
+   "id": "japan",
+   "name": "日治",
+   "from": 1895,
+   "to": 1945,
+   "range": "1895—1945",
+   "color": "#4f8a6b"
+  },
+  {
+   "id": "postwar",
+   "name": "戰後威權",
+   "from": 1945,
+   "to": 1987,
+   "range": "1945—1987",
+   "color": "#7a6aa8"
+  },
+  {
+   "id": "democracy",
+   "name": "民主化至今",
+   "from": 1987,
+   "to": 2027,
+   "range": "1987—2026",
+   "color": "#3f7fbf"
+  }
+ ],
+ "regionRevealYear": {
+  "taiwan": null,
+  "china": 1618,
+  "japan": 1853,
+  "world": 1498
+ },
+ "regionEras": {
+  "china": [
+   {
+    "name": "先秦",
+    "from": -2100,
+    "to": -221
+   },
+   {
+    "name": "秦漢",
+    "from": -221,
+    "to": 220
+   },
+   {
+    "name": "魏晉南北朝",
+    "from": 220,
+    "to": 581
+   },
+   {
+    "name": "隋唐",
+    "from": 581,
+    "to": 907
+   },
+   {
+    "name": "五代十國",
+    "from": 907,
+    "to": 960
+   },
+   {
+    "name": "宋",
+    "from": 960,
+    "to": 1271
+   },
+   {
+    "name": "元",
+    "from": 1271,
+    "to": 1368
+   },
+   {
+    "name": "明",
+    "from": 1368,
+    "to": 1644
+   },
+   {
+    "name": "清",
+    "from": 1644,
+    "to": 1912
+   },
+   {
+    "name": "中華民國",
+    "from": 1912,
+    "to": 1949
+   },
+   {
+    "name": "中華人民共和國",
+    "from": 1949,
+    "to": 2100
+   }
+  ],
+  "japan": [
+   {
+    "name": "繩文時代",
+    "from": -14000,
+    "to": -300
+   },
+   {
+    "name": "彌生時代",
+    "from": -300,
+    "to": 300
+   },
+   {
+    "name": "古墳時代",
+    "from": 300,
+    "to": 538
+   },
+   {
+    "name": "飛鳥奈良時代",
+    "from": 538,
+    "to": 794
+   },
+   {
+    "name": "平安時代",
+    "from": 794,
+    "to": 1185
+   },
+   {
+    "name": "鎌倉時代",
+    "from": 1185,
+    "to": 1333
+   },
+   {
+    "name": "室町時代",
+    "from": 1333,
+    "to": 1573
+   },
+   {
+    "name": "安土桃山時代",
+    "from": 1573,
+    "to": 1603
+   },
+   {
+    "name": "江戶時代",
+    "from": 1603,
+    "to": 1868
+   },
+   {
+    "name": "明治",
+    "from": 1868,
+    "to": 1912
+   },
+   {
+    "name": "大正",
+    "from": 1912,
+    "to": 1926
+   },
+   {
+    "name": "昭和戰前",
+    "from": 1926,
+    "to": 1945
+   },
+   {
+    "name": "昭和戰後",
+    "from": 1945,
+    "to": 1989
+   },
+   {
+    "name": "平成",
+    "from": 1989,
+    "to": 2019
+   },
+   {
+    "name": "令和",
+    "from": 2019,
+    "to": 2100
+   }
+  ],
+  "world": [
+   {
+    "name": "古文明時代",
+    "from": -3000,
+    "to": -800
+   },
+   {
+    "name": "古典時代",
+    "from": -800,
+    "to": 476
+   },
+   {
+    "name": "中世紀",
+    "from": 476,
+    "to": 1400
+   },
+   {
+    "name": "文藝復興與大航海",
+    "from": 1400,
+    "to": 1600
+   },
+   {
+    "name": "近世",
+    "from": 1600,
+    "to": 1789
+   },
+   {
+    "name": "工業與帝國時代",
+    "from": 1789,
+    "to": 1914
+   },
+   {
+    "name": "兩次世界大戰",
+    "from": 1914,
+    "to": 1945
+   },
+   {
+    "name": "冷戰",
+    "from": 1945,
+    "to": 1991
+   },
+   {
+    "name": "全球化時代",
+    "from": 1991,
+    "to": 2100
+   }
+  ]
+ },
+ "content": {
+  "japan": {
+   "photos": [
+    {
+     "file": "Street stands and people Taihoku.jpg",
+     "caption": "台北街頭的攤販與行人(日治時期)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "People at a bus stop in Sakae Taihoku.jpg",
+     "caption": "台北榮町公車站牌前候車的人們。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Honmachidōri Taichu.jpg",
+     "caption": "台中本町通(日治時期的市區街道)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Old changhua.jpg",
+     "caption": "彰化的舊街景(日治時期)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Eiraku-chō of Tainan.jpg",
+     "caption": "台南永樂町(日治時期的街道)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Er nd 1027 Chiayi.jpg",
+     "caption": "嘉義的街景(日治時期)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Karenko view.jpg",
+     "caption": "花蓮港(Karenko)的街景(日治時期)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Buying vegetables at Kensei-cho Taihoku.jpg",
+     "caption": "台北建成町(今大稻埕一帶)買菜的人群。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Shops in Kensei-cho Taihoku.jpg",
+     "caption": "台北建成町的商店。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Women before a shop in Kensei-cho Taihoku.jpg",
+     "caption": "台北建成町商店前的婦女。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Children at Kensei-cho Taihoku.jpg",
+     "caption": "台北建成町街上的孩子。",
+     "license": "公有領域"
+    },
+    {
+     "file": "People around a white radish stand in Kensei-cho Taihoku.jpg",
+     "caption": "台北建成町白蘿蔔攤旁圍著的人們。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Girl riding bike at Kensei-cho Taihoku.jpg",
+     "caption": "台北建成町騎腳踏車的女孩。",
+     "license": "公有領域"
+    },
+    {
+     "file": "School girls walking in rows at Kensei-cho Taihoku.jpg",
+     "caption": "台北建成町列隊行走的女學生。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Crowds at Shimo-ku Itchome Ichi-hyaku-banchi Taihoku.jpg",
+     "caption": "台北街頭聚集的人群。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Taihei-chō 1928.jpg",
+     "caption": "1928 年的太平町(大稻埕的主要街道)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "1932 大稻埕 舊曆新年.png",
+     "caption": "1932 年大稻埕舊曆新年的景象。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Tuā-tiū-tiânn near Tamsui River ca. late 1920s.jpg",
+     "caption": "約 1920 年代末的大稻埕淡水河畔。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Parade of festival of the Taiwan Shrine 03.jpg",
+     "caption": "台灣神社祭典的遊行隊伍。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Taihoku_state_office_around_1933.jpg",
+     "caption": "台北州廳(約 1933 年),日治時期台北的官署建築。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Taihoku_Post_&_telegraph_Office_around_1933.jpg",
+     "caption": "台北郵便電信局(約 1933 年),郵政與電信是日治時期現代化建設的一環。",
+     "license": "公有領域"
+    },
+    {
+     "file": "JFAK_Taihoku_Broadcasting_Station_around_1933.jpg",
+     "caption": "台北放送局 JFAK(約 1933 年),廣播在 1920 至 30 年代進入都市生活。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Tamsui_Line_Train_passed_by.jpg",
+     "caption": "行經淡水線的火車,鐵道讓城鄉往來大幅縮短。",
+     "license": "公有領域"
+    },
+    {
+     "file": "At_the_back_street_of_the_office_building_of_Governor-General_of_Taiwan.jpg",
+     "caption": "台灣總督府後方的街道,可見當時的市街樣貌。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Construction of Wushantou Dam.jpg",
+     "caption": "興建中的烏山頭水庫,嘉南大圳的核心工程。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Railway-Department-Office-Japanese-Taiwan-1920s.png",
+     "caption": "1920 年代的台灣總督府交通局鐵道部辦公廳舍。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Statue of Yoichi Hatta in Yoichi Hatta Memorial Hall.jpg",
+     "caption": "八田與一紀念館內的八田與一雕像(現代拍攝),他是嘉南大圳的規劃者。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Governor-General's Office after the bombardment in Taihoku 1945.jpg",
+     "caption": "1945 年美軍轟炸後的台北台灣總督府。",
+     "license": "CC BY-SA 4.0"
+    }
+   ],
+   "whatif": {
+    "question": "假設 1895 年的馬關條約沒有把台灣割讓給日本",
+    "speculation": "台灣可能仍是清朝的台灣省,延續劉銘傳時期的鐵路與電報建設。1911 年之後,台灣可能跟著中國大陸進入民國時期,並與福建、廣東沿海城市有更緊密的往來。戰後的街景可能更接近福建沿海城市,而不是帶有日式建築與街廓規劃的現在樣貌。",
+    "basis": "推演依據:同期福建沿海城市(如廈門鼓浪嶼)在條約港與僑資帶動下的城市發展,以及劉銘傳在台灣已有的建設基礎。實際結果會受到軍閥、抗戰與國共內戰影響,這裡只是一種可能。",
+    "contrastPhoto": {
+     "file": "Gulangyu_(8468885082).jpg",
+     "caption": "對照:廈門鼓浪嶼的近代租界建築(現代拍攝)。",
+     "license": "CC BY-SA 2.0"
+    }
+   },
+   "regional": {
+    "china": [
+     {
+      "file": "Nanking Road, Shanghai, c. 1930s.jpg",
+      "caption": "約 1930 年代的上海南京路。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Canton1920 d031 a city street.jpg",
+      "caption": "約 1920 年的廣州街道。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Canton1920 d049 shappat po street where european shops are found.jpg",
+      "caption": "1920 年廣州十八甫路,有歐洲商店的街道。",
+      "license": "公有領域"
+     },
+     {
+      "file": "China from the Eyes of the Flying Tigers 1944-1945 53.jpg",
+      "caption": "1945 年重慶附近的小鎮。",
+      "license": "公有領域"
+     },
+     {
+      "file": "China from the Eyes of the Flying Tigers 1944-1945 55.jpg",
+      "caption": "1945 年重慶碼頭附近擁擠的街道。",
+      "license": "公有領域"
+     },
+     {
+      "file": "China from the Eyes of the Flying Tigers 1944-1945 57.jpg",
+      "caption": "1945 年的重慶街景。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Street scene with paifang gate in Tientsin, China, 1925 (CHANDLESS 332).jpeg",
+      "caption": "1925 年天津街景,可見牌坊。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Tientsin. Rue de France.jpg",
+      "caption": "1920 年代初天津法租界的法國路。",
+      "license": "公有領域"
+     },
+     {
+      "file": "20世纪初南市商业区平安大街.jpg",
+      "caption": "20 世紀初南市商業區的平安大街(依原標題)。",
+      "license": "公有領域"
+     }
+    ],
+    "japan": [
+     {
+      "file": "Ginza circa 1922.JPG",
+      "caption": "約 1922 年的東京銀座。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Streets in Nihonbashi in Taisho Era.jpg",
+      "caption": "大正時期東京日本橋一帶的街道。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Old-Marunouchi-Street-Tokyo-1920.png",
+      "caption": "1920 年代東京丸之內的街景。",
+      "license": "公有領域"
+     },
+     {
+      "file": "A peddler repairing clogs-geta in 1934.jpg",
+      "caption": "1934 年(昭和 9 年)修理木屐的流動攤販。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Shinsaibashi-suji in 1930s.JPG",
+      "caption": "1930 年代大阪的心齋橋筋。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Kusakabe Kimbei - 517. Honcho Dori, Yokohama.jpg",
+      "caption": "橫濱本町通(日下部金兵衛攝,1890 年之後)。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Kusakabe Kimbei 566 Theatre Street.JPG",
+      "caption": "戲院街(日下部金兵衛攝的手工上色照片,明治時期)。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Unidentified street in Tokyo 1, Djawa Baroe, Vol. 1, Iss. 12 (1943-06-15), p25.jpg",
+      "caption": "1943 年東京的一條街道(《Djawa Baroe》畫報)。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Unidentified street in Tokyo 2, Djawa Baroe, Vol. 1, Iss. 12 (1943-06-15), p25.jpg",
+      "caption": "1943 年東京的另一條街道(《Djawa Baroe》畫報)。",
+      "license": "公有領域"
+     }
+    ]
+   },
+   "featured": [
+    {
+     "id": "tw-1921-nca",
+     "why": "非武裝抗日與文化啟蒙的起點"
+    },
+    {
+     "id": "tw-1930-wushe",
+     "why": "日治時期原住民抗日事件及其後續"
+    },
+    {
+     "id": "tw-1944-air",
+     "why": "戰爭末期台灣為什麼被轟炸(附成因說明)"
+    }
+   ]
+  },
+  "prehistory": {
+   "photos": [
+    {
+     "file": "Beinan Archaeological Site1a.jpg",
+     "caption": "卑南遺址,台灣規模最大的史前聚落遺址之一。",
+     "license": "公有領域"
+    },
+    {
+     "file": "卑南文化岩雕石梯.jpg",
+     "caption": "卑南文化的岩雕石梯(遺物,現代拍攝)。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Peinan Megalith.jpg",
+     "caption": "卑南遺址的石柱,與史前聚落的祭儀空間有關。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Stone Chairs Area, Shihsanhang Museum of Archaeology 20130612.jpg",
+     "caption": "十三行博物館展示區的石椅。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Traditional Tao village in Orchid Island 2010-9-15.jpg",
+     "caption": "蘭嶼達悟族傳統聚落(現代拍攝),可以想像南島語族的海島生活。",
+     "license": "CC BY 2.0"
+    }
+   ],
+   "whatif": {
+    "question": "假設十七世紀沒有任何外來政權前來統治台灣",
+    "speculation": "台灣可能長期維持由南島語系族群組成的部落與聯盟社會,與漢人漁民和商人維持貿易往來。但在大航海時代的東亞海上貿易中,台灣的位置太重要,幾乎不可能長期不被捲入,現代樣貌也可能是原住民人口比例較高、地方語言更多元的島嶼。",
+    "basis": "推演依據:太平洋上沒有被早期殖民的島嶼社會,如東加王國,至今仍保留原有的政治傳統與語言;但台灣緊鄰中國大陸與日本,條件和遠洋島嶼不同。這是一種可能,不是預測。",
+    "contrastPhoto": {
+     "file": "Main Street Nuku'alofa - panoramio.jpg",
+     "caption": "對照:東加王國努瓜婁發的街景(現代拍攝)。",
+     "license": "CC BY 3.0"
+    }
+   },
+   "regional": {
+    "china": [
+     {
+      "file": "Great Wall of China - Badaling (built in 1505 during Ming Dynasty) - panoramio.jpg",
+      "caption": "明朝的八達嶺長城(1505 年建,現代拍攝)。",
+      "license": "CC BY 3.0"
+     },
+     {
+      "file": "Beijing Forbidden City Hall of Central Harmony terraces-20071018-RM-143613.jpg",
+      "caption": "明代興建的北京紫禁城中和殿台基(現代拍攝)。",
+      "license": "CC BY-SA 4.0"
+     }
+    ],
+    "japan": [
+     {
+      "file": "Himeji Castle 0804 1.jpg",
+      "caption": "姬路城,現存天守為 1600 年代初的戰國末至江戶初期建築(現代拍攝)。",
+      "license": "公有領域"
+     },
+     {
+      "file": "The Siege of Osaka Castle.jpg",
+      "caption": "大坂之陣(1614–1615)的繪畫,戰國時代結束前的最後大戰。",
+      "license": "公有領域"
+     }
+    ]
+   },
+   "featured": [
+    {
+     "id": "pre-4500-dapenkeng",
+     "why": "台灣最早的農業人群,也是南島語族起源討論的核心"
+    },
+    {
+     "id": "pre-200-shihsanhang",
+     "why": "史前煉鐵爐與淡水河口的對外交易"
+    },
+    {
+     "id": "wd-1543-formosa",
+     "why": "「福爾摩沙」之名的由來與說法分歧"
+    }
+   ]
+  },
+  "dutch": {
+   "photos": [
+    {
+     "file": "1624年荷蘭人在福爾摩沙(臺灣)所建熱蘭遮城 Dutch's Fort Zeelandia in Formosa (Taiwan).png",
+     "caption": "1624 年荷蘭人在台灣所建熱蘭遮城的圖像。",
+     "license": "公有領域"
+    },
+    {
+     "file": "1626年西班牙人所繪荷蘭人在福爾摩沙(大員-臺灣)台江內海一帶之活動 Spanish Drawing about Dutch Activities around Tayouan of Formosa-Taiwan.jpg",
+     "caption": "1626 年西班牙人所繪,荷蘭人在大員(台江內海)一帶活動的圖。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Anping Old Street.jpg",
+     "caption": "安平老街(現代拍攝),荷治時期大員的所在地。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Fort Zeelandia, Formosa by John Thomson, 1871. Wellcome L0056161.jpg",
+     "caption": "1871 年湯姆生拍攝的熱蘭遮城(安平)遺址,圖片來源 Wellcome Collection。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "Anpingfästningen 03.jpg",
+     "caption": "安平古堡(熱蘭遮城遺址,現代拍攝)。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Chihkan Tower (Fort Provintia).jpg",
+     "caption": "赤崁樓(普羅民遮城遺址,現代拍攝)。",
+     "license": "CC BY 2.0"
+    },
+    {
+     "file": "Fort San Domingo, Danshui, Taiwan (2363754753).jpg",
+     "caption": "淡水紅毛城,前身為西班牙人建的聖多明哥城。",
+     "license": "CC BY 2.0"
+    },
+    {
+     "file": "1640 Map of Formosa-Taiwan by Dutch 荷蘭人所繪福爾摩沙-臺灣.jpg",
+     "caption": "荷蘭人繪製的福爾摩沙地圖(1640 年)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Dutch Tamsui Map 1654.png",
+     "caption": "荷蘭人繪製的淡水地圖(1654 年)。",
+     "license": "公有領域"
+    }
+   ],
+   "whatif": {
+    "question": "假設西班牙人沒有被荷蘭人逐出北台灣",
+    "speculation": "台灣可能長期分屬荷蘭與西班牙兩個殖民勢力,北部可能受馬尼拉的天主教與西班牙語影響,南部則是荷蘭的貿易站。現代的北部城鎮可能保留更多西班牙殖民風格的教堂與廣場,語言與宗教的分布也會更複雜。",
+    "basis": "推演依據:菲律賓在西班牙統治下形成以天主教為主的社會,城市保留西班牙式街廓。不過西班牙在北台灣只有十六年且勢力有限,實際影響可能比菲律賓小得多。",
+    "contrastPhoto": {
+     "file": "Street in Intramuros (17267094066).jpg",
+     "caption": "對照:馬尼拉王城區的西班牙殖民街景(現代拍攝)。",
+     "license": "CC BY 2.0"
+    }
+   },
+   "regional": {
+    "china": [
+     {
+      "file": "Gatehouse for Shanhai Pass.jpg",
+      "caption": "山海關城樓(現代拍攝),1644 年明清易代的關口。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Beijing China Forbidden-City-03.jpg",
+      "caption": "北京紫禁城(現代拍攝),1644 年明朝在此滅亡、清朝入主。",
+      "license": "CC BY-SA 3.0"
+     }
+    ],
+    "japan": [
+     {
+      "file": "Nagasaki Dejima C1821.jpg",
+      "caption": "長崎出島(約 1821 年的圖),江戶幕府鎖國期間荷蘭人唯一的通商據點。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Nikko Toshogu Yomeimon Gate 2024.jpg",
+      "caption": "日光東照宮陽明門(現代拍攝),現存建築多為 1630 年代德川家光時期重建。",
+      "license": "CC BY-SA 4.0"
+     }
+    ]
+   },
+   "featured": [
+    {
+     "id": "du-1624-zeelandia",
+     "why": "荷蘭統治台灣的中樞,看他們為何選在大員"
+    },
+    {
+     "id": "du-1635-mattau",
+     "why": "荷蘭如何聯合原住民擴張到西南平原"
+    },
+    {
+     "id": "du-1661-lujiamen",
+     "why": "鄭成功登陸與荷蘭投降的經過"
+    }
+   ]
+  },
+  "zheng": {
+   "photos": [
+    {
+     "file": "Tainan Taiwan Fort-Provintia-01.jpg",
+     "caption": "赤崁樓(現代拍攝),鄭成功收復台灣後承天府所在的一帶。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "Old candied fruit shop in Anping.jpg",
+     "caption": "安平老街上的蜜餞老店(現代拍攝)。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "The Portrait of Koxinga.jpg",
+     "caption": "鄭成功畫像。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Koxinga statue.jpg",
+     "caption": "鄭成功雕像。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Koxinga Ancestral Shrine, Tainan 2017-12-31.jpg",
+     "caption": "台南延平郡王祠(現代拍攝)。",
+     "license": "CC BY 2.0"
+    },
+    {
+     "file": "Diorama Zheng Chenggong (Koxinga) Recovering Taiwan from Dutch (33550483251).jpg",
+     "caption": "展示鄭成功收復台灣場景的模型。",
+     "license": "CC0"
+    },
+    {
+     "file": "Koxinga territory.jpg",
+     "caption": "鄭氏政權的領域圖。",
+     "license": "CC BY-SA 3.0"
+    }
+   ],
+   "whatif": {
+    "question": "假設鄭成功沒有攻下台灣",
+    "speculation": "台灣可能繼續是荷蘭的殖民地,到二戰後依民族自決獨立建國。我們的街景可能更像歐洲:有運河、紅磚街屋和教堂,社會語言可能是荷蘭語或英語為主,漢人社群規模也會小得多。",
+    "basis": "推演依據:印尼、蘇利南等荷蘭殖民地在戰後相繼獨立,並留下荷蘭式建築與行政制度。不過荷蘭東印度公司在台灣的經營已有困難,後來也可能被清朝或日本取代,這只是其中一種可能。",
+    "contrastPhoto": {
+     "file": "Colorful canal houses at golden hour in Damrak avenue Amsterdam the Netherlands.jpg",
+     "caption": "對照:荷蘭阿姆斯特丹的運河街屋(現代拍攝)。",
+     "license": "CC BY-SA 4.0"
+    }
+   },
+   "regional": {
+    "china": [
+     {
+      "file": "Portrait of the Kangxi Emperor in Court Dress.jpg",
+      "caption": "康熙帝朝服像,1662 年起在位。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Portrait of the Kangxi Emperor in Informal Dress Holding a Brush.jpg",
+      "caption": "康熙帝便服執筆像。",
+      "license": "公有領域"
+     }
+    ],
+    "japan": [
+     {
+      "file": "Katsura Imperial Villa in Spring.jpg",
+      "caption": "京都桂離宮(現代拍攝),17 世紀江戶前期的別墅與庭園。",
+      "license": "CC BY-SA 3.0"
+     },
+     {
+      "file": "Nagasaki-Dejima-1769.jpg",
+      "caption": "長崎出島(1769 年的圖),當時荷蘭人在日本唯一的貿易據點。",
+      "license": "公有領域"
+     }
+    ]
+   },
+   "featured": [
+    {
+     "id": "zh-1662-surrender",
+     "why": "荷蘭人離開、鄭氏接收的交接現場"
+    },
+    {
+     "id": "zh-1665-confucius",
+     "why": "明鄭治台的文教與經濟措施"
+    },
+    {
+     "id": "zh-1670-eic",
+     "why": "明鄭與英國、日本、清朝之間的往來"
+    }
+   ]
+  },
+  "qing": {
+   "photos": [
+    {
+     "file": "Street in Twatutia.jpg",
+     "caption": "大稻埕(Twatutia)的街景(早期老照片)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Embankment and Viaduct at Twatutia.jpg",
+     "caption": "大稻埕的堤岸與高架橋(早期老照片)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "The Lak-kuan Street in Taihoku 1896.jpg",
+     "caption": "1896 年台北的街道(Lak-kuan Street),清日交替之際。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Baksa, Formosa (Taiwan). Photograph by John Thomson, 1871. Wellcome V0036866.jpg",
+     "caption": "1871 年湯姆生(John Thomson)拍攝的台灣村落 Baksa,圖片來源 Wellcome Collection。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "Lalung, Formosa (Taiwan). Photograph by John Thomson, 1871. Wellcome L0055975.jpg",
+     "caption": "1871 年湯姆生拍攝的台灣村落 Lalung,圖片來源 Wellcome Collection。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "Poah-be, Formosa (Taiwan). Photograph by John Thomson, 1871. Wellcome L0056413.jpg",
+     "caption": "1871 年湯姆生拍攝的台灣村落 Poah-be,圖片來源 Wellcome Collection。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "Natives of Formosa by John Thomson Wellcome L0056183.jpg",
+     "caption": "湯姆生拍攝的台灣居民,圖片來源 Wellcome Collection。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "Fort Zeelandia, Formosa by John Thomson, 1871. Wellcome L0056049.jpg",
+     "caption": "1871 年湯姆生拍攝的熱蘭遮城(安平)遺址,圖片來源 Wellcome Collection。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "劉銘傳.jpg",
+     "caption": "劉銘傳,台灣首任巡撫。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Lukang Longshan Temple, Taiwan.jpg",
+     "caption": "鹿港龍山寺(現代拍攝),清代港口城鎮鹿港的信仰中心。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "鹿港老街小巷01.jpg",
+     "caption": "鹿港老街小巷(現代拍攝)。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "DiHua Street Sec.2, Taipei (near JiuQuan Street).jpg",
+     "caption": "迪化街(大稻埕)的街屋,清末商業重地,現存街屋多建於清末至日治時期(現代拍攝)。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "Fortress San Domingo, Tamsui (as British Consulate from 1861 to March 1972) ca. 1970.jpg",
+     "caption": "淡水紅毛城,1861 年起作為英國領事館使用(約 1970 年拍攝)。",
+     "license": "CC BY-SA 3.0"
+    }
+   ],
+   "whatif": {
+    "question": "假設清朝在 1683 年放棄台灣、不納入版圖",
+    "speculation": "當時清廷確實有人主張棄守台灣。若放棄,台灣可能淪為海盜與海商的據點,或被荷蘭、日本等勢力重新佔領。漢人移民可能較少,原住民社群可能維持較大的自治,現代的城市也可能像澳門、香港這樣帶有外來殖民痕跡。",
+    "basis": "推演依據:施琅主張保留台灣的奏疏,說明當時放棄台灣在朝廷中確實是選項;澳門在葡萄牙人手中長期維持特殊地位。這只是推測,實際結果難以確定。",
+    "contrastPhoto": {
+     "file": "Senado Square, Macau - 20101117.jpg",
+     "caption": "對照:澳門議事亭前地(現代拍攝)。",
+     "license": "CC BY-SA 3.0"
+    }
+   },
+   "regional": {
+    "china": [
+     {
+      "file": "Canton factories.jpg",
+      "caption": "廣州十三行商館區的圖畫,清代一口通商時期對外貿易的中心。",
+      "license": "公有領域"
+     },
+     {
+      "file": "The Bund, Shanghai, c1890s.jpg",
+      "caption": "約 1890 年代的上海外灘。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Ruins of Old Summer Palace (Yuanmingyuan) - 2019 - 02.jpg",
+      "caption": "圓明園遺址(2019 年拍攝),1860 年遭英法聯軍焚毀。",
+      "license": "CC0"
+     }
+    ],
+    "japan": [
+     {
+      "file": "Kurofune.jpg",
+      "caption": "幕末黑船的圖畫,1853 年培里艦隊進入浦賀。",
+      "license": "公有領域"
+     },
+     {
+      "file": "FrenchLegationYokohamaCirca1870.jpg",
+      "caption": "約 1870 年橫濱的法國公使館。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Beato courier or postman.jpg",
+      "caption": "費利斯·比托拍攝的幕末日本信差或郵差。",
+      "license": "公有領域"
+     }
+    ]
+   },
+   "featured": [
+    {
+     "id": "qg-1874-mudan",
+     "why": "日本出兵與清廷改變台灣經營的轉折"
+    },
+    {
+     "id": "qg-1884-frenchwar",
+     "why": "清法戰爭中的滬尾之役"
+    },
+    {
+     "id": "qg-1885-province",
+     "why": "台灣建省的背景"
+    }
+   ]
+  },
+  "postwar": {
+   "photos": [
+    {
+     "file": "Back Alley, Kaohsiung, circa 1964 (49278452911).jpg",
+     "caption": "約 1964 年高雄的後巷。",
+     "license": "CC BY 2.0"
+    },
+    {
+     "file": "Kids get Haircuts, Kaohsiung, circa 1964 (49277980258).jpg",
+     "caption": "約 1964 年高雄街頭的孩子在理髮。",
+     "license": "CC BY 2.0"
+    },
+    {
+     "file": "Rickshaw Runner, Kaohsiung, circa 1964 (49278655567).jpg",
+     "caption": "約 1964 年高雄的人力車伕。",
+     "license": "CC BY 2.0"
+    },
+    {
+     "file": "Kaohsiung Bars at Night, circa 1964 (49278654752).jpg",
+     "caption": "約 1964 年夜晚高雄的酒吧街(美軍駐台與越戰時期的城市夜景)。",
+     "license": "CC BY 2.0"
+    },
+    {
+     "file": "Tamsui in 1970.jpg",
+     "caption": "1970 年的淡水市街,中間是 1917 年竣工的淡水郵局。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "Scene in Tamsui ca. 1970.jpg",
+     "caption": "約 1970 年的淡水一景。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "Rice harvesting in Tamsui 1970.jpg",
+     "caption": "1970 年淡水的稻田:人工收割與腳踩脫穀機。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "Farmyard in Tamsui 1970.jpg",
+     "caption": "1970 年淡水的農家院落。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "Parade of deities in May Festival, Tamsui 1971.jpg",
+     "caption": "1971 年淡水五月節的迎神遶境,神轎走過老街。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "Vice President Lyndon B. Johnson, greeting crowd of soldiers in the street during his visit to Taipei, Formosa LCCN2018654384.jpg",
+     "caption": "1961 年美國副總統詹森訪台,在台北街頭與士兵、群眾見面。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Vice President Lyndon B. Johnson, greeting crowds as a Secret Service agent stands by, in Taipei, Formosa LCCN2018654386.jpg",
+     "caption": "1961 年詹森訪台時台北街頭的群眾。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Zihyou Rd., Kaohsiung circa 1964.jpg",
+     "caption": "約 1964 年高雄的自由路。",
+     "license": "CC BY 2.0"
+    },
+    {
+     "file": "1960s台北市中華商場夜景.jpg",
+     "caption": "1960 年代台北中華商場的夜景。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Taichung street scene.jpg",
+     "caption": "台中的街景(年代待查)。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Newspaper clipping of the 228 Incident in Taiwan.jpg",
+     "caption": "二二八事件當時的報紙剪報。",
+     "license": "公有領域"
+    },
+    {
+     "file": "SYS FREEWAY Start.JPG",
+     "caption": "中山高速公路的起點(現代拍攝),十大建設之一。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Taishan Toll Station 20050605.jpg",
+     "caption": "泰山收費站(2005 年拍攝),中山高速公路上的收費站。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Chiang Kai-shek Memorial Hall 2009 amk.JPG",
+     "caption": "中正紀念堂(1980 年落成,2009 年拍攝)。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "19700105黃信介.jpg",
+     "caption": "1970 年的黃信介,黨外運動的政治人物。",
+     "license": "公有領域"
+    }
+   ],
+   "whatif": {
+    "question": "假設 1971 年中華民國沒有退出聯合國",
+    "speculation": "中華民國可能繼續保有聯合國席位,台灣在國際組織中的處境會比較不同。但要同時保有席位與中華人民共和國的入會,兩者能否並存在當時各方立場下很難說,雙方可能依然堅持只有一個代表中國的政府。",
+    "basis": "推演依據:1971 年聯合國大會 2758 號決議的投票結果相當接近,美國當時曾提出「雙重代表權」方案,但沒有成功。這是推測,不是定論。",
+    "contrastPhoto": {
+     "file": "2003-03-New-York-Headquarters-of-the-United-Nations.jpg",
+     "caption": "對照:美國紐約聯合國總部(現代拍攝)。",
+     "license": "CC BY-SA 4.0"
+    }
+   },
+   "regional": {
+    "china": [
+     {
+      "file": "1952-08 曹杨新村的群众.png",
+      "caption": "1952 年上海曹楊新村的居民。",
+      "license": "公有領域"
+     },
+     {
+      "file": "195202 1952年的上海南京路.png",
+      "caption": "1952 年的上海南京西路。",
+      "license": "公有領域"
+     },
+     {
+      "file": "China1982-023.jpg",
+      "caption": "1982 年廣州街景。",
+      "license": "CC BY-SA 3.0"
+     },
+     {
+      "file": "Hutong, Čína 1987, foto Jiří Tondl.jpg",
+      "caption": "1987 年北京的胡同。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Chongqing 1983.jpg",
+      "caption": "1983 年重慶街景。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Chongqing 1983-2.jpg",
+      "caption": "1983 年重慶街景(二)。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Chongqing 1983-3.jpg",
+      "caption": "1983 年重慶街景(三)。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Street in Chongqing in 1988.jpg",
+      "caption": "1987 年重慶的街道。",
+      "license": "CC0"
+     },
+     {
+      "file": "Chongqing Fish market.jpg",
+      "caption": "1987 年重慶的魚攤。",
+      "license": "CC0"
+     }
+    ],
+    "japan": [
+     {
+      "file": "Tokyo street stal 1945 SLNSW FL9537650.jpg",
+      "caption": "1945 年 11 月東京的街頭攤販。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Ginza lined with street stalls in 1950.jpg",
+      "caption": "1950 年銀座街頭一排露天攤販。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Akihabara Radio Center in early Showa-era.jpg",
+      "caption": "1950 年代初秋葉原的無線電中心(Radio Center)。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Okazaki-Koseidori-Higashi-2.jpg",
+      "caption": "1950 年愛知縣岡崎市康生通東。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Okazaki-Former-Kosecho-1.jpg",
+      "caption": "1950 年愛知縣岡崎市舊康生町。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Tajimi Honmachi Street c.1951.jpg",
+      "caption": "約 1951 年岐阜縣多治見市的本町通。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Tenri Hondoori 1956.jpg",
+      "caption": "1956 年奈良縣天理市的本通(主街)。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Yokohama station Meihingai.png",
+      "caption": "1956 年橫濱車站的名品街商店街。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Kamiyachō Intersection 1950s.jpg",
+      "caption": "1950 年代廣島市紙屋町交叉路口。",
+      "license": "公有領域"
+     }
+    ]
+   },
+   "featured": [
+    {
+     "id": "pw-1947-228",
+     "why": "戰後最重要的轉折事件,含各方說法與傷亡估計"
+    },
+    {
+     "id": "pw-1979-formosa",
+     "why": "民主運動與軍法大審的轉折"
+    },
+    {
+     "id": "pw-1981-chen",
+     "why": "留美學者返台後死亡的爭議案例"
+    }
+   ]
+  },
+  "democracy": {
+   "photos": [
+    {
+     "file": "20250812 101604 Keelung Yi 1st Road.jpg",
+     "caption": "2025 年基隆的義一路。",
+     "license": "CC0"
+    },
+    {
+     "file": "20250812 103904 Keelung Zhengrong Street.jpg",
+     "caption": "2025 年基隆的正榮街。",
+     "license": "CC0"
+    },
+    {
+     "file": "20250812 105558 Keelung Zhengbin Road.jpg",
+     "caption": "2025 年基隆的正濱路。",
+     "license": "CC0"
+    },
+    {
+     "file": "Zhongyang Market in Pingtung City (中央市場)1.jpg",
+     "caption": "2025 年屏東市的中央市場。",
+     "license": "CC0"
+    },
+    {
+     "file": "Zhongyang Market in Pingtung City (中央市場)2.jpg",
+     "caption": "2025 年屏東市中央市場(二)。",
+     "license": "CC0"
+    },
+    {
+     "file": "Intersection of Longzhou Road and Wufang Road, Pingtung June 2024.jpg",
+     "caption": "2024 年屏東的龍洲路與五方路口。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Central Fountain, Chiayi City 01. 20241014.jpg",
+     "caption": "2024 年嘉義市的中央圓環(噴水池圓環)。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Guang Sheng Old Street, Sanyi, Miaoli (1).jpg",
+     "caption": "2025 年苗栗三義的廣聲老街。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Anding East Road in Tainan May 2025.jpg",
+     "caption": "2025 年台南的安定東路。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "Tainan street traffic at night May 2025.jpg",
+     "caption": "2025 年台南的夜間街頭車流(民生路)。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "20250909 134537 Station Plaza.jpg",
+     "caption": "2025 年彰化火車站前廣場。",
+     "license": "CC0"
+    },
+    {
+     "file": "Dali Daxin Street 20241229 171712.jpg",
+     "caption": "2024 年台中大里的大新街。",
+     "license": "CC0"
+    },
+    {
+     "file": "Taipei Taiwan Ximending-Night-Market-04.jpg",
+     "caption": "台北西門町夜市(現代拍攝)。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "A dance show at Ximending, Taipei.jpg",
+     "caption": "西門町街頭的舞蹈表演。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Shilin Night Market Dadong Road.jpg",
+     "caption": "士林夜市大東路一帶。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "Scooters in Taipei street 02.jpg",
+     "caption": "台北街頭成排的機車。",
+     "license": "CC BY 2.0"
+    },
+    {
+     "file": "DiHua Street Sec.1, Taipei (at YongChang Street).jpg",
+     "caption": "台北迪化街(永昌街口)。",
+     "license": "CC BY 4.0"
+    },
+    {
+     "file": "Jiufen, November 27, 2024 - 181.jpg",
+     "caption": "九份老街(2024 年 11 月拍攝)。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Shinhua old street.jpg",
+     "caption": "台南新化老街。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Guangzhou Street Night Market, Taipei 20110522.jpg",
+     "caption": "台北廣州街夜市(2011 年拍攝)。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "Section 2, Wuchang Street, Wanha District, Taipei, 2023 (01).jpg",
+     "caption": "台北萬華武昌街二段(2023 年拍攝)。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Wild-lily-movement.jpg",
+     "caption": "野百合學運時聚集的學生。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "Sunflower Movement 6DDA36E9.jpg",
+     "caption": "太陽花學運現場。",
+     "license": "公有領域"
+    },
+    {
+     "file": "Presidential Office Building, Taipei, Republic of China (7453045132).jpg",
+     "caption": "台北總統府(現代拍攝)。",
+     "license": "CC BY-SA 2.0"
+    },
+    {
+     "file": "Hsinchu Science-Park.jpg",
+     "caption": "新竹科學園區(現代拍攝),台灣半導體產業的重鎮。",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "file": "921 Earthquake Museum of Taiwan, Chelungpu Fault Gallery.jpg",
+     "caption": "九二一地震教育園區,保存車籠埔斷層錯動的現場。",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "file": "Taipei 101 2009 amk.jpg",
+     "caption": "台北 101(2009 年拍攝)。",
+     "license": "CC BY-SA 3.0"
+    }
+   ],
+   "whatif": {
+    "question": "假設 1987 年沒有解除戒嚴",
+    "speculation": "台灣可能在較長的時間內維持政黨與言論限制,但仍可能因為經濟成長、中產階級與國際壓力而逐步開放,只是時間與形式不同。街景上變化不大,差別主要在政治制度與公共討論的空間。",
+    "basis": "推演依據:同時期有些東亞與東南亞地區在經濟發展後仍長期維持較強的政治控制。但台灣當時的黨外運動、美國的壓力與社會力已經相當強,維持戒嚴的成本很高,所以這只是其中一種可能。",
+    "contrastPhoto": {
+     "file": "Pagoda Street Chinatown Singapore.jpg",
+     "caption": "對照:新加坡牛車水的街景(現代拍攝)。",
+     "license": "CC BY-SA 4.0"
+    }
+   },
+   "regional": {
+    "china": [
+     {
+      "file": "20241215 East Street, Luoyang 01.jpg",
+      "caption": "2024 年 12 月河南洛陽老城的東大街。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "20241215 East Street, Luoyang 02.jpg",
+      "caption": "2024 年洛陽老城東大街(二)。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "20241215 East Street, Luoyang 03.jpg",
+      "caption": "2024 年洛陽老城東大街(三)。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Changsha Pedestrian Street 3 July 2024C.jpg",
+      "caption": "2024 年 7 月長沙的步行街商圈。",
+      "license": "CC BY 4.0"
+     },
+     {
+      "file": "Statue of Huang Xing in Changsha 3 July 2024.jpg",
+      "caption": "2024 年 7 月長沙步行街上的黃興銅像。",
+      "license": "CC BY 4.0"
+     },
+     {
+      "file": "Yuanqian Town Taihe County 2025-10-18.jpg",
+      "caption": "2025 年 10 月江西泰和縣 Yuanqian 鎮的街道。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Yuanqian Town Taihe County 2025-10-18 (95049).jpg",
+      "caption": "2025 年江西泰和縣 Yuanqian 鎮(二)。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Zhushan Town 2025 01.jpg",
+      "caption": "2025 年湖北宣恩縣的河岸旅遊小鎮(Zhushan Town)。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Zhushan Town 2025 02.jpg",
+      "caption": "2025 年宣恩縣 Zhushan Town 的河岸與水車(二)。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Chengdu 1991 (10564741066).jpg",
+      "caption": "1991 年的成都街景。",
+      "license": "CC0"
+     },
+     {
+      "file": "Chengdu 1991 Store (10565094953).jpg",
+      "caption": "1991 年成都的商店。",
+      "license": "CC0"
+     },
+     {
+      "file": "ChengduStScene.JPG",
+      "caption": "2003 年成都的街景。",
+      "license": "公有領域"
+     },
+     {
+      "file": "Lijiang Old Town Street - panoramio.jpg",
+      "caption": "雲南麗江古城的街道。",
+      "license": "CC BY-SA 3.0"
+     },
+     {
+      "file": "Pingyao Ancient City 平遙古城 - panoramio.jpg",
+      "caption": "山西平遙古城。",
+      "license": "CC BY 3.0"
+     },
+     {
+      "file": "Xi'an Muslim Quarter.jpg",
+      "caption": "西安回民街入口。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Beijing Lu Pedestrian Street.JPG",
+      "caption": "2013 年廣州北京路步行街。",
+      "license": "CC BY-SA 3.0"
+     },
+     {
+      "file": "Street scene in Ciqikou, Chongqing.JPG",
+      "caption": "2014 年重慶磁器口的街景。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "West Street Yangshuo.jpg",
+      "caption": "2008 年廣西陽朔西街。",
+      "license": "CC BY-SA 3.0"
+     }
+    ],
+    "japan": [
+     {
+      "file": "Matsumoto street.jpg",
+      "caption": "2025 年長野縣松本市的街道。",
+      "license": "CC BY 4.0"
+     },
+     {
+      "file": "250424 Nawate shop street Matsumoto Nagano pref Japan01s3.jpg",
+      "caption": "2025 年松本市繩手通商店街。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Kagoshima intersection-1.jpg",
+      "caption": "2024 年鹿兒島市的路口。",
+      "license": "CC BY 4.0"
+     },
+     {
+      "file": "Kagoshima intersection-2.jpg",
+      "caption": "2024 年鹿兒島市的路口(二)。",
+      "license": "CC BY 4.0"
+     },
+     {
+      "file": "Teramachi Street (in Morioka City, Iwate Prefecture) 01.jpg",
+      "caption": "2024 年岩手縣盛岡市的寺町通。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Teramachi Street (in Morioka City, Iwate Prefecture) 02.jpg",
+      "caption": "2024 年盛岡市寺町通(二)。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Snowy cityscape in Hirosaki 20250112.jpg",
+      "caption": "2025 年 1 月青森縣弘前站前的積雪街景。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Street View in Azumino City, Japan, Featuring Local Architecture and Surrounding Greenery.jpg",
+      "caption": "2024 年長野縣安曇野市的街景。",
+      "license": "CC BY 4.0"
+     },
+     {
+      "file": "Kochi-Overview-2025.jpg",
+      "caption": "2025 年從高知城遠眺高知市街。",
+      "license": "CC BY 4.0"
+     },
+     {
+      "file": "Yanaka Ginza, Tokyo, Japan (6790100548).jpg",
+      "caption": "2012 年東京谷中銀座商店街。",
+      "license": "CC BY 2.0"
+     },
+     {
+      "file": "Dotonbori Street, Osaka Prefecture; November 2013 (01).jpg",
+      "caption": "2013 年大阪道頓堀。",
+      "license": "CC BY 2.0"
+     },
+     {
+      "file": "Hida Takayama old town streets (48519201716).jpg",
+      "caption": "2018 年岐阜縣飛驒高山的老街。",
+      "license": "CC BY 2.0"
+     },
+     {
+      "file": "Kurazukuri Street in Little Edo.jpg",
+      "caption": "埼玉縣川越「小江戶」的藏造老街。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Nishijin shopping street by LWY in Fukuoka.jpg",
+      "caption": "2008 年福岡西新中央商店街。",
+      "license": "CC BY 2.0"
+     },
+     {
+      "file": "Shōtengai of Nakano Interior.jpg",
+      "caption": "東京中野 Sunmall 商店街內部。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Shōtengai.jpg",
+      "caption": "日本傳統的商店街(2021 年拍攝)。",
+      "license": "CC BY-SA 4.0"
+     },
+     {
+      "file": "Historic Village of Shirakawa-go (2016) - img 03.jpg",
+      "caption": "2016 年岐阜縣白川鄉合掌造聚落。",
+      "license": "CC BY 4.0"
+     },
+     {
+      "file": "Ogi Shirakawa-gō, Gifu, Japan.jpg",
+      "caption": "2009 年白川鄉荻町。",
+      "license": "CC BY 2.5"
+     }
+    ]
+   },
+   "featured": [
+    {
+     "id": "dm-1987-lift",
+     "why": "解嚴前後的政治轉變"
+    },
+    {
+     "id": "dm-1996-election",
+     "why": "首次總統直選的意義"
+    },
+    {
+     "id": "dm-2014-sunflower",
+     "why": "公民運動與立法院占領"
+    }
+   ]
+  }
+ }
+}
