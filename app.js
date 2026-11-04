@@ -59,6 +59,14 @@ async function init() {
   events.sort((a, b) => a.year - b.year);
   initMap();
   renderTimeline();
+  // 深連結:index.html#y=1947 會跳到最接近該年的事件
+  const hy = /^#y=(\d{3,4})$/.exec(location.hash);
+  if (hy && events.length) {
+    const want = Number(hy[1]);
+    const near = events.reduce((a, b) => (Math.abs(b.year - want) < Math.abs(a.year - want) ? b : a));
+    selectYear(near.year);
+    return;
+  }
   const first = events[0];
   first ? selectYear(first.year) : selectEra(data.taiwan[0].id);
 }
