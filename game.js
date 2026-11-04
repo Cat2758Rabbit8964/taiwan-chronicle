@@ -137,17 +137,16 @@ function askCareer() {
   ask('故事開始', '求學階段,你的志向是?', '', keep.map((c) => ({ t: data.q1.careers[c], pick: () => chooseCareer(c) })));
 }
 function chooseCareer(c) {
-  const ok = (x) => viable(st.pool.filter((p) => p.c.includes(x)), [], MIN_PRE);
-  if (ok(c)) return applyCareer(c, c, false);
-  const alts = CAREER_ORDER.filter((x) => x !== c && ok(x));
-  const alt = pickAlt(alts, 'ca' + c);
+  // 志向只影響故事與配對加分,不限制候選人;但該志向在這個時間帶人太少時,故事仍會轉折
+  const count = careerCount(st.pool);
+  if ((count[c] || 0) >= KEEP) return applyCareer(c, c, false);
+  const alt = pickAlt(CAREER_ORDER.filter((x) => x !== c && (count[x] || 0) >= KEEP), 'ca' + c);
   if (!alt) return applyCareer(c, c, false);
   const T = data.twist.career;
   interlude(`時機不對。${T[c]}之路比你預期的更難走,幾番波折之後,你最後走向了${T[alt]}之路。`, () => applyCareer(c, alt, true));
 }
 function applyCareer(chosen, eff, twisted) {
   st.career = eff;
-  st.pool = st.pool.filter((p) => p.c.includes(eff));
   st.asked.push({ kind: 'career', chosen, eff, twisted, text: data.q1.careers[eff], chosenText: data.q1.careers[chosen] });
   next();
 }
@@ -159,12 +158,12 @@ function catCount(pool, sit) {
   for (const p of docs(pool, sit)) for (const c of new Set(p.acts[sit].map((a) => a.c))) n[c] = (n[c] || 0) + 1;
   return n;
 }
-function feasible(pool, sit) { return Object.values(catCount(pool, sit)).some((n) => n >= KEEP); }
+function feasible(pool, sit, k = KEEP) { return Object.values(catCount(pool, sit)).some((n) => n >= k); }
 const byCat = (pool, sit, c) => pool.filter((p) => p.acts[sit] && p.acts[sit].some((a) => a.c === c));
 // 這條路走得完嗎?還需要 preNeed 個前置情境題,最後再問「最後一章」,每一步都至少要剩 KEEP 位
 function viable(pool, used, preNeed) {
   if (pool.length < KEEP) return false;
-  if (preNeed === 0) return feasible(pool, 'L');
+  if (preNeed === 0) return feasible(pool, 'L', 1);   // 最後一章可以只剩一位
   return PRE_SITS.some((s) => !used.includes(s) && CATS.some((c) => {
     const nx = byCat(pool, s, c);
     return nx.length >= KEEP && viable(nx, [...used, s], preNeed - 1);
@@ -190,7 +189,7 @@ function next() {
       if (pick.length) return askSituation(shuffled(pick, st.birth + 's' + nPre)[0]);
     }
   }
-  if (!hasL && feasible(st.pool, 'L')) return askSituation('L');
+  if (!hasL && feasible(st.pool, 'L', 1)) return askSituation('L');
   askPlace();
 }
 
@@ -218,7 +217,7 @@ function chooseCat(sit, c) {
   const need = isL ? 0 : Math.max(0, preNeedNow() - 1);
   const ok = (x) => {
     const nx = byCat(st.pool, sit, x);
-    return nx.length >= KEEP && (isL || viable(nx, [...st.usedSit, sit], need));
+    return nx.length >= (isL ? 1 : KEEP) && (isL || viable(nx, [...st.usedSit, sit], need));
   };
   if (ok(c)) return applyCat(sit, c, c, false);
   const alt = pickAlt(CATS.filter((x) => x !== c && ok(x)), 'sa' + sit + c);
@@ -228,9 +227,8 @@ function chooseCat(sit, c) {
     if (!best) { st.usedSit.push(sit); st.asked.push({ kind: 'skip', sit }); return next(); }
     return applyCat(sit, c, best, best !== c);
   }
-  const T = data.twist;
-  const intent = isL ? T.intentL : T.intent, done = isL ? T.doneL : T.done;
-  interlude(`事與願違。你本想${intent[c]},局勢卻不容許;幾番周折之後,你最後${done[alt]}。`, () => applyCat(sit, c, alt, true));
+  const def = data.sits[sit];
+  interlude(`事與願違。你本想「${def[c]}」,局勢卻不容許;幾番周折之後,你走上了另一條路:「${def[alt]}」。`, () => applyCat(sit, c, alt, true));
 }
 function applyCat(sit, chosen, eff, twisted) {
   const def = data.sits[sit];
@@ -242,9 +240,12 @@ function applyCat(sit, chosen, eff, twisted) {
 
 /* ───── 結果:把使用者實際走上的每一步,對回人物真正做過的事 ───── */
 function result() {
-  const ranked = shuffled(st.pool.map((p) => p.id), st.birth + 'r');
-  const p = st.pool.find((x) => x.id === ranked[0]);
-  const others = ranked.slice(1, 4).map((id) => st.pool.find((x) => x.id === id));
+  const order = shuffled(st.pool.map((p) => p.id), st.birth + 'r');
+  const byId = (id) => st.pool.find((x) => x.id === id);
+  // 志向相符的人排前面;同組內仍依生日固定洗牌
+  const ranked = [...order].sort((a, b) => (byId(b).c.includes(st.career) ? 1 : 0) - (byId(a).c.includes(st.career) ? 1 : 0));
+  const p = byId(ranked[0]);
+  const others = ranked.slice(1, 4).map(byId);
   const b = st.band;
 
   const chain = st.asked.filter((a) => a.kind !== 'skip').map((a) => {
@@ -255,7 +256,7 @@ function result() {
       rows.push(el('div', { class: 'twist' }, '故事轉折了,你實際走上的是:'));
     }
     rows.push(el('div', { class: 'you' }, a.twisted ? a.text : `你選了:${a.text}`));
-    if (a.kind === 'career') rows.push(el('div', { class: 'real' }, `他/她的職業:${p.job}`));
+    if (a.kind === 'career') rows.push(el('div', { class: 'real' }, p.c.includes(a.eff) ? `他/她的職業:${p.job}` : `他/她的職業是${p.job},不是這條志向,但他/她走過和你一樣的情境選擇`));
     else if (a.kind === 'place') rows.push(el('div', { class: 'real' }, '他/她出生地的類型與此相符(這是本遊戲自行的分類,不是史實)'));
     else p.acts[a.sit].filter((x) => x.c === a.eff).forEach((x) => rows.push(el('div', { class: 'real' }, '他/她真正做的:', x.ev)));
     return el('li', {}, rows);
