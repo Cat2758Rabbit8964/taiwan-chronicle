@@ -47,3 +47,6 @@ select{flex:1;min-width:90px;font:inherit;color:inherit;background:var(--bg);bor
 .chain .you{font-weight:600}
 .chain .real{color:var(--ink);margin-top:2px}
 .chain .real::before{content:"→ ";color:var(--accent)}
+.scene{font-size:17px;line-height:1.9;margin:0 0 16px}
+.chain .you.off{color:var(--muted);text-decoration:line-through;font-weight:400}
+.chain .twist{color:var(--accent);font-size:13px;margin-top:2px}
