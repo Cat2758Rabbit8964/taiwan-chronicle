@@ -92,13 +92,13 @@
    "title": "天翻地覆的早晨"
   },
   "L": {
-   "text": "多年過去,你走到人生的最後一章。回頭看,你希望自己的結局是——",
-   "R": "為自己的信念付出了生命的代價",
-   "E": "在公職、聲望與責任之中走完一生",
-   "S": "在家中或病榻上,看著志業與作品留在身後",
-   "X": "遠離故土,在異鄉度過餘生",
-   "A": "結局被權力安排了(軟禁、審判、解職或被安置)",
-   "title": "最後一章"
+   "title": "依稀的最後一刻",
+   "text": "你閉上眼睛,依稀記得上輩子的最後一刻。那是——",
+   "R": "一聲槍響,或一道冰冷的牆",
+   "E": "身邊圍著人,有人宣讀你的名字與功績",
+   "S": "一間安靜的屋子,藥味與未完成的稿件",
+   "X": "陌生的海風,和說著別種語言的街道",
+   "A": "一道不是你決定要不要打開的門"
   }
  },
  "twist": {
@@ -415,7 +415,13 @@
    },
    "band": 2,
    "ly": 1947,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「陳澄波」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/16211"
+    }
+   ]
   },
   {
    "id": "huang-tushui",
@@ -680,7 +686,13 @@
    },
    "band": 2,
    "ly": 1985,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「楊逵」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4408"
+    }
+   ]
   },
   {
    "id": "zhang-wojun",
@@ -956,7 +968,13 @@
    },
    "band": 2,
    "ly": 1951,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「簡吉」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5676"
+    }
+   ]
   },
   {
    "id": "luo-fuxing",
@@ -1343,7 +1361,13 @@
    },
    "band": 2,
    "ly": 1979,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「雷震」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4624"
+    }
+   ]
   },
   {
    "id": "jiang-weichuan",
@@ -1615,7 +1639,13 @@
    },
    "band": 2,
    "ly": 1989,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「余登發」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/658"
+    }
+   ]
   },
   {
    "id": "xu-shixian",
@@ -1975,7 +2005,13 @@
    },
    "band": 3,
    "ly": 2008,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「葉石濤」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4494"
+    }
+   ]
   },
   {
    "id": "bo-yang",
@@ -2242,7 +2278,13 @@
    },
    "band": 3,
    "ly": 2022,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「彭明敏」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/16539"
+    }
+   ]
   },
   {
    "id": "zhong-haodong",
@@ -2288,7 +2330,13 @@
    },
    "band": 3,
    "ly": 1950,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「鍾浩東」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5629"
+    }
+   ]
   },
   {
    "id": "ke-qihua",
@@ -2327,7 +2375,13 @@
    },
    "band": 3,
    "ly": 2002,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「柯旗化」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2031"
+    }
+   ]
   },
   {
    "id": "chen-wencheng",
@@ -2411,7 +2465,13 @@
    },
    "band": 3,
    "ly": 1990,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「孫立人」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/22237"
+    }
+   ]
   },
   {
    "id": "wu-shi",
@@ -2490,7 +2550,13 @@
    },
    "band": 3,
    "ly": 1952,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「李友邦」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/966"
+    }
+   ]
   },
   {
    "id": "gao-yisheng",
@@ -2530,7 +2596,13 @@
    },
    "band": 3,
    "ly": 1954,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「高一生」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2443"
+    }
+   ]
   },
   {
    "id": "yang-chuangkuang",
@@ -2661,7 +2733,13 @@
    },
    "band": 3,
    "ly": 1999,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「黃信介」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4115"
+    }
+   ]
   },
   {
    "id": "shi-mingde",
@@ -2701,7 +2779,13 @@
    },
    "band": 3,
    "ly": 2024,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「施明德」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/1988"
+    }
+   ]
   },
   {
    "id": "jiang-jingguo",
@@ -3041,7 +3125,13 @@
    },
    "band": 3,
    "ly": 2019,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「高俊明」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2473"
+    }
+   ]
   },
   {
    "id": "lin-zongyi",
@@ -3475,7 +3565,13 @@
    },
    "band": 1,
    "ly": 1917,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「劉永福」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4821"
+    }
+   ]
   },
   {
    "id": "wu-tangxing",
@@ -3745,7 +3841,13 @@
    },
    "band": 1,
    "ly": 1859,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「吉田松陰」",
+     "url": "https://kotobank.jp/word/%E5%90%89%E7%94%B0%E6%9D%BE%E9%99%B0"
+    }
+   ]
   },
   {
    "id": "sakamoto-ryoma",
@@ -3915,7 +4017,13 @@
    },
    "band": 1,
    "ly": 1909,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「伊藤博文」",
+     "url": "https://kotobank.jp/word/%E4%BC%8A%E8%97%A4%E5%8D%9A%E6%96%87"
+    }
+   ]
   },
   {
    "id": "tanaka-shozo",
@@ -3955,7 +4063,13 @@
    },
    "band": 1,
    "ly": 1913,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「田中正造」",
+     "url": "https://kotobank.jp/word/%E7%94%B0%E4%B8%AD%E6%AD%A3%E9%80%A0"
+    }
+   ]
   },
   {
    "id": "natsume-soseki",
@@ -3994,7 +4108,13 @@
    },
    "band": 1,
    "ly": 1916,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「夏目漱石」",
+     "url": "https://kotobank.jp/word/%E5%A4%8F%E7%9B%AE%E6%BC%B1%E7%9F%B3"
+    }
+   ]
   },
   {
    "id": "higuchi-ichiyo",
@@ -4027,7 +4147,13 @@
    },
    "band": 1,
    "ly": 1896,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「樋口一葉」",
+     "url": "https://kotobank.jp/word/%E6%A8%8B%E5%8F%A3%E4%B8%80%E8%91%89"
+    }
+   ]
   },
   {
    "id": "kitasato",
@@ -4076,7 +4202,13 @@
    },
    "band": 1,
    "ly": 1931,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「北里柴三郎」",
+     "url": "https://kotobank.jp/word/%E5%8C%97%E9%87%8C%E6%9F%B4%E4%B8%89%E9%83%8E"
+    }
+   ]
   },
   {
    "id": "noguchi-hideyo",
@@ -4115,7 +4247,13 @@
    },
    "band": 2,
    "ly": 1928,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「野口英世」",
+     "url": "https://kotobank.jp/word/%E9%87%8E%E5%8F%A3%E8%8B%B1%E4%B8%96"
+    }
+   ]
   },
   {
    "id": "kotoku-shusui",
@@ -4234,7 +4372,13 @@
    },
    "band": 2,
    "ly": 1933,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「小林多喜二」",
+     "url": "https://kotobank.jp/word/%E5%B0%8F%E6%9E%97%E5%A4%9A%E5%96%9C%E4%BA%8C"
+    }
+   ]
   },
   {
    "id": "miyazawa-kenji",
@@ -4365,7 +4509,13 @@
    },
    "band": 1,
    "ly": 1929,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「後藤新平」",
+     "url": "https://kotobank.jp/word/%E5%BE%8C%E8%97%A4%E6%96%B0%E5%B9%B3"
+    }
+   ]
   },
   {
    "id": "ozaki-yukio",
@@ -4410,7 +4560,13 @@
    },
    "band": 1,
    "ly": 1954,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「尾崎行雄」",
+     "url": "https://kotobank.jp/word/%E5%B0%BE%E5%B4%8E%E8%A1%8C%E9%9B%84"
+    }
+   ]
   },
   {
    "id": "tojo-hideki",
@@ -4489,7 +4645,13 @@
    },
    "band": 2,
    "ly": 1986,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「杉原千畝」",
+     "url": "https://kotobank.jp/word/%E6%9D%89%E5%8E%9F%E5%8D%83%E7%95%9D"
+    }
+   ]
   },
   {
    "id": "yoshida-shigeru",
@@ -4528,7 +4690,13 @@
    },
    "band": 3,
    "ly": 1967,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「吉田茂」",
+     "url": "https://kotobank.jp/word/%E5%90%89%E7%94%B0%E8%8C%82"
+    }
+   ]
   },
   {
    "id": "ishibashi-tanzan",
@@ -4568,7 +4736,13 @@
    },
    "band": 3,
    "ly": 1973,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「石橋湛山」",
+     "url": "https://kotobank.jp/word/%E7%9F%B3%E6%A9%8B%E6%B9%9B%E5%B1%B1"
+    }
+   ]
   },
   {
    "id": "kurosawa-akira",
@@ -4647,7 +4821,13 @@
    },
    "band": 3,
    "ly": 1989,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「手塚治虫」",
+     "url": "https://kotobank.jp/word/%E6%89%8B%E5%A1%9A%E6%B2%BB%E8%99%AB"
+    }
+   ]
   },
   {
    "id": "matsushita-konosuke",
@@ -4692,7 +4872,13 @@
    },
    "band": 2,
    "ly": 1989,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「松下幸之助」",
+     "url": "https://kotobank.jp/word/%E6%9D%BE%E4%B8%8B%E5%B9%B8%E4%B9%8B%E5%8A%A9"
+    }
+   ]
   },
   {
    "id": "honda-soichiro",
@@ -4731,7 +4917,13 @@
    },
    "band": 3,
    "ly": 1991,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「本田宗一郎」",
+     "url": "https://kotobank.jp/word/%E6%9C%AC%E7%94%B0%E5%AE%97%E4%B8%80%E9%83%8E"
+    }
+   ]
   },
   {
    "id": "atsuhime",
@@ -4815,7 +5007,13 @@
    },
    "band": 1,
    "ly": 1929,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「津田梅子」",
+     "url": "https://kotobank.jp/word/%E6%B4%A5%E7%94%B0%E6%A2%85%E5%AD%90"
+    }
+   ]
   },
   {
    "id": "ogino-ginko",
@@ -4860,7 +5058,13 @@
    },
    "band": 1,
    "ly": 1913,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「荻野吟子」",
+     "url": "https://kotobank.jp/word/%E8%8D%BB%E9%87%8E%E5%90%9F%E5%AD%90"
+    }
+   ]
   },
   {
    "id": "hiratsuka-raicho",
@@ -4952,7 +5156,13 @@
    },
    "band": 2,
    "ly": 1981,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「市川房枝」",
+     "url": "https://kotobank.jp/word/%E5%B8%82%E5%B7%9D%E6%88%BF%E6%9E%9D"
+    }
+   ]
   },
   {
    "id": "li-xianglan",
@@ -5077,7 +5287,13 @@
    },
    "band": 4,
    "ly": 2019,
-   "country": "日本"
+   "country": "日本",
+   "refs": [
+    {
+     "label": "コトバンク「緒方貞子」",
+     "url": "https://kotobank.jp/word/%E7%B7%92%E6%96%B9%E8%B2%9E%E5%AD%90"
+    }
+   ]
   },
   {
    "id": "zeng-guofan",
@@ -6792,7 +7008,13 @@
    },
    "band": 3,
    "ly": 1956,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「丁窈窕」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/11"
+    }
+   ]
   },
   {
    "id": "shi-shuihuan",
@@ -6835,7 +7057,13 @@
    },
    "band": 3,
    "ly": 1956,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「施水環」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/1980"
+    }
+   ]
   },
   {
    "id": "cai-axin",
@@ -6926,7 +7154,13 @@
    },
    "band": 2,
    "ly": 1970,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「葉陶」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/18330"
+    }
+   ]
   },
   {
    "id": "cai-ruiyue",
@@ -6971,7 +7205,13 @@
    },
    "band": 3,
    "ly": 2005,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「蔡瑞月」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/19969"
+    }
+   ]
   },
   {
    "id": "yang-qianhe",
@@ -7181,7 +7421,13 @@
    },
    "band": 3,
    "ly": 1950,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「計梅真」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/11867"
+    }
+   ]
   },
   {
    "id": "qian-jingzhi",
@@ -7221,7 +7467,13 @@
    },
    "band": 3,
    "ly": 1950,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「錢靜芝」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/20811"
+    }
+   ]
   },
   {
    "id": "xu-jinyu",
@@ -7261,7 +7513,13 @@
    },
    "band": 3,
    "ly": 2018,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「許金玉」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2979"
+    }
+   ]
   },
   {
    "id": "cui-xiaoping",
@@ -7388,7 +7646,13 @@
    },
    "band": 3,
    "ly": 1966,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「沈嫄璋」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/9528"
+    }
+   ]
   },
   {
    "id": "gao-juhua",
@@ -7428,7 +7692,13 @@
    },
    "band": 3,
    "ly": 2016,
-   "country": "台灣"
+   "country": "台灣",
+   "refs": [
+    {
+     "label": "國家人權記憶庫「高菊花」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/12697"
+    }
+   ]
   },
   {
    "id": "fu-ruzhi",

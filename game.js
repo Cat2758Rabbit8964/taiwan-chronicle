@@ -84,26 +84,25 @@ function start() {
     el('button', { class: 'btn', type: 'submit' }, '出發'), msg);
   show(
     el('h1', {}, '尋找你上輩子的樣子'),
-    el('p', { class: 'lead' }, '選擇生日,系統會讓你回到過去的三個時間點之一。故事會替你安排一連串的抉擇;你走的每一步,最後都會對回一位真實存在過的人,在歷史上真正做過的事。有時命運不照你的意思走,那也會被寫進故事裡。'),
+    el('p', { class: 'lead' }, '選擇生日,系統會把你帶回過去的某個時間。故事會替你安排一連串的抉擇;你走的每一步,最後都會對回一位真實存在過的人,在歷史上真正做過的事。有時命運不照你的意思走,那也會被寫進故事裡。'),
     el('div', { class: 'card' }, form));
 }
 
-function begin(birth, msg) {
-  const ok = qualifiedBands(birth);
+function begin(birth, msg, round = 0, usedBands = []) {
+  let ok = qualifiedBands(birth);
   if (!ok.length) {
     if (msg) msg.textContent = '這個生日太早了,資料庫裡沒有足夠在你出生前就已過世的人物。';
     return;
   }
-  const picked = shuffled(ok.map((b) => String(b.id)), birth).slice(0, 3).map(Number);
-  const bands = data.bands.filter((b) => picked.includes(b.id));
-  st = { birth, bands, band: null, pool: [], career: null, asked: [], usedSit: [] };
-  const cards = bands.map((b) => el('button', { class: 'opt', type: 'button', onclick: () => chooseBand(b) }, agoLabel(b)));
-  const [y, m, d] = birth.split('-').map(Number);
-  show(
-    el('h2', {}, '選一個你想回去的時間'),
-    el('p', { class: 'lead' }, `生日 ${y} 年 ${m} 月 ${d} 日。你要回到:`),
-    el('div', { class: 'stack' }, cards),
-    el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: start }, '重選生日')));
+  const fresh = ok.filter((b) => !usedBands.includes(b.id));
+  if (fresh.length) ok = fresh;   // 「再玩一次」盡量換一個時間帶
+  // 依各時間帶的資格人物數加權抽籤,每位人物出場的機會才會相近;同一個生日永遠得到同一個結果
+  const w = ok.map((b) => eligible(birth).filter((p) => p.band === b.id && p.acts.L).length);
+  const total = w.reduce((x, y) => x + y, 0);
+  let r = hash(birth + 'b' + round) % total, i = 0;
+  while (r >= w[i]) { r -= w[i]; i++; }
+  st = { birth, round, usedBands: [...usedBands, ok[i].id], band: null, pool: [], career: null, asked: [], usedSit: [] };
+  chooseBand(ok[i]);
 }
 
 function chooseBand(b) {
@@ -228,7 +227,10 @@ function chooseCat(sit, c) {
     return applyCat(sit, c, best, best !== c);
   }
   const def = data.sits[sit];
-  interlude(`事與願違。你本想「${def[c]}」,局勢卻不容許;幾番周折之後,你走上了另一條路:「${def[alt]}」。`, () => applyCat(sit, c, alt, true));
+  interlude(isL
+    ? `然而記憶是模糊的。你以為自己記得的是「${def[c]}」,浮上心頭的卻是「${def[alt]}」。`
+    : `事與願違。你本想「${def[c]}」,局勢卻不容許;幾番周折之後,你走上了另一條路:「${def[alt]}」。`,
+  () => applyCat(sit, c, alt, true));
 }
 function applyCat(sit, chosen, eff, twisted) {
   const def = data.sits[sit];
@@ -250,17 +252,22 @@ function result() {
 
   const chain = st.asked.filter((a) => a.kind !== 'skip').map((a) => {
     const rows = [];
+    const isL = a.kind === 'sit' && a.sit === 'L';
     if (a.kind === 'sit') rows.push(el('div', { class: 'q' }, a.title));
     if (a.twisted) {
-      rows.push(el('div', { class: 'you off' }, '你原本選了:', a.chosenText));
-      rows.push(el('div', { class: 'twist' }, '故事轉折了,你實際走上的是:'));
+      rows.push(el('div', { class: 'you off' }, isL ? '你原本以為記得的是:' : '你原本選了:', a.chosenText));
+      rows.push(el('div', { class: 'twist' }, isL ? '記憶模糊了,浮上來的是:' : '故事轉折了,你實際走上的是:'));
     }
-    rows.push(el('div', { class: 'you' }, a.twisted ? a.text : `你選了:${a.text}`));
+    rows.push(el('div', { class: 'you' }, a.twisted ? a.text : (isL ? `你依稀記得:${a.text}` : `你選了:${a.text}`)));
     if (a.kind === 'career') rows.push(el('div', { class: 'real' }, p.c.includes(a.eff) ? `他/她的職業:${p.job}` : `他/她的職業是${p.job},不是這條志向,但他/她走過和你一樣的情境選擇`));
     else if (a.kind === 'place') rows.push(el('div', { class: 'real' }, '他/她出生地的類型與此相符(這是本遊戲自行的分類,不是史實)'));
-    else p.acts[a.sit].filter((x) => x.c === a.eff).forEach((x) => rows.push(el('div', { class: 'real' }, '他/她真正做的:', x.ev)));
+    else p.acts[a.sit].filter((x) => x.c === a.eff).forEach((x) => rows.push(el('div', { class: 'real' }, isL ? '他/她真正的結局:' : '他/她真正做的:', x.ev)));
     return el('li', {}, rows);
   });
+  const sources = [el('a', { href: p.ref, target: '_blank', rel: 'noopener' }, `${p.src}「${p.name}」`),
+    ...(p.refs || []).map((r) => el('a', { href: r.url, target: '_blank', rel: 'noopener' }, `${r.label}`))];
+  const sourceLine = el('p', { class: 'persona' }, '資料出處:', sources.flatMap((x, i) => (i ? [' · ', x] : [x])));
+  const otherLine = (q) => el('div', {}, el('a', { href: q.ref, target: '_blank', rel: 'noopener' }, q.name), `(${q.life},${q.job})`);
 
   show(
     el('p', { class: 'persona' }, `你回到的是 ${b.from} 到 ${b.to} 年前後 · 你的上輩子是`),
@@ -271,11 +278,11 @@ function result() {
       el('div', { class: 'sec' }, el('h3', {}, '他/她做過的事'), el('p', {}, p.story)),
       el('div', { class: 'sec' }, el('h3', {}, '後來的遭遇'), el('p', {}, p.fate)),
       p.note ? el('div', { class: 'sec' }, el('h3', {}, '資料註記'), el('p', { class: 'note' }, p.note)) : null,
-      el('p', { class: 'persona' }, '資料出處:', el('a', { href: p.ref, target: '_blank', rel: 'noopener' }, `${p.src}「${p.name}」`))),
-    others.length ? el('div', { class: 'sec' }, el('h3', {}, '走過同一條路的其他人'), el('div', { class: 'also' }, others.map((q) => el('div', {}, `${q.name}(${q.life},${q.job})`)))) : null,
+      sourceLine),
+    others.length ? el('div', { class: 'sec' }, el('h3', {}, '走過同一條路的其他人'), el('div', { class: 'also' }, others.map(otherLine))) : null,
     el('div', { class: 'row' },
       el('a', { class: 'btn', href: `index.html#y=${p.ly}`, style: 'text-decoration:none' }, `到台灣事件簿,看 ${p.ly} 年前後的台灣`),
-      el('button', { class: 'btn ghost', type: 'button', onclick: () => begin(st.birth) }, '換一個時間再試'),
+      el('button', { class: 'btn ghost', type: 'button', onclick: () => begin(st.birth, null, st.round + 1, st.usedBands) }, '再玩一次(換一個時間)'),
       el('button', { class: 'btn ghost', type: 'button', onclick: start }, '重新開始')),
     el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'));
 }
