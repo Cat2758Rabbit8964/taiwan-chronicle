@@ -287,7 +287,7 @@ function result() {
     el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'));
 }
 
-fetch('data/game.json')
+fetch('data/game.json?v=20261108')
   .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then((d) => { data = d; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
