@@ -13,11 +13,6 @@
   {
    "id": 3,
    "from": 1946,
-   "to": 1986
-  },
-  {
-   "id": 4,
-   "from": 1987,
    "to": 2026
   }
  ],
@@ -185,7 +180,8 @@
    },
    "band": 2,
    "ly": 1931,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 431.633
   },
   {
    "id": "lai-he",
@@ -231,7 +227,8 @@
    },
    "band": 2,
    "ly": 1943,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 400.495
   },
   {
    "id": "li-yingzhang",
@@ -277,7 +274,8 @@
    },
    "band": 2,
    "ly": 1954,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "du-congming",
@@ -323,7 +321,8 @@
    },
    "band": 2,
    "ly": 1986,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "wu-xinrong",
@@ -369,7 +368,8 @@
    },
    "band": 3,
    "ly": 1967,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 188.235
   },
   {
    "id": "chen-chengbo",
@@ -421,7 +421,8 @@
      "label": "國家人權記憶庫「陳澄波」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/16211"
     }
-   ]
+   ],
+   "wt": 0.001
   },
   {
    "id": "huang-tushui",
@@ -466,7 +467,8 @@
    },
    "band": 2,
    "ly": 1930,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 270.306
   },
   {
    "id": "guo-xuehu",
@@ -511,7 +513,8 @@
    },
    "band": 2,
    "ly": 2012,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "chen-jin",
@@ -556,7 +559,8 @@
    },
    "band": 3,
    "ly": 1998,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "deng-yuxian",
@@ -595,7 +599,8 @@
    },
    "band": 2,
    "ly": 1944,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "lyu-heruo",
@@ -640,7 +645,8 @@
    },
    "band": 2,
    "ly": 1950,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "yang-kui",
@@ -692,7 +698,8 @@
      "label": "國家人權記憶庫「楊逵」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4408"
     }
-   ]
+   ],
+   "wt": 717.752
   },
   {
    "id": "zhang-wojun",
@@ -738,7 +745,8 @@
    },
    "band": 2,
    "ly": 1955,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 885.27
   },
   {
    "id": "lin-xiantang",
@@ -784,7 +792,8 @@
    },
    "band": 2,
    "ly": 1956,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "cai-peihuo",
@@ -831,7 +840,8 @@
    },
    "band": 2,
    "ly": 1983,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 620.829
   },
   {
    "id": "gu-xianrong",
@@ -877,7 +887,8 @@
    },
    "band": 1,
    "ly": 1937,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 5.191
   },
   {
    "id": "lin-maosheng",
@@ -922,7 +933,8 @@
    },
    "band": 2,
    "ly": 1947,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 233.331
   },
   {
    "id": "jian-ji",
@@ -974,7 +986,8 @@
      "label": "國家人權記憶庫「簡吉」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5676"
     }
-   ]
+   ],
+   "wt": 344.151
   },
   {
    "id": "luo-fuxing",
@@ -1014,7 +1027,8 @@
    },
    "band": 2,
    "ly": 1914,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "yu-qingfang",
@@ -1053,7 +1067,8 @@
    },
    "band": 2,
    "ly": 1915,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "mona-rudao",
@@ -1099,7 +1114,8 @@
    },
    "band": 2,
    "ly": 1930,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "xie-xuehong",
@@ -1138,7 +1154,8 @@
    },
    "band": 2,
    "ly": 1970,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "wang-tiandeng",
@@ -1184,7 +1201,8 @@
    },
    "band": 2,
    "ly": 1947,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 264.949
   },
   {
    "id": "tang-dezhang",
@@ -1229,7 +1247,8 @@
    },
    "band": 3,
    "ly": 1947,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 206.821
   },
   {
    "id": "wang-yulin",
@@ -1274,7 +1293,8 @@
    },
    "band": 3,
    "ly": 1947,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "lin-lianzong",
@@ -1320,7 +1340,8 @@
    },
    "band": 2,
    "ly": 1947,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 242.997
   },
   {
    "id": "lei-zhen",
@@ -1367,7 +1388,8 @@
      "label": "國家人權記憶庫「雷震」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4624"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "jiang-weichuan",
@@ -1418,7 +1440,8 @@
    },
    "band": 2,
    "ly": 1975,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "li-wanju",
@@ -1464,7 +1487,8 @@
    },
    "band": 2,
    "ly": 1966,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 273.344
   },
   {
    "id": "wu-sanlian",
@@ -1510,7 +1534,8 @@
    },
    "band": 2,
    "ly": 1988,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 938.556
   },
   {
    "id": "gao-yushu",
@@ -1555,7 +1580,8 @@
    },
    "band": 3,
    "ly": 2005,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "guo-yuxin",
@@ -1600,7 +1626,8 @@
    },
    "band": 3,
    "ly": 1985,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "yu-dengfa",
@@ -1645,7 +1672,8 @@
      "label": "國家人權記憶庫「余登發」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/658"
     }
-   ]
+   ],
+   "wt": 1.0
   },
   {
    "id": "xu-shixian",
@@ -1685,7 +1713,8 @@
    },
    "band": 3,
    "ly": 1983,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "han-shiquan",
@@ -1737,7 +1766,8 @@
    },
    "band": 2,
    "ly": 1963,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "li-zhenyuan",
@@ -1783,7 +1813,8 @@
    },
    "band": 3,
    "ly": 2001,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 228.017
   },
   {
    "id": "li-meishu",
@@ -1829,7 +1860,8 @@
    },
    "band": 2,
    "ly": 1983,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "liao-jichun",
@@ -1875,7 +1907,8 @@
    },
    "band": 2,
    "ly": 1976,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "hong-tong",
@@ -1920,7 +1953,8 @@
    },
    "band": 3,
    "ly": 1987,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "zhong-liche",
@@ -1965,7 +1999,8 @@
    },
    "band": 3,
    "ly": 1960,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 204.768
   },
   {
    "id": "ye-shitao",
@@ -2011,7 +2046,8 @@
      "label": "國家人權記憶庫「葉石濤」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4494"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "bo-yang",
@@ -2057,7 +2093,8 @@
    },
    "band": 3,
    "ly": 2008,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "chen-yingzhen",
@@ -2103,7 +2140,8 @@
    },
    "band": 3,
    "ly": 2016,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "li-ao",
@@ -2149,7 +2187,8 @@
    },
    "band": 3,
    "ly": 2018,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "yu-guangzhong",
@@ -2193,7 +2232,8 @@
    },
    "band": 3,
    "ly": 2017,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "yin-haiguang",
@@ -2232,7 +2272,8 @@
    },
    "band": 3,
    "ly": 1969,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "peng-mingmin",
@@ -2284,7 +2325,8 @@
      "label": "國家人權記憶庫「彭明敏」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/16539"
     }
-   ]
+   ],
+   "wt": 0.001
   },
   {
    "id": "zhong-haodong",
@@ -2336,7 +2378,8 @@
      "label": "國家人權記憶庫「鍾浩東」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5629"
     }
-   ]
+   ],
+   "wt": 400.261
   },
   {
    "id": "ke-qihua",
@@ -2381,7 +2424,8 @@
      "label": "國家人權記憶庫「柯旗化」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2031"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "chen-wencheng",
@@ -2420,7 +2464,8 @@
    },
    "band": 3,
    "ly": 1981,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "sun-liren",
@@ -2471,7 +2516,8 @@
      "label": "國家人權記憶庫「孫立人」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/22237"
     }
-   ]
+   ],
+   "wt": 0.001
   },
   {
    "id": "wu-shi",
@@ -2510,7 +2556,8 @@
    },
    "band": 3,
    "ly": 1950,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 777.891
   },
   {
    "id": "li-youbang",
@@ -2556,7 +2603,8 @@
      "label": "國家人權記憶庫「李友邦」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/966"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "gao-yisheng",
@@ -2602,7 +2650,8 @@
      "label": "國家人權記憶庫「高一生」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2443"
     }
-   ]
+   ],
+   "wt": 723.047
   },
   {
    "id": "yang-chuangkuang",
@@ -2647,7 +2696,8 @@
    },
    "band": 3,
    "ly": 2007,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 701.149
   },
   {
    "id": "chen-yi",
@@ -2687,7 +2737,8 @@
    },
    "band": 3,
    "ly": 1950,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "huang-xinjie",
@@ -2739,7 +2790,8 @@
      "label": "國家人權記憶庫「黃信介」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4115"
     }
-   ]
+   ],
+   "wt": 617.459
   },
   {
    "id": "shi-mingde",
@@ -2785,7 +2837,8 @@
      "label": "國家人權記憶庫「施明德」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/1988"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "jiang-jingguo",
@@ -2830,7 +2883,8 @@
    },
    "band": 3,
    "ly": 1988,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 208.42
   },
   {
    "id": "li-denghui",
@@ -2868,9 +2922,10 @@
      }
     ]
    },
-   "band": 4,
+   "band": 3,
    "ly": 2020,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "chen-dingnan",
@@ -2914,9 +2969,10 @@
      }
     ]
    },
-   "band": 4,
+   "band": 3,
    "ly": 2006,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "jiang-pengjian",
@@ -2962,7 +3018,8 @@
    },
    "band": 3,
    "ly": 2000,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 573.024
   },
   {
    "id": "zheng-nanrong",
@@ -3000,9 +3057,10 @@
      }
     ]
    },
-   "band": 4,
+   "band": 3,
    "ly": 1989,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "zhan-yihua",
@@ -3039,9 +3097,10 @@
      }
     ]
    },
-   "band": 4,
+   "band": 3,
    "ly": 1989,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "peng-wanru",
@@ -3078,9 +3137,10 @@
      }
     ]
    },
-   "band": 4,
+   "band": 3,
    "ly": 1996,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 259.189
   },
   {
    "id": "gao-junming",
@@ -3131,7 +3191,8 @@
      "label": "國家人權記憶庫「高俊明」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2473"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "lin-zongyi",
@@ -3177,7 +3238,8 @@
    },
    "band": 3,
    "ly": 2010,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "yang-dechang",
@@ -3214,9 +3276,10 @@
      }
     ]
    },
-   "band": 4,
+   "band": 3,
    "ly": 2007,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "deng-lijun",
@@ -3253,9 +3316,10 @@
      }
     ]
    },
-   "band": 4,
+   "band": 3,
    "ly": 1995,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "wang-yongqing",
@@ -3294,7 +3358,8 @@
    },
    "band": 3,
    "ly": 2008,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "liu-mingchuan",
@@ -3339,7 +3404,8 @@
    },
    "band": 1,
    "ly": 1896,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 18.985
   },
   {
    "id": "shen-baozhen",
@@ -3378,7 +3444,8 @@
    },
    "band": 1,
    "ly": 1879,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 126.89
   },
   {
    "id": "ding-richang",
@@ -3417,7 +3484,8 @@
    },
    "band": 1,
    "ly": 1882,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 122.817
   },
   {
    "id": "tang-jingsong",
@@ -3466,7 +3534,8 @@
    },
    "band": 1,
    "ly": 1903,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.058
   },
   {
    "id": "qiu-fengjia",
@@ -3516,7 +3585,8 @@
    },
    "band": 1,
    "ly": 1912,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.006
   },
   {
    "id": "liu-yongfu",
@@ -3571,7 +3641,8 @@
      "label": "國家人權記憶庫「劉永福」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4821"
     }
-   ]
+   ],
+   "wt": 0.027
   },
   {
    "id": "wu-tangxing",
@@ -3611,7 +3682,8 @@
    },
    "band": 1,
    "ly": 1895,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 186.506
   },
   {
    "id": "lin-chaodong",
@@ -3660,7 +3732,8 @@
    },
    "band": 1,
    "ly": 1904,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "hong-qisheng",
@@ -3705,7 +3778,8 @@
    },
    "band": 1,
    "ly": 1928,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1.156
   },
   {
    "id": "lin-zhanmei",
@@ -3750,7 +3824,8 @@
    },
    "band": 1,
    "ly": 1868,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 20.081
   },
   {
    "id": "li-chunsheng",
@@ -3795,7 +3870,8 @@
    },
    "band": 1,
    "ly": 1924,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1.698
   },
   {
    "id": "yoshida-shoin",
@@ -3847,7 +3923,8 @@
      "label": "コトバンク「吉田松陰」",
      "url": "https://kotobank.jp/word/%E5%90%89%E7%94%B0%E6%9D%BE%E9%99%B0"
     }
-   ]
+   ],
+   "wt": 35.64
   },
   {
    "id": "sakamoto-ryoma",
@@ -3887,7 +3964,14 @@
    },
    "band": 1,
    "ly": 1867,
-   "country": "日本"
+   "country": "日本",
+   "wt": 58.269,
+   "refs": [
+    {
+     "label": "コトバンク「坂本龍馬」",
+     "url": "https://kotobank.jp/word/%E5%9D%82%E6%9C%AC%E9%BE%8D%E9%A6%AC"
+    }
+   ]
   },
   {
    "id": "saigo-takamori",
@@ -3933,7 +4017,14 @@
    },
    "band": 1,
    "ly": 1877,
-   "country": "日本"
+   "country": "日本",
+   "wt": 22.795,
+   "refs": [
+    {
+     "label": "コトバンク「西郷隆盛」",
+     "url": "https://kotobank.jp/word/%E8%A5%BF%E9%83%B7%E9%9A%86%E7%9B%9B"
+    }
+   ]
   },
   {
    "id": "fukuzawa-yukichi",
@@ -3972,7 +4063,14 @@
    },
    "band": 1,
    "ly": 1901,
-   "country": "日本"
+   "country": "日本",
+   "wt": 36.83,
+   "refs": [
+    {
+     "label": "コトバンク「福沢諭吉」",
+     "url": "https://kotobank.jp/word/%E7%A6%8F%E6%B2%A2%E8%AB%AD%E5%90%89"
+    }
+   ]
   },
   {
    "id": "ito-hirobumi",
@@ -4023,7 +4121,8 @@
      "label": "コトバンク「伊藤博文」",
      "url": "https://kotobank.jp/word/%E4%BC%8A%E8%97%A4%E5%8D%9A%E6%96%87"
     }
-   ]
+   ],
+   "wt": 0.438
   },
   {
    "id": "tanaka-shozo",
@@ -4069,7 +4168,8 @@
      "label": "コトバンク「田中正造」",
      "url": "https://kotobank.jp/word/%E7%94%B0%E4%B8%AD%E6%AD%A3%E9%80%A0"
     }
-   ]
+   ],
+   "wt": 83.359
   },
   {
    "id": "natsume-soseki",
@@ -4114,46 +4214,8 @@
      "label": "コトバンク「夏目漱石」",
      "url": "https://kotobank.jp/word/%E5%A4%8F%E7%9B%AE%E6%BC%B1%E7%9F%B3"
     }
-   ]
-  },
-  {
-   "id": "higuchi-ichiyo",
-   "name": "樋口一葉",
-   "life": "1872–1896",
-   "died": "1896-11-23",
-   "job": "小說家",
-   "c": [
-    "art"
    ],
-   "bp": "city",
-   "story": "明治初期重要的女性小說家,代表作有《十三夜》《青梅竹馬》;2004 年成為日本紙幣上的第一位女性人物(五千日圓)。",
-   "fate": "1896 年 11 月 23 日因肺結核逝世於東京家中,得年 24 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/樋口一葉",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "S",
-      "ev": "專注寫作,24 歲病逝,條目未載與當局的衝突"
-     }
-    ],
-    "L": [
-     {
-      "c": "S",
-      "ev": "1896 年 11 月 23 日因肺結核逝世,得年 24 歲"
-     }
-    ]
-   },
-   "band": 1,
-   "ly": 1896,
-   "country": "日本",
-   "refs": [
-    {
-     "label": "コトバンク「樋口一葉」",
-     "url": "https://kotobank.jp/word/%E6%A8%8B%E5%8F%A3%E4%B8%80%E8%91%89"
-    }
-   ]
+   "wt": 66.844
   },
   {
    "id": "kitasato",
@@ -4208,7 +4270,8 @@
      "label": "コトバンク「北里柴三郎」",
      "url": "https://kotobank.jp/word/%E5%8C%97%E9%87%8C%E6%9F%B4%E4%B8%89%E9%83%8E"
     }
-   ]
+   ],
+   "wt": 1.038
   },
   {
    "id": "noguchi-hideyo",
@@ -4253,7 +4316,8 @@
      "label": "コトバンク「野口英世」",
      "url": "https://kotobank.jp/word/%E9%87%8E%E5%8F%A3%E8%8B%B1%E4%B8%96"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "kotoku-shusui",
@@ -4293,7 +4357,14 @@
    },
    "band": 1,
    "ly": 1911,
-   "country": "日本"
+   "country": "日本",
+   "wt": 111.603,
+   "refs": [
+    {
+     "label": "コトバンク「幸徳秋水」",
+     "url": "https://kotobank.jp/word/%E5%B9%B8%E5%BE%B3%E7%A7%8B%E6%B0%B4"
+    }
+   ]
   },
   {
    "id": "osugi-sakae",
@@ -4332,7 +4403,14 @@
    },
    "band": 2,
    "ly": 1923,
-   "country": "日本"
+   "country": "日本",
+   "wt": 1000.0,
+   "refs": [
+    {
+     "label": "コトバンク「大杉栄」",
+     "url": "https://kotobank.jp/word/%E5%A4%A7%E6%9D%89%E6%A0%84"
+    }
+   ]
   },
   {
    "id": "kobayashi-takiji",
@@ -4378,7 +4456,8 @@
      "label": "コトバンク「小林多喜二」",
      "url": "https://kotobank.jp/word/%E5%B0%8F%E6%9E%97%E5%A4%9A%E5%96%9C%E4%BA%8C"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "miyazawa-kenji",
@@ -4418,7 +4497,14 @@
    },
    "band": 2,
    "ly": 1933,
-   "country": "日本"
+   "country": "日本",
+   "wt": 0.001,
+   "refs": [
+    {
+     "label": "コトバンク「宮沢賢治」",
+     "url": "https://kotobank.jp/word/%E5%AE%AE%E6%B2%A2%E8%B3%A2%E6%B2%BB"
+    }
+   ]
   },
   {
    "id": "yosano-akiko",
@@ -4463,7 +4549,14 @@
    },
    "band": 2,
    "ly": 1942,
-   "country": "日本"
+   "country": "日本",
+   "wt": 957.918,
+   "refs": [
+    {
+     "label": "コトバンク「与謝野晶子」",
+     "url": "https://kotobank.jp/word/%E4%B8%8E%E8%AC%9D%E9%87%8E%E6%99%B6%E5%AD%90"
+    }
+   ]
   },
   {
    "id": "goto-shimpei",
@@ -4515,7 +4608,8 @@
      "label": "コトバンク「後藤新平」",
      "url": "https://kotobank.jp/word/%E5%BE%8C%E8%97%A4%E6%96%B0%E5%B9%B3"
     }
-   ]
+   ],
+   "wt": 13.255
   },
   {
    "id": "ozaki-yukio",
@@ -4566,7 +4660,8 @@
      "label": "コトバンク「尾崎行雄」",
      "url": "https://kotobank.jp/word/%E5%B0%BE%E5%B4%8E%E8%A1%8C%E9%9B%84"
     }
-   ]
+   ],
+   "wt": 8.963
   },
   {
    "id": "tojo-hideki",
@@ -4606,7 +4701,14 @@
    },
    "band": 2,
    "ly": 1948,
-   "country": "日本"
+   "country": "日本",
+   "wt": 0.001,
+   "refs": [
+    {
+     "label": "コトバンク「東条英機」",
+     "url": "https://kotobank.jp/word/%E6%9D%B1%E6%9D%A1%E8%8B%B1%E6%A9%9F"
+    }
+   ]
   },
   {
    "id": "sugihara-chiune",
@@ -4651,7 +4753,8 @@
      "label": "コトバンク「杉原千畝」",
      "url": "https://kotobank.jp/word/%E6%9D%89%E5%8E%9F%E5%8D%83%E7%95%9D"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "yoshida-shigeru",
@@ -4696,7 +4799,8 @@
      "label": "コトバンク「吉田茂」",
      "url": "https://kotobank.jp/word/%E5%90%89%E7%94%B0%E8%8C%82"
     }
-   ]
+   ],
+   "wt": 400.862
   },
   {
    "id": "ishibashi-tanzan",
@@ -4742,7 +4846,8 @@
      "label": "コトバンク「石橋湛山」",
      "url": "https://kotobank.jp/word/%E7%9F%B3%E6%A9%8B%E6%B9%9B%E5%B1%B1"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "kurosawa-akira",
@@ -4781,7 +4886,14 @@
    },
    "band": 3,
    "ly": 1998,
-   "country": "日本"
+   "country": "日本",
+   "wt": 0.001,
+   "refs": [
+    {
+     "label": "コトバンク「黒澤明」",
+     "url": "https://kotobank.jp/word/%E9%BB%92%E6%BE%A4%E6%98%8E"
+    }
+   ]
   },
   {
    "id": "tezuka-osamu",
@@ -4827,7 +4939,8 @@
      "label": "コトバンク「手塚治虫」",
      "url": "https://kotobank.jp/word/%E6%89%8B%E5%A1%9A%E6%B2%BB%E8%99%AB"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "matsushita-konosuke",
@@ -4878,7 +4991,8 @@
      "label": "コトバンク「松下幸之助」",
      "url": "https://kotobank.jp/word/%E6%9D%BE%E4%B8%8B%E5%B9%B8%E4%B9%8B%E5%8A%A9"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "honda-soichiro",
@@ -4923,7 +5037,8 @@
      "label": "コトバンク「本田宗一郎」",
      "url": "https://kotobank.jp/word/%E6%9C%AC%E7%94%B0%E5%AE%97%E4%B8%80%E9%83%8E"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "atsuhime",
@@ -4962,7 +5077,8 @@
    },
    "band": 1,
    "ly": 1883,
-   "country": "日本"
+   "country": "日本",
+   "wt": 58.338
   },
   {
    "id": "tsuda-umeko",
@@ -5013,7 +5129,8 @@
      "label": "コトバンク「津田梅子」",
      "url": "https://kotobank.jp/word/%E6%B4%A5%E7%94%B0%E6%A2%85%E5%AD%90"
     }
-   ]
+   ],
+   "wt": 9.862
   },
   {
    "id": "ogino-ginko",
@@ -5064,7 +5181,8 @@
      "label": "コトバンク「荻野吟子」",
      "url": "https://kotobank.jp/word/%E8%8D%BB%E9%87%8E%E5%90%9F%E5%AD%90"
     }
-   ]
+   ],
+   "wt": 0.514
   },
   {
    "id": "hiratsuka-raicho",
@@ -5110,7 +5228,14 @@
    },
    "band": 2,
    "ly": 1971,
-   "country": "日本"
+   "country": "日本",
+   "wt": 180.82,
+   "refs": [
+    {
+     "label": "コトバンク「平塚らいてう」",
+     "url": "https://kotobank.jp/word/%E5%B9%B3%E5%A1%9A%E3%82%89%E3%81%84%E3%81%A6%E3%81%86"
+    }
+   ]
   },
   {
    "id": "ichikawa-fusae",
@@ -5162,7 +5287,8 @@
      "label": "コトバンク「市川房枝」",
      "url": "https://kotobank.jp/word/%E5%B8%82%E5%B7%9D%E6%88%BF%E6%9E%9D"
     }
-   ]
+   ],
+   "wt": 631.716
   },
   {
    "id": "li-xianglan",
@@ -5208,7 +5334,14 @@
    },
    "band": 2,
    "ly": 2014,
-   "country": "日本"
+   "country": "日本",
+   "wt": 0.001,
+   "refs": [
+    {
+     "label": "コトバンク「山口淑子」",
+     "url": "https://kotobank.jp/word/%E5%B1%B1%E5%8F%A3%E6%B7%91%E5%AD%90"
+    }
+   ]
   },
   {
    "id": "misora-hibari",
@@ -5247,7 +5380,14 @@
    },
    "band": 3,
    "ly": 1989,
-   "country": "日本"
+   "country": "日本",
+   "wt": 1000.0,
+   "refs": [
+    {
+     "label": "コトバンク「美空ひばり」",
+     "url": "https://kotobank.jp/word/%E7%BE%8E%E7%A9%BA%E3%81%B2%E3%81%B0%E3%82%8A"
+    }
+   ]
   },
   {
    "id": "ogata-sadako",
@@ -5285,7 +5425,7 @@
      }
     ]
    },
-   "band": 4,
+   "band": 3,
    "ly": 2019,
    "country": "日本",
    "refs": [
@@ -5293,47 +5433,8 @@
      "label": "コトバンク「緒方貞子」",
      "url": "https://kotobank.jp/word/%E7%B7%92%E6%96%B9%E8%B2%9E%E5%AD%90"
     }
-   ]
-  },
-  {
-   "id": "zeng-guofan",
-   "name": "曾國藩",
-   "life": "1811–1872",
-   "died": "1872-03-12",
-   "job": "湘軍領袖、晚清重臣",
-   "c": [
-    "pol",
-    "biz"
    ],
-   "bp": "farm",
-   "story": "1852 年奉命組辦湘軍,1864 年攻破天京;支持洋務運動,創辦江南製造總局。",
-   "fate": "1872 年 3 月 12 日病逝於江寧總督轅門,享年 61 歲,條目未載確切病名。",
-   "note": "評價並陳:梁啟超推崇其為罕見的大人物;但湘軍攻陷南京後大肆屠掠,南京民間稱他為「曾剃頭」,天津教案後輿論斥其「曾國賊」。",
-   "ref": "https://zh.wikipedia.org/wiki/曾國藩",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "A",
-      "ev": "1852 年奉命組辦湘軍,參與圍剿太平天國"
-     }
-    ],
-    "C": [
-     {
-      "c": "E",
-      "ev": "支持洋務運動,創辦江南製造總局"
-     }
-    ],
-    "L": [
-     {
-      "c": "E",
-      "ev": "1872 年 3 月 12 日病逝於江寧總督轅門"
-     }
-    ]
-   },
-   "band": 1,
-   "ly": 1872,
-   "country": "中國"
+   "wt": 1000.0
   },
   {
    "id": "li-hongzhang",
@@ -5378,7 +5479,8 @@
    },
    "band": 1,
    "ly": 1901,
-   "country": "中國"
+   "country": "中國",
+   "wt": 7.837
   },
   {
    "id": "kang-youwei",
@@ -5424,172 +5526,8 @@
    },
    "band": 1,
    "ly": 1927,
-   "country": "中國"
-  },
-  {
-   "id": "liang-qichao",
-   "name": "梁啟超",
-   "life": "1873–1929",
-   "died": "1929-01-19",
-   "job": "改革家、報人、學者",
-   "c": [
-    "edu",
-    "pol"
-   ],
-   "bp": "port",
-   "story": "參與戊戌變法,失敗後流亡;創辦多種報刊並提出「中華民族」概念;晚年任教清華國學研究院。",
-   "fate": "1929 年 1 月 19 日病逝於北平協和醫院,享年 55 歲。",
-   "note": "「公車上書」是否確有其事,有學者質疑;1926 年手術被指誤割健康腎臟,條目載 2006 年協和醫院公開病案後已證實並非如此。",
-   "ref": "https://zh.wikipedia.org/wiki/梁啟超",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "E",
-      "ev": "參與戊戌變法,主張君主立憲"
-     }
-    ],
-    "D": [
-     {
-      "c": "X",
-      "ev": "戊戌後流亡日本等地"
-     }
-    ],
-    "C": [
-     {
-      "c": "S",
-      "ev": "晚年任教於清華國學研究院"
-     }
-    ],
-    "L": [
-     {
-      "c": "S",
-      "ev": "1929 年 1 月 19 日病逝於北平協和醫院"
-     }
-    ]
-   },
-   "band": 1,
-   "ly": 1929,
-   "country": "中國"
-  },
-  {
-   "id": "tan-sitong",
-   "name": "譚嗣同",
-   "life": "1865–1898",
-   "died": "1898-09-28",
-   "job": "維新人物、軍機章京",
-   "c": [
-    "pol",
-    "edu"
-   ],
-   "bp": "city",
-   "story": "著《仁學》批判君主專制;在湖南協助創辦南學會、《湘報》;1898 年入京參與新政,與林旭、楊銳等人並稱「軍機四卿」。",
-   "fate": "戊戌政變後,1898 年 9 月 28 日在北京菜市口被處決,得年 33 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/譚嗣同",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "R",
-      "ev": "著《仁學》批判君主專制,參與新政"
-     }
-    ],
-    "C": [
-     {
-      "c": "E",
-      "ev": "1898 年應徵入京參與新政,任軍機章京"
-     }
-    ],
-    "L": [
-     {
-      "c": "R",
-      "ev": "1898 年 9 月 28 日於北京菜市口被處決"
-     }
-    ]
-   },
-   "band": 1,
-   "ly": 1898,
-   "country": "中國"
-  },
-  {
-   "id": "yan-fu",
-   "name": "嚴復",
-   "life": "1854–1921",
-   "died": "1921-10-27",
-   "job": "思想家、翻譯家",
-   "c": [
-    "edu"
-   ],
-   "bp": "port",
-   "story": "翻譯《天演論》《原富》,介紹西方社會學與政治學;提出「信、達、雅」的翻譯標準。",
-   "fate": "晚年被視為保守派,發起籌安會、支持袁世凱復辟帝制。1921 年 10 月 27 日因哮喘病逝於福州,享年 67 歲。",
-   "note": "俞政指其譯著多有「誤譯」,汪榮祖則認為多屬意譯與直譯之別。",
-   "ref": "https://zh.wikipedia.org/wiki/嚴復",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "S",
-      "ev": "翻譯《天演論》《原富》,介紹西方思想"
-     }
-    ],
-    "D": [
-     {
-      "c": "A",
-      "ev": "晚年發起籌安會,支持袁世凱復辟帝制"
-     }
-    ],
-    "L": [
-     {
-      "c": "S",
-      "ev": "1921 年 10 月 27 日因哮喘病逝於福州"
-     }
-    ]
-   },
-   "band": 1,
-   "ly": 1921,
-   "country": "中國"
-  },
-  {
-   "id": "qiu-jin",
-   "name": "秋瑾",
-   "life": "1875–1907",
-   "died": "1907-07-15",
-   "job": "革命家、女權運動者",
-   "c": [
-    "act",
-    "edu"
-   ],
-   "bp": "port",
-   "story": "1904 年留學日本,1905 年加入光復會與同盟會;1907 年創辦《中國女報》,主持大通學堂,籌備金華起義。",
-   "fate": "徐錫麟安慶起義失敗後被牽連,大通學堂被查抄,她被捕,1907 年 7 月 15 日在紹興古軒亭口被處斬,得年 31 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/秋瑾",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "R",
-      "ev": "1907 年籌備金華起義,創辦《中國女報》"
-     }
-    ],
-    "D": [
-     {
-      "c": "X",
-      "ev": "1904 年留學日本,參與留日學生革命活動"
-     }
-    ],
-    "L": [
-     {
-      "c": "R",
-      "ev": "1907 年 7 月 15 日在紹興古軒亭口被處斬,得年 31 歲"
-     }
-    ]
-   },
-   "band": 1,
-   "ly": 1907,
-   "country": "中國"
+   "country": "中國",
+   "wt": 0.036
   },
   {
    "id": "sun-yat-sen",
@@ -5630,7 +5568,8 @@
    },
    "band": 1,
    "ly": 1925,
-   "country": "中國"
+   "country": "中國",
+   "wt": 79.419
   },
   {
    "id": "yuan-shikai",
@@ -5676,52 +5615,8 @@
    },
    "band": 2,
    "ly": 1916,
-   "country": "中國"
-  },
-  {
-   "id": "cai-yuanpei",
-   "name": "蔡元培",
-   "life": "1868–1940",
-   "died": "1940-03-05",
-   "job": "教育家",
-   "c": [
-    "edu"
-   ],
-   "bp": "city",
-   "story": "1912 年任中華民國首任教育總長;1917 至 1926 年任北京大學校長,推動新文化運動;1928 年起任中央研究院首任院長。",
-   "fate": "晚年流寓香港;1940 年 3 月 5 日病逝於香港養和醫院,享年 72 歲。條目載他胃病轉劇,3 月 3 日寓所失足跌倒。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/蔡元培",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "E",
-      "ev": "1917 年任北京大學校長,推動新文化運動"
-     }
-    ],
-    "D": [
-     {
-      "c": "E",
-      "ev": "1912 年任中華民國首任教育總長"
-     }
-    ],
-    "B": [
-     {
-      "c": "X",
-      "ev": "晚年流寓香港"
-     }
-    ],
-    "L": [
-     {
-      "c": "X",
-      "ev": "晚年流寓香港,1940 年 3 月 5 日病逝於香港養和醫院"
-     }
-    ]
-   },
-   "band": 2,
-   "ly": 1940,
-   "country": "中國"
+   "country": "中國",
+   "wt": 0.001
   },
   {
    "id": "chen-duxiu",
@@ -5761,47 +5656,8 @@
    },
    "band": 2,
    "ly": 1942,
-   "country": "中國"
-  },
-  {
-   "id": "li-dazhao",
-   "name": "李大釗",
-   "life": "1889–1927",
-   "died": "1927-04-28",
-   "job": "北大教授、中共創始人",
-   "c": [
-    "edu",
-    "act"
-   ],
-   "bp": "farm",
-   "story": "中國最早的馬克思主義者之一,與陳獨秀並稱「南陳北李」;任北京大學圖書館主任。",
-   "fate": "1927 年 4 月 6 日奉軍突襲蘇聯大使館時被捕,4 月 28 日以「與蘇俄通謀」等罪名遭奉系軍閥絞刑處決,得年 37 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/李大釗",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "R",
-      "ev": "領導國共兩黨北方組織,策劃 1925 年乙丑政變(未遂)"
-     }
-    ],
-    "C": [
-     {
-      "c": "E",
-      "ev": "任北京大學史學系教授、圖書館主任"
-     }
-    ],
-    "L": [
-     {
-      "c": "R",
-      "ev": "1927 年 4 月 28 日遭奉系軍閥絞刑處決"
-     }
-    ]
-   },
-   "band": 2,
-   "ly": 1927,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "wang-jingwei",
@@ -5846,7 +5702,8 @@
    },
    "band": 2,
    "ly": 1944,
-   "country": "中國"
+   "country": "中國",
+   "wt": 249.946
   },
   {
    "id": "lu-xun",
@@ -5885,7 +5742,8 @@
    },
    "band": 2,
    "ly": 1936,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "hu-shih",
@@ -5930,7 +5788,8 @@
    },
    "band": 2,
    "ly": 1962,
-   "country": "中國"
+   "country": "中國",
+   "wt": 964.973
   },
   {
    "id": "chiang-kai-shek",
@@ -5970,7 +5829,8 @@
    },
    "band": 2,
    "ly": 1975,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "zhang-xueliang",
@@ -6010,7 +5870,8 @@
    },
    "band": 2,
    "ly": 2001,
-   "country": "中國"
+   "country": "中國",
+   "wt": 0.001
   },
   {
    "id": "mei-lanfang",
@@ -6055,98 +5916,8 @@
    },
    "band": 2,
    "ly": 1961,
-   "country": "中國"
-  },
-  {
-   "id": "qi-baishi",
-   "name": "齊白石",
-   "life": "1864–1957",
-   "died": "1957-09-16",
-   "job": "畫家、篆刻家",
-   "c": [
-    "art"
-   ],
-   "bp": "farm",
-   "story": "形成以紅花墨葉為特色的畫風;1953 年當選中國美術家協會主席;1956 年獲世界和平理事會國際和平獎。",
-   "fate": "1957 年出任中國畫院名譽院長,同年 9 月 16 日在北京醫院逝世,享年 93 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/齊白石",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "S",
-      "ev": "專注繪畫篆刻,形成紅花墨葉的畫風"
-     }
-    ],
-    "D": [
-     {
-      "c": "A",
-      "ev": "1953 年當選中國美術家協會主席"
-     }
-    ],
-    "C": [
-     {
-      "c": "E",
-      "ev": "1952 年受聘為中央美術學院名譽教授"
-     }
-    ],
-    "L": [
-     {
-      "c": "E",
-      "ev": "1957 年 9 月 16 日在北京醫院逝世;當時任中國畫院名譽院長"
-     }
-    ]
-   },
-   "band": 2,
-   "ly": 1957,
-   "country": "中國"
-  },
-  {
-   "id": "xu-beihong",
-   "name": "徐悲鴻",
-   "life": "1895–1953",
-   "died": "1953-09-26",
-   "job": "畫家、美術教育家",
-   "c": [
-    "art",
-    "edu"
-   ],
-   "bp": "farm",
-   "story": "被視為中國現代美術的奠基者之一,推動油畫「民族化」,擅畫馬,代表作有《九方皋》《愚公移山》。",
-   "fate": "曾任中央美術學院院長。1953 年 9 月 26 日因再次腦中風病逝於北京醫院,享年 58 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/徐悲鴻",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "S",
-      "ev": "專注繪畫與美術教育,擅畫馬"
-     }
-    ],
-    "D": [
-     {
-      "c": "A",
-      "ev": "曾任中央美術學院院長"
-     }
-    ],
-    "C": [
-     {
-      "c": "E",
-      "ev": "推動油畫「民族化」,曾任國立北平藝術專科學校校長"
-     }
-    ],
-    "L": [
-     {
-      "c": "S",
-      "ev": "1953 年 9 月 26 日因腦中風病逝"
-     }
-    ]
-   },
-   "band": 2,
-   "ly": 1953,
-   "country": "中國"
+   "country": "中國",
+   "wt": 0.001
   },
   {
    "id": "mao-zedong",
@@ -6186,7 +5957,8 @@
    },
    "band": 3,
    "ly": 1976,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "zhou-enlai",
@@ -6231,7 +6003,8 @@
    },
    "band": 3,
    "ly": 1976,
-   "country": "中國"
+   "country": "中國",
+   "wt": 150.763
   },
   {
    "id": "liu-shaoqi",
@@ -6277,7 +6050,8 @@
    },
    "band": 3,
    "ly": 1969,
-   "country": "中國"
+   "country": "中國",
+   "wt": 0.001
   },
   {
    "id": "deng-xiaoping",
@@ -6316,7 +6090,8 @@
    },
    "band": 3,
    "ly": 1997,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "hu-yaobang",
@@ -6361,125 +6136,8 @@
    },
    "band": 3,
    "ly": 1989,
-   "country": "中國"
-  },
-  {
-   "id": "zhao-ziyang",
-   "name": "趙紫陽",
-   "life": "1919–2005",
-   "died": "2005-01-17",
-   "job": "政治人物、國務院總理",
-   "c": [
-    "pol"
-   ],
-   "bp": "farm",
-   "story": "主政四川時放寬農業政策,支持包產到戶;1980 年代主導經濟改革,推動政治體制改革。",
-   "fate": "1989 年六四事件後被撤銷一切領導職務,遭軟禁約 16 年。2005 年 1 月 17 日在北京逝世,享年 85 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/赵紫阳",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "E",
-      "ev": "主政四川時放寬農業政策,1980 年代主導經濟改革"
-     }
-    ],
-    "C": [
-     {
-      "c": "E",
-      "ev": "任國務院總理、中共中央總書記"
-     }
-    ],
-    "L": [
-     {
-      "c": "A",
-      "ev": "六四後被撤銷職務,遭軟禁約 16 年;2005 年 1 月 17 日逝世"
-     }
-    ]
-   },
-   "band": 3,
-   "ly": 2005,
-   "country": "中國"
-  },
-  {
-   "id": "ba-jin",
-   "name": "巴金",
-   "life": "1904–2005",
-   "died": "2005-10-17",
-   "job": "作家",
-   "c": [
-    "art"
-   ],
-   "bp": "city",
-   "story": "代表作有《家》《春》《秋》《寒夜》;1984 年起任中國作家協會主席;2003 年獲「人民作家」稱號。",
-   "fate": "文革期間被批判、關進「牛棚」勞動;妻子蕭珊 1972 年去世(條目兩處說法不一)。2005 年 10 月 17 日逝於上海,享年 100 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/巴金",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "S",
-      "ev": "專注寫作《家》《春》《秋》,2003 年獲「人民作家」稱號"
-     }
-    ],
-    "C": [
-     {
-      "c": "E",
-      "ev": "1983 年起連續五次當選全國政協副主席,1984 年當選中國作家協會主席"
-     }
-    ],
-    "L": [
-     {
-      "c": "S",
-      "ev": "2005 年 10 月 17 日逝於上海華東醫院,享年 100 歲"
-     }
-    ]
-   },
-   "band": 2,
-   "ly": 2005,
-   "country": "中國"
-  },
-  {
-   "id": "qian-zhongshu",
-   "name": "錢鍾書",
-   "life": "1910–1998",
-   "died": "1998-12-19",
-   "job": "作家、學者",
-   "c": [
-    "art",
-    "edu"
-   ],
-   "bp": "city",
-   "story": "長篇小說《圍城》描寫知識分子處境;詩論《談藝錄》與學術巨著《管錐編》廣受好評。",
-   "fate": "1969 年被下放河南「五七幹校」;女婿 1970 年在清查運動中被逼自殺。1998 年 12 月 19 日病逝於北京醫院,享年 88 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/錢鍾書",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "S",
-      "ev": "專注寫作《圍城》與《管錐編》,文革期間下放五七幹校"
-     }
-    ],
-    "C": [
-     {
-      "c": "S",
-      "ev": "詩論《談藝錄》廣受好評,專注學術"
-     }
-    ],
-    "L": [
-     {
-      "c": "S",
-      "ev": "1998 年 12 月 19 日病逝於北京醫院"
-     }
-    ]
-   },
-   "band": 3,
-   "ly": 1998,
-   "country": "中國"
+   "country": "中國",
+   "wt": 0.001
   },
   {
    "id": "lin-zhao",
@@ -6519,7 +6177,8 @@
    },
    "band": 3,
    "ly": 1968,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "liu-xiaobo",
@@ -6557,9 +6216,10 @@
      }
     ]
    },
-   "band": 4,
+   "band": 3,
    "ly": 2017,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "soong-ching-ling",
@@ -6605,7 +6265,8 @@
    },
    "band": 2,
    "ly": 1981,
-   "country": "中國"
+   "country": "中國",
+   "wt": 0.433
   },
   {
    "id": "soong-mei-ling",
@@ -6644,7 +6305,8 @@
    },
    "band": 2,
    "ly": 2003,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "lin-huiyin",
@@ -6689,46 +6351,8 @@
    },
    "band": 2,
    "ly": 1955,
-   "country": "中國"
-  },
-  {
-   "id": "bing-xin",
-   "name": "冰心",
-   "life": "1900–1999",
-   "died": "1999-02-28",
-   "job": "作家、詩人",
-   "c": [
-    "art"
-   ],
-   "bp": "port",
-   "story": "被視為中國兒童文學與新詩的先驅,著有《寄小讀者》與詩集《繁星》《春水》,翻譯《飛鳥集》《先知》。",
-   "fate": "1966 年被查抄並掛牌批鬥,1970 年下放湖北咸寧五七幹校勞動,1972 年返回北京。1999 年 2 月 28 日逝於北京醫院,享年 98 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/冰心",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "S",
-      "ev": "專注兒童文學與新詩創作"
-     }
-    ],
-    "C": [
-     {
-      "c": "S",
-      "ev": "翻譯《飛鳥集》《先知》,專注寫作"
-     }
-    ],
-    "L": [
-     {
-      "c": "S",
-      "ev": "1999 年 2 月 28 日病逝於北京醫院,享年 98 歲"
-     }
-    ]
-   },
-   "band": 2,
-   "ly": 1999,
-   "country": "中國"
+   "country": "中國",
+   "wt": 938.376
   },
   {
    "id": "eileen-chang",
@@ -6767,7 +6391,8 @@
    },
    "band": 2,
    "ly": 1995,
-   "country": "中國"
+   "country": "中國",
+   "wt": 0.001
   },
   {
    "id": "ding-ling",
@@ -6813,46 +6438,8 @@
    },
    "band": 2,
    "ly": 1986,
-   "country": "中國"
-  },
-  {
-   "id": "xiao-hong",
-   "name": "蕭紅",
-   "life": "1911–1942",
-   "died": "1942-01-22",
-   "job": "作家",
-   "c": [
-    "art"
-   ],
-   "bp": "farm",
-   "story": "成名作《生死場》,魯迅曾為其寫序;代表作《呼蘭河傳》;著有《回憶魯迅先生》。",
-   "fate": "1942 年 1 月 22 日在香港聖士提反女校臨時救護站病逝,得年 30 歲,條目未載死因。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/蕭紅",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "S",
-      "ev": "專注寫作《生死場》《呼蘭河傳》"
-     }
-    ],
-    "C": [
-     {
-      "c": "E",
-      "ev": "成名作《生死場》由魯迅作序"
-     }
-    ],
-    "L": [
-     {
-      "c": "X",
-      "ev": "1942 年 1 月 22 日病逝於香港"
-     }
-    ]
-   },
-   "band": 2,
-   "ly": 1942,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "xiang-jingyu",
@@ -6891,46 +6478,8 @@
    },
    "band": 2,
    "ly": 1928,
-   "country": "中國"
-  },
-  {
-   "id": "lin-qiaozhi",
-   "name": "林巧稚",
-   "life": "1901–1983",
-   "died": "1983-04-22",
-   "job": "婦產科醫生",
-   "c": [
-    "med"
-   ],
-   "bp": "port",
-   "story": "主持北京地區子宮頸癌普查與研究;推動絨毛膜癌藥物治療研究;首創在中國開展新生兒溶血症換血治療。",
-   "fate": "文革期間被劃為「反動學術權威」,被發配到協和醫院病房做護工,1969 年 4 月獲「解放」。1983 年 4 月 22 日病逝於北京協和醫院,享年 81 歲。",
-   "note": "",
-   "ref": "https://zh.wikipedia.org/wiki/林巧稚",
-   "src": "維基百科",
-   "acts": {
-    "A": [
-     {
-      "c": "S",
-      "ev": "專注子宮頸癌普查與婦產科研究"
-     }
-    ],
-    "C": [
-     {
-      "c": "E",
-      "ev": "主持北京地區子宮頸癌普查與研究"
-     }
-    ],
-    "L": [
-     {
-      "c": "S",
-      "ev": "1983 年 4 月 22 日病逝於北京協和醫院"
-     }
-    ]
-   },
-   "band": 2,
-   "ly": 1983,
-   "country": "中國"
+   "country": "中國",
+   "wt": 1000.0
   },
   {
    "id": "cixi",
@@ -6969,7 +6518,8 @@
    },
    "band": 1,
    "ly": 1908,
-   "country": "中國"
+   "country": "中國",
+   "wt": 229.738
   },
   {
    "id": "ding-yaotiao",
@@ -7014,7 +6564,8 @@
      "label": "國家人權記憶庫「丁窈窕」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/11"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "shi-shuihuan",
@@ -7063,7 +6614,8 @@
      "label": "國家人權記憶庫「施水環」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/1980"
     }
-   ]
+   ],
+   "wt": 719.03
   },
   {
    "id": "cai-axin",
@@ -7108,7 +6660,8 @@
    },
    "band": 2,
    "ly": 1990,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.001
   },
   {
    "id": "ye-tao",
@@ -7160,7 +6713,8 @@
      "label": "國家人權記憶庫「葉陶」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/18330"
     }
-   ]
+   ],
+   "wt": 858.034
   },
   {
    "id": "cai-ruiyue",
@@ -7211,7 +6765,8 @@
      "label": "國家人權記憶庫「蔡瑞月」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/19969"
     }
-   ]
+   ],
+   "wt": 0.001
   },
   {
    "id": "yang-qianhe",
@@ -7257,7 +6812,8 @@
    },
    "band": 2,
    "ly": 2011,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 0.172
   },
   {
    "id": "lin-haiyin",
@@ -7303,7 +6859,8 @@
    },
    "band": 3,
    "ly": 2001,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 91.27
   },
   {
    "id": "chen-xiuxi",
@@ -7342,7 +6899,8 @@
    },
    "band": 3,
    "ly": 1991,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "yu-chen-yueying",
@@ -7381,7 +6939,8 @@
    },
    "band": 3,
    "ly": 2014,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "ji-meizhen",
@@ -7427,7 +6986,8 @@
      "label": "國家人權記憶庫「計梅真」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/11867"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "qian-jingzhi",
@@ -7473,7 +7033,8 @@
      "label": "國家人權記憶庫「錢靜芝」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/20811"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "xu-jinyu",
@@ -7519,7 +7080,8 @@
      "label": "國家人權記憶庫「許金玉」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2979"
     }
-   ]
+   ],
+   "wt": 1000.0
   },
   {
    "id": "cui-xiaoping",
@@ -7558,7 +7120,8 @@
    },
    "band": 3,
    "ly": 2017,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "jiang-biyu",
@@ -7603,7 +7166,8 @@
    },
    "band": 3,
    "ly": 1995,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 130.271
   },
   {
    "id": "shen-yuanzhang",
@@ -7652,7 +7216,8 @@
      "label": "國家人權記憶庫「沈嫄璋」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/9528"
     }
-   ]
+   ],
+   "wt": 0.001
   },
   {
    "id": "gao-juhua",
@@ -7698,7 +7263,8 @@
      "label": "國家人權記憶庫「高菊花」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/12697"
     }
-   ]
+   ],
+   "wt": 0.001
   },
   {
    "id": "fu-ruzhi",
@@ -7737,7 +7303,8 @@
    },
    "band": 3,
    "ly": 1956,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "lai-qiongyan",
@@ -7776,7 +7343,8 @@
    },
    "band": 3,
    "ly": 1950,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 806.461
   },
   {
    "id": "gao-cao",
@@ -7815,7 +7383,8 @@
    },
    "band": 3,
    "ly": 1952,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
   },
   {
    "id": "chen-qin",
@@ -7858,7 +7427,8 @@
    },
    "band": 3,
    "ly": 2017,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1.179
   },
   {
    "id": "huang-zhuang",
@@ -7897,7 +7467,8 @@
    },
    "band": 3,
    "ly": 1995,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 905.68
   },
   {
    "id": "liang-linghui",
@@ -7936,7 +7507,1146 @@
    },
    "band": 3,
    "ly": 2004,
-   "country": "台灣"
+   "country": "台灣",
+   "wt": 1000.0
+  },
+  {
+   "id": "lian-wenqing",
+   "name": "連溫卿",
+   "life": "1894–1957",
+   "died": "1957-11-30",
+   "job": "社會運動者、世界語推廣者",
+   "c": [
+    "act",
+    "edu"
+   ],
+   "bp": "city",
+   "band": 2,
+   "ly": 1957,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/連溫卿",
+   "story": "參與台灣文化協會與新文協,具社會主義傾向;1923 年與蔣渭水等籌組社會問題研究會,遭日本官方取締;曾任世界語協會刊物《綠蔭》主編。",
+   "fate": "1929 年在新文協大會被開除會籍,此後退出社會運動,因而避開二二八事件與白色恐怖。1957 年 11 月逝世,死因未載。",
+   "note": "條目只載到月份(1894 年 5 月、1957 年 11 月),逝世日按月底計算。",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "參與台灣文化協會與新文協,1923 年籌組的社會問題研究會遭日本官方取締"
+     }
+    ],
+    "B": [
+     {
+      "c": "S",
+      "ev": "1929 年被新文協開除後退出社會運動"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "曾任世界語協會刊物《綠蔭》主編"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1957 年 11 月逝世,死因未載"
+     }
+    ]
+   },
+   "wt": 290.115
+  },
+  {
+   "id": "wang-minchuan",
+   "name": "王敏川",
+   "life": "1889–1942",
+   "died": "1942-09-02",
+   "job": "教師、文協領導人",
+   "c": [
+    "act",
+    "edu"
+   ],
+   "bp": "farm",
+   "band": 2,
+   "ly": 1942,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/王敏川",
+   "story": "彰化公學校教師、《台灣青年》編輯;1926 年文協分裂時主導新文協,1928 年創辦《大眾時報》,1931 年支持工農運動與台灣共產黨。",
+   "fate": "1923 年治警事件被捕、無罪開釋;1931 年因參與台灣赤色救援會再度入獄,判刑 4 年、另留置 2 年,1938 年獲釋。1942 年 9 月 2 日逝世,死因未載。戰後曾入忠烈祠,1958 年牌位遭撤除。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "1926 年文協分裂時主導新文協,1928 年創辦《大眾時報》"
+     }
+    ],
+    "B": [
+     {
+      "c": "R",
+      "ev": "1931 年因參與台灣赤色救援會再度入獄,判刑 4 年,1938 年獲釋"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "任文協中央委員長兼財務部長"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1942 年 9 月 2 日逝世,死因未載"
+     }
+    ]
+   },
+   "wt": 725.28
+  },
+  {
+   "id": "yang-zhaojia",
+   "name": "楊肇嘉",
+   "life": "1892–1976",
+   "died": "1976-04-19",
+   "job": "政治人物、地方自治運動者",
+   "c": [
+    "pol",
+    "act"
+   ],
+   "bp": null,
+   "band": 2,
+   "ly": 1976,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/楊肇嘉",
+   "story": "清水街長、文協理事;鼓吹地方自治,1925 年赴東京參與台灣議會設置請願;1930 年反對總督府重發阿片吸食牌照。",
+   "fate": "1940 年蔡培火、吳三連被捕後避往中國,1941 年在新義州被疑為間諜遭逮捕,後獲營救釋放。戰後任省府委員、民政廳長、總統府國策顧問。1976 年 4 月 19 日病逝於清水。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "E",
+      "ev": "鼓吹地方自治,1925 年赴東京參與台灣議會設置請願"
+     }
+    ],
+    "B": [
+     {
+      "c": "X",
+      "ev": "1940 年蔡培火、吳三連被捕後避往中國"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "戰後任臺灣省政府委員、民政廳長"
+     }
+    ],
+    "D": [
+     {
+      "c": "A",
+      "ev": "戰後自上海返台,1949 年出任省府委員"
+     }
+    ],
+    "L": [
+     {
+      "c": "E",
+      "ev": "1976 年 4 月 19 日病逝於臺中縣清水鎮;曾任總統府國策顧問"
+     }
+    ]
+   },
+   "wt": 0.001
+  },
+  {
+   "id": "wang-baiyuan",
+   "name": "王白淵",
+   "life": "1902–1965",
+   "died": "1965-10-03",
+   "job": "詩人、美術教師、編輯",
+   "c": [
+    "art",
+    "edu"
+   ],
+   "bp": "farm",
+   "band": 2,
+   "ly": 1965,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/王白淵",
+   "story": "留日期間與左翼青年往來,參與組織「東京台灣人文化同好會」;戰後任《新生報》編輯主任、台灣文化協進會理事,並參與創辦《自由報》。",
+   "fate": "1932 年被日警拘押失去教職;1937 年在上海被捕,判刑八年;戰後 1947 年因二二八事件入獄,經游彌堅擔保獲釋。1965 年 10 月 3 日因腎結石引發尿毒症病逝。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "留日期間參與組織「東京台灣人文化同好會」,被日方視為左翼組織"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "戰後任新生報編輯主任、台灣文化協進會理事"
+     }
+    ],
+    "D": [
+     {
+      "c": "E",
+      "ev": "戰後參與創辦《自由報》(1946–1947)"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1965 年 10 月 3 日因腎結石引發尿毒症病逝"
+     }
+    ]
+   },
+   "wt": 733.287,
+   "refs": [
+    {
+     "label": "國家人權記憶庫「王白淵」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/134"
+    }
+   ]
+  },
+  {
+   "id": "wu-zhuoliu",
+   "name": "吳濁流",
+   "life": "1900–1976",
+   "died": "1976-10-07",
+   "job": "教師、作家、記者",
+   "c": [
+    "art",
+    "edu"
+   ],
+   "bp": "farm",
+   "band": 2,
+   "ly": 1976,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/吳濁流",
+   "story": "栗社成員、教師與記者;1964 年創辦《臺灣文藝》,1969 年設立吳濁流文學獎;《無花果》描寫二二八,被國民黨政府列為禁書。",
+   "fate": "1922 年因教育論文〈學校與自治〉被認為思想偏激而遭調職,1939 年被調往山地分教場;1940 年因不滿日籍視學欺負台灣教員而辭職。戰後寫〈波茨坦科長〉諷刺來臺官員貪腐。1976 年 10 月 7 日因感冒併發症逝世。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "1940 年因不滿日籍郡視學欺負臺灣教員而辭職"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1964 年創辦《臺灣文藝》,1969 年設立吳濁流文學獎"
+     }
+    ],
+    "D": [
+     {
+      "c": "R",
+      "ev": "戰後寫〈波茨坦科長〉諷刺來臺官員貪腐"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1976 年 10 月 7 日因感冒併發症逝世"
+     }
+    ]
+   },
+   "wt": 185.001
+  },
+  {
+   "id": "yan-shuilong",
+   "name": "顏水龍",
+   "life": "1903–1997",
+   "died": "1997-09-24",
+   "job": "畫家、工藝教育家",
+   "c": [
+    "art",
+    "edu"
+   ],
+   "bp": "farm",
+   "band": 2,
+   "ly": 1997,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/顏水龍",
+   "story": "1934 年與人創立臺陽展與臺陽美術協會;1930 年代受總督府之聘回台推廣工藝;戰後任臺灣省工藝品生產推行委員會設計組長。",
+   "fate": "1932 年因肝病用盡積蓄,結束留法生活返回日本;太陽堂向日葵壁畫因政治禁忌被封蓋,到 1989 年才重見天日。1986 年獲國家文藝特別貢獻獎。1997 年 9 月 24 日病逝於臺中榮總,享年 94 歲。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "A",
+      "ev": "1930 年代受臺灣總督府之聘回臺推廣工藝"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1934 年與人創立臺陽美術協會;1986 年獲國家文藝特別貢獻獎"
+     }
+    ],
+    "D": [
+     {
+      "c": "A",
+      "ev": "1945 年後學校改制,仍任教至 1949 年,轉任工藝品生產推行委員會設計組長"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1997 年 9 月 24 日病逝於臺中榮總,享年 94 歲"
+     }
+    ]
+   },
+   "wt": 0.001
+  },
+  {
+   "id": "li-shiqiao",
+   "name": "李石樵",
+   "life": "1908–1995",
+   "died": "1995-07-07",
+   "job": "西畫家",
+   "c": [
+    "art"
+   ],
+   "bp": "farm",
+   "band": 3,
+   "ly": 1995,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/李石樵",
+   "story": "1927 年首次入選台展,1933 年入選帝展,1943 年成為首位獲新文展「無鑑查」資格的台灣畫家;1963 年任省立師大美術系副教授。",
+   "fate": "1936 年作品因警方以「立姿可展出、躺著禁止」為由遭取消參展權;1964 年彭明敏等人被捕後,他秘密創作諷刺作品《大將軍》《避難》。晚年旅居美國,1995 年 7 月 7 日病逝於紐約州雪城,享年 86 歲。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "S",
+      "ev": "1936 年作品遭警方取消參展權,之後仍持續創作與參展(1943 年獲新文展無鑑查資格)"
+     }
+    ],
+    "B": [
+     {
+      "c": "R",
+      "ev": "1964 年彭明敏等人被捕後,秘密創作諷刺作品《大將軍》《避難》"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1943 年成為首位獲新文展「無鑑查」資格的台灣畫家"
+     }
+    ],
+    "D": [
+     {
+      "c": "A",
+      "ev": "戰後 1946 年擔任省展審查員"
+     }
+    ],
+    "L": [
+     {
+      "c": "X",
+      "ev": "晚年旅居美國,1995 年 7 月 7 日病逝於紐約州雪城"
+     }
+    ]
+   },
+   "wt": 0.001
+  },
+  {
+   "id": "jiang-wenye",
+   "name": "江文也",
+   "life": "1910–1983",
+   "died": "1983-10-24",
+   "job": "作曲家、聲樂家",
+   "c": [
+    "art",
+    "edu"
+   ],
+   "bp": "city",
+   "band": 2,
+   "ly": 1983,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/江文也",
+   "story": "1934 年管弦樂《白鷺的幻想》獲日本音樂比賽第二名;1938 年鋼琴作品獲威尼斯國際音樂節作曲獎;後任北京師範大學、中央音樂學院教授。",
+   "fate": "1945 年後因曾在華北新民會工作被視為「文化漢奸」,遭拘押十個月;1957 年反右運動中被打為右派、撤銷教授職務,1966 年文革遭批鬥,1969 年被送去勞改,晚年仍勉力創作;1978 年獲平反。1983 年 10 月 24 日因腦血栓病逝北京,享年 73 歲。",
+   "note": "1936 年柏林奧運獲獎的名次,條目有「佳作獎」與「第四名」兩種說法。",
+   "acts": {
+    "A": [
+     {
+      "c": "S",
+      "ev": "專注作曲,1934 年管弦樂《白鷺的幻想》獲日本音樂比賽第二名"
+     }
+    ],
+    "B": [
+     {
+      "c": "S",
+      "ev": "文革遭批鬥、被送去勞改後,晚年仍勉力創作"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1938 年鋼琴作品獲威尼斯國際音樂節作曲獎;後任中央音樂學院作曲系教授"
+     }
+    ],
+    "L": [
+     {
+      "c": "X",
+      "ev": "1983 年 10 月 24 日因腦血栓病逝於北京"
+     }
+    ]
+   },
+   "wt": 393.322
+  },
+  {
+   "id": "lyu-quansheng",
+   "name": "呂泉生",
+   "life": "1916–2008",
+   "died": "2008-03-17",
+   "job": "音樂家、作曲家、合唱指揮",
+   "c": [
+    "art",
+    "edu"
+   ],
+   "bp": "farm",
+   "band": 3,
+   "ly": 2008,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/呂泉生",
+   "story": "1943 年為《閹雞》配樂;1957 年創辦榮星合唱團並任團長至 1991 年;1958 年起任教實踐家政專科學校,創設音樂科。",
+   "fate": "1943 年他為《閹雞》配的台灣民謠合唱曲,在皇民化政策背景下,首演隔日即被禁唱。1991 年獲行政院文化獎。2008 年 3 月 17 日在美國加州惠蒂爾過世,享年 91 歲。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "S",
+      "ev": "專注音樂,1943 年為《閹雞》配的台灣民謠合唱曲首演隔日被禁唱"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1957 年創辦榮星合唱團;1991 年獲行政院文化獎"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "2008 年 3 月 17 日在美國加州過世,享年 91 歲"
+     }
+    ]
+   },
+   "wt": 1000.0
+  },
+  {
+   "id": "cai-huiru",
+   "name": "蔡惠如",
+   "life": "1881–1929",
+   "died": "1929-05-20",
+   "job": "商人、政治運動者",
+   "c": [
+    "act",
+    "pol"
+   ],
+   "bp": null,
+   "band": 2,
+   "ly": 1929,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/蔡惠如",
+   "story": "曾受日本政府指派擔任臺中區區長,後辭職並將事業重心移往中國;參與同化會、臺灣文社、新民會、文化協會等自治運動,並創辦《臺灣青年》雜誌社。",
+   "fate": "1923 年因治警事件被捕,判刑 3 個月,入獄時寫下詞作〈意難忘〉。1929 年 5 月 20 日因中風引發腦疾,於臺北逝世。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "E",
+      "ev": "參與同化會、臺灣文社、新民會、文化協會等自治運動"
+     }
+    ],
+    "B": [
+     {
+      "c": "R",
+      "ev": "1923 年因治警事件被捕入獄,獄中寫下詞作〈意難忘〉"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "曾任臺中區區長、新民會副會長、文化協會理事"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1929 年 5 月 20 日因中風引發腦疾逝於臺北"
+     }
+    ]
+   },
+   "wt": 222.926
+  },
+  {
+   "id": "guo-xiucong",
+   "name": "郭琇琮",
+   "life": "1918–1950",
+   "died": "1950-11-28",
+   "job": "醫師、中共地下黨員",
+   "c": [
+    "med",
+    "act"
+   ],
+   "bp": "city",
+   "band": 3,
+   "ly": 1950,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/郭琇琮",
+   "story": "就讀台北高校時因日本學生欺壓台籍學生而激起反日思想,1941 年後在臺北帝大成立學生反日組織;曾任臺大醫院外科醫師、醫學院講師、台北市衛生局防疫科長。",
+   "fate": "1944 年因預備武裝抗日被捕,判刑 5 年,1945 年日本戰敗後獲釋;1947 年二二八後加入共產黨,任台北市工委委員。1950 年 5 月與妻子林雪嬌在嘉義被捕,同年 11 月 28 日在臺北馬場町遭槍決。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "就讀臺北帝大時,在校內成立學生反日組織"
+     }
+    ],
+    "B": [
+     {
+      "c": "R",
+      "ev": "1944 年因預備武裝抗日被捕,判刑 5 年"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "任臺大醫院外科醫師、醫學院講師、台北市衛生局防疫科長"
+     }
+    ],
+    "D": [
+     {
+      "c": "R",
+      "ev": "1947 年二二八事件後加入共產黨,任台北市工作委員會委員"
+     }
+    ],
+    "L": [
+     {
+      "c": "R",
+      "ev": "1950 年 11 月 28 日在臺北馬場町遭槍決"
+     }
+    ]
+   },
+   "wt": 37.36,
+   "refs": [
+    {
+     "label": "國家人權記憶庫「郭琇琮」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/3086"
+    }
+   ]
+  },
+  {
+   "id": "su-xin",
+   "name": "蘇新",
+   "life": "1907–1981",
+   "died": "1981-11-13",
+   "job": "台灣共產黨人、編輯",
+   "c": [
+    "act",
+    "edu"
+   ],
+   "bp": "farm",
+   "band": 3,
+   "ly": 1981,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/蘇新",
+   "story": "1923 年因集體罷課遭台南師範退學,赴日加入日本共產黨,任台灣共產黨宣傳部長;戰後任刊物編輯,1949 年後任職中共中央統戰部,曾任全國政協委員。",
+   "fate": "1931 年被捕,判刑十二年,1943 年出獄;二二八事件後赴香港,與謝雪紅等創立台灣民主自治同盟。1967 年文革中被打為叛徒遭下放,1978 年平反。1981 年 11 月 13 日病逝北京。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "1923 年因集體罷課遭台南師範學校退學,赴日加入日本共產黨,任台灣共產黨宣傳部長"
+     }
+    ],
+    "C": [
+     {
+      "c": "A",
+      "ev": "1949 年後任職中共中央統戰部,曾任全國政協委員"
+     }
+    ],
+    "D": [
+     {
+      "c": "X",
+      "ev": "二二八事件後赴香港,與謝雪紅等創立台灣民主自治同盟"
+     }
+    ],
+    "L": [
+     {
+      "c": "X",
+      "ev": "1981 年 11 月 13 日病逝於北京"
+     }
+    ]
+   },
+   "wt": 0.001
+  },
+  {
+   "id": "chen-mingzhong",
+   "name": "陳明忠",
+   "life": "1929–2019",
+   "died": "2019-11-21",
+   "job": "政治犯、社會運動者",
+   "c": [
+    "act",
+    "biz"
+   ],
+   "bp": "farm",
+   "band": 3,
+   "ly": 2019,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/陳明忠",
+   "story": "1948 年加入中共台灣省工委台中市工委,二二八期間加入二七部隊;出獄後任製藥廠廠長,參與政治受難人互助會、勞動黨與中國統一聯盟。",
+   "fate": "1950 年被捕判十年;1976 年因資助左派刊物《夏潮》再度被捕,獄中遭酷刑,死刑改判十五年,1987 年保外就醫。2019 年 11 月 21 日於上海逝世,享壽 90 歲。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "二二八期間加入二七部隊,1948 年加入中共台灣省工委台中市工委"
+     }
+    ],
+    "B": [
+     {
+      "c": "R",
+      "ev": "1976 年再度被捕,獄中遭酷刑,對刑求堅不屈服,死刑改判十五年"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "出獄後任製藥廠廠長,參與政治受難人互助會、中國統一聯盟、勞動黨"
+     }
+    ],
+    "L": [
+     {
+      "c": "X",
+      "ev": "2019 年 11 月 21 日於上海逝世,享壽 90 歲"
+     }
+    ]
+   },
+   "wt": 1000.0,
+   "refs": [
+    {
+     "label": "國家人權記憶庫「陳明忠」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/3301"
+    }
+   ]
+  },
+  {
+   "id": "lin-shuyang",
+   "name": "林書揚",
+   "life": "1926–2012",
+   "died": "2012-10-11",
+   "job": "政治犯、社會運動者",
+   "c": [
+    "act"
+   ],
+   "bp": "farm",
+   "band": 3,
+   "ly": 2012,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/林書揚",
+   "story": "家族參與台灣文化協會等運動,求學時批判日本軍國主義並自學被禁的左派書籍;曾任勞動黨副主席、中國統一聯盟主席、勞動人權協會會長。",
+   "fate": "1950 年被捕,判處無期徒刑,1984 年假釋出獄,前後服刑 34 年餘;獄中曾拒唱國歌、拒參與「一人一事良心救國運動」。2012 年 10 月 11 日病逝於北京,享壽 86 歲。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "求學時批判日本軍國主義,自學被禁的左派書籍"
+     }
+    ],
+    "B": [
+     {
+      "c": "R",
+      "ev": "1950 年被捕判無期徒刑,獄中曾拒唱國歌、拒參與「一人一事良心救國運動」"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1991 年任勞動黨副主席;1992 年任中國統一聯盟主席;2000 年任勞動人權協會會長"
+     }
+    ],
+    "L": [
+     {
+      "c": "X",
+      "ev": "2012 年 10 月 11 日病逝於北京,享壽 86 歲"
+     }
+    ]
+   },
+   "wt": 1000.0,
+   "refs": [
+    {
+     "label": "國家人權記憶庫「林書揚」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/1680"
+    }
+   ]
+  },
+  {
+   "id": "tang-shouren",
+   "name": "湯守仁",
+   "life": "1924–1954",
+   "died": "1954-04-30",
+   "job": "鄒族青年領袖、村長",
+   "c": [
+    "pol",
+    "edu"
+   ],
+   "bp": "mountain",
+   "band": 3,
+   "ly": 1954,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/湯守仁",
+   "story": "鄒族人,生於嘉義阿里山達邦社;1946 年任樂野村村長,1948 年兼任台灣省政府山地行政處視察;二二八期間率鄒族青年下山協助嘉義民兵。",
+   "fate": "1950 年被捕,否認加入共產黨但承認接觸相關書籍與指示,與高一生辦理自新;1952 年再因匪諜與貪污案被捕,1953 年判決後刑責加重,1954 年 4 月在新店安坑刑場遭槍決。",
+   "note": "槍決的確切日期條目未載,遊戲保守按該月底計算。",
+   "acts": {
+    "D": [
+     {
+      "c": "R",
+      "ev": "二二八期間應嘉義仕紳請求,率鄒族青年下山協助嘉義民兵,3 月 10 日撤回阿里山"
+     },
+     {
+      "c": "A",
+      "ev": "戰時被日軍徵召海外服役,戰後返台"
+     }
+    ],
+    "B": [
+     {
+      "c": "A",
+      "ev": "1950 年被捕後否認加入共產黨,與高一生辦理自新"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1946 年任樂野村村長,1948 年兼任省政府山地行政處視察"
+     }
+    ],
+    "L": [
+     {
+      "c": "R",
+      "ev": "1954 年 4 月於新店安坑刑場遭槍決"
+     }
+    ]
+   },
+   "wt": 5.375,
+   "refs": [
+    {
+     "label": "國家人權記憶庫「湯守仁」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/3918"
+    }
+   ]
+  },
+  {
+   "id": "zhong-zhaozheng",
+   "name": "鍾肇政",
+   "life": "1925–2020",
+   "died": "2020-05-16",
+   "job": "客家小說家",
+   "c": [
+    "art",
+    "edu"
+   ],
+   "bp": "farm",
+   "band": 3,
+   "ly": 2020,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/鍾肇政",
+   "story": "客家作家,曾任臺灣文藝雜誌社社長、《民眾日報》副刊主編、臺灣筆會會長、總統府資政;獲吳三連文藝獎、國家文藝獎、行政院文化獎等。",
+   "fate": "1958 年《文友通訊》在白色恐怖壓力下停刊,他轉向現代文學創作,持續筆耕。2020 年 5 月 16 日晚間於家中過世,享年 95 歲,死後獲追授一等景星勳章。",
+   "note": "",
+   "acts": {
+    "B": [
+     {
+      "c": "S",
+      "ev": "1958 年《文友通訊》在白色恐怖壓力下停刊,轉向現代文學創作,持續筆耕"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "曾任臺灣文藝雜誌社社長、臺灣筆會會長、總統府資政"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "2020 年 5 月 16 日於家中過世,享年 95 歲"
+     }
+    ]
+   },
+   "wt": 1000.0
+  },
+  {
+   "id": "zhang-shenqie",
+   "name": "張深切",
+   "life": "1904–1965",
+   "died": "1965-11-08",
+   "job": "作家、文藝理論家",
+   "c": [
+    "art",
+    "edu",
+    "act"
+   ],
+   "bp": "farm",
+   "band": 2,
+   "ly": 1965,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/張深切",
+   "story": "1927 年參與組織廣東臺灣革命青年團;1934 年任臺灣文藝聯盟委員長;戰後 1946 年任臺中師範學校教務主任。",
+   "fate": "1927 年因臺中一中罷課事件被捕,後以「廣東事件」判刑兩年;二二八事件後被指協助謝雪紅,藏匿山區半年,一年後平反,但長期遭特務跟監,《孔子哲學評論》遭查禁。1965 年 11 月 8 日因肺癌逝於臺中。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "1927 年參與組織廣東臺灣革命青年團"
+     }
+    ],
+    "B": [
+     {
+      "c": "X",
+      "ev": "二二八事件後被指協助謝雪紅,藏匿山區半年"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1934 年任臺灣文藝聯盟委員長;1946 年任臺中師範學校教務主任"
+     }
+    ],
+    "D": [
+     {
+      "c": "E",
+      "ev": "戰後協助滯留北京的臺籍軍伕返臺,1946 年攜眷回臺"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1965 年 11 月 8 日因肺癌逝於臺中市"
+     }
+    ]
+   },
+   "wt": 0.001
+  },
+  {
+   "id": "wu-yongfu",
+   "name": "巫永福",
+   "life": "1913–2008",
+   "died": "2008-09-10",
+   "job": "詩人、小說家",
+   "c": [
+    "art"
+   ],
+   "bp": null,
+   "band": 3,
+   "ly": 2008,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/巫永福",
+   "story": "1932 年在東京與張文環、王白淵等籌組「台灣藝術研究會」,發行《福爾摩沙》;1967 年加入笠詩社並接任《台灣文藝》發行人;1979 年設立巫永福評論獎。",
+   "fate": "戰後因政治氣氛肅殺而停筆一段時間;曾任市府秘書、中國化學製藥總經理等職。1997 年獲首屆台灣文學家牛津獎。2008 年 9 月 10 日逝世,享年 95 歲。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "E",
+      "ev": "1932 年在東京與張文環、王白淵等籌組「台灣藝術研究會」,發行《福爾摩沙》"
+     }
+    ],
+    "B": [
+     {
+      "c": "S",
+      "ev": "戰後因政治氣氛肅殺而停筆一段時間"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1967 年接任《台灣文藝》發行人;1997 年獲首屆台灣文學家牛津獎"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "2008 年 9 月 10 日逝世,享年 95 歲"
+     }
+    ]
+   },
+   "wt": 216.15
+  },
+  {
+   "id": "fu-zheng",
+   "name": "傅正",
+   "life": "1927–1991",
+   "died": "1991-05-10",
+   "job": "政治學者、民進黨創黨元老",
+   "c": [
+    "edu",
+    "act",
+    "pol"
+   ],
+   "bp": "farm",
+   "band": 3,
+   "ly": 1991,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/傅正",
+   "story": "江蘇高淳人;曾任教世新、東吳大學,擔任《美麗島雜誌》編輯,1986 年參與建立民進黨。",
+   "fate": "1960 年參與組黨運動,與雷震同遭逮捕,判處感化三年;他拒絕感化,刑期又延長三年,1966 年才出獄。1991 年 5 月 10 日因胃癌病逝,享年 63 歲。",
+   "note": "",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "在黨外雜誌撰文批評蔣介石第三度連任總統"
+     }
+    ],
+    "B": [
+     {
+      "c": "R",
+      "ev": "1960 年與雷震同遭逮捕,拒絕感化,刑期延長三年"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "擔任《美麗島雜誌》編輯,1986 年參與建立民進黨"
+     }
+    ],
+    "D": [
+     {
+      "c": "X",
+      "ev": "1949 年武漢失守後輟學逃難,1950 年抵臺"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1991 年 5 月 10 日因胃癌病逝"
+     }
+    ]
+   },
+   "wt": 0.001,
+   "refs": [
+    {
+     "label": "國家人權記憶庫「傅正」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/3735"
+    }
+   ]
+  },
+  {
+   "id": "lu-xiuyi",
+   "name": "盧修一",
+   "life": "1941–1998",
+   "died": "1998-08-06",
+   "job": "政治學者、立法委員",
+   "c": [
+    "pol",
+    "edu"
+   ],
+   "bp": null,
+   "band": 3,
+   "ly": 1998,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/盧修一",
+   "story": "曾任中國文化大學、清華大學副教授;1988 年任民進黨中央黨部外交部主任,1990 年起任立法委員。",
+   "fate": "1983 年因被疑與史明聯絡遭逮捕,軍事法庭判感化教育 3 年,1986 年 3 月獲釋。1997 年病中仍在造勢會下跪懇求支持蘇貞昌。1998 年 8 月 6 日因癌症病逝於臺北和信醫院,享年 57 歲。",
+   "note": "",
+   "acts": {
+    "B": [
+     {
+      "c": "E",
+      "ev": "1997 年病中仍在造勢會下跪懇求支持蘇貞昌"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "1988 年任民進黨中央黨部外交部主任,1990 年起任立法委員"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1998 年 8 月 6 日因癌症病逝於臺北和信醫院"
+     }
+    ]
+   },
+   "wt": 2.456,
+   "refs": [
+    {
+     "label": "國家人權記憶庫「盧修一」",
+     "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5346"
+    }
+   ]
+  },
+  {
+   "id": "gu-zhenfu",
+   "name": "辜振甫",
+   "life": "1917–2005",
+   "died": "2005-01-03",
+   "job": "企業家、海基會董事長",
+   "c": [
+    "biz",
+    "pol"
+   ],
+   "bp": "city",
+   "band": 3,
+   "ly": 2005,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/辜振甫",
+   "story": "曾任臺灣證券交易所首任董事長、海基會首任董事長、總統府資政;1993 年與汪道涵會談。",
+   "fate": "1947 年因謀議台灣獨立案被捕,判刑 1 年 7 個月,實際軟禁於寺廟,後以保外就醫釋放。2005 年 1 月 3 日因腎功能衰竭逝世。",
+   "note": "僅列條目前段所載。評價有爭議:他否認 1992 年香港會談達成「一個中國」共識;其死後家族涉及鄧香妹詐欺案;其弟辜寬敏曾質疑他對京劇的喜好是否出於真心。",
+   "acts": {
+    "A": [
+     {
+      "c": "A",
+      "ev": "1940 年代曾在臺灣奉公壯年團本部任職"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "任臺灣證券交易所首任董事長、海基會首任董事長、總統府資政"
+     }
+    ],
+    "L": [
+     {
+      "c": "E",
+      "ev": "2005 年 1 月 3 日因腎功能衰竭逝世;曾任海基會董事長、總統府資政"
+     }
+    ]
+   },
+   "wt": 0.001
+  },
+  {
+   "id": "cai-xiaoqian",
+   "name": "蔡孝乾",
+   "life": "1904–1982",
+   "died": "1982-10-08",
+   "job": "中共台灣省工委書記、國軍少將",
+   "c": [
+    "act",
+    "pol"
+   ],
+   "bp": "farm",
+   "band": 3,
+   "ly": 1982,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/蔡孝乾",
+   "story": "參與台灣文化協會,1928 年加入台灣共產黨,偷渡至福建任教;曾任中華蘇維埃中央政府內務部長;1945 年後奉派回台,1946 年任省工委書記。",
+   "fate": "1927 年曾被日警逮捕;1950 年被捕後變節,供出省工委多名幹部,轉而加入國民黨,曾任國防部保密局、調查局副局長,1956 年因提供情報晉升國軍少將。1982 年 10 月 8 日病逝於臺北榮總,葬於陽明山公墓。",
+   "note": "評價分歧:正面評價其早年抗日文字英勇、能力出眾;負面認為他被捕後出賣同志,導致組織瓦解;另有說法指他受酷刑(拔指甲)後才變節。",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "1928 年加入台灣共產黨,偷渡至福建任教"
+     }
+    ],
+    "B": [
+     {
+      "c": "A",
+      "ev": "1950 年被捕後變節,供出省工委多名幹部"
+     }
+    ],
+    "C": [
+     {
+      "c": "A",
+      "ev": "1956 年因提供情報晉升國軍少將,曾任國防部保密局、調查局副局長"
+     }
+    ],
+    "D": [
+     {
+      "c": "R",
+      "ev": "1945 年後奉派回台發展組織,1946 年任省工委書記"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "1982 年 10 月 8 日病逝於臺北榮總"
+     }
+    ]
+   },
+   "wt": 0.001
+  },
+  {
+   "id": "cai-tongrong",
+   "name": "蔡同榮",
+   "life": "1935–2014",
+   "died": "2014-01-11",
+   "job": "政治學者、立法委員",
+   "c": [
+    "pol",
+    "edu"
+   ],
+   "bp": "port",
+   "band": 3,
+   "ly": 2014,
+   "country": "台灣",
+   "src": "維基百科",
+   "ref": "https://zh.wikipedia.org/wiki/蔡同榮",
+   "story": "1966 年參與全美臺獨聯盟成立;曾任臺灣獨立建國聯盟首任主席、民視董事長、立法委員及民進黨代理主席。",
+   "fate": "因參與臺獨聯盟被列入黑名單,二十餘年無法返台。2014 年 1 月 11 日於臺大醫院病逝,前因 2013 年 12 月中風昏迷,治療 25 天後家屬決定拔管。",
+   "note": "享年資訊框載 78 歲、內文載 80 歲。",
+   "acts": {
+    "A": [
+     {
+      "c": "R",
+      "ev": "1966 年參與全美臺獨聯盟成立"
+     }
+    ],
+    "B": [
+     {
+      "c": "X",
+      "ev": "被列入黑名單,二十餘年無法返臺"
+     }
+    ],
+    "C": [
+     {
+      "c": "E",
+      "ev": "曾任民視董事長、立法委員、民進黨代理主席"
+     }
+    ],
+    "L": [
+     {
+      "c": "S",
+      "ev": "2014 年 1 月 11 日於臺大醫院病逝"
+     }
+    ]
+   },
+   "wt": 0.001
   }
  ]
 }

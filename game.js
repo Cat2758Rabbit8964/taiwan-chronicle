@@ -127,6 +127,21 @@ function ask(kicker, title, scene, opts) {
     scene ? el('p', { class: 'scene' }, scene) : null,
     el('div', { class: 'stack' }, opts.map((o, i) => el('button', { class: 'opt', type: 'button', onclick: o.pick }, el('b', {}, LABEL[i] + '.'), o.t))));
 }
+// 依權重 wt(平衡用,預設 1)做固定的加權抽籤:同一個 salt 永遠抽到同一個
+function weightedPick(list, salt) {
+  const total = list.reduce((a, p) => a + (p.wt ?? 1), 0);
+  let r = ((hash(salt) % 1000003) / 1000003) * total;
+  for (const p of list) { r -= p.wt ?? 1; if (r < 0) return p; }
+  return list[list.length - 1];
+}
+// 轉折時,優先把使用者帶往「目前出場機會較少的人」所在的選項(用 wt 加總當權重)
+function pickAltW(options, weightOf, salt) {
+  if (!options.length) return null;
+  const total = options.reduce((a, o) => a + weightOf(o), 0);
+  let r = ((hash(salt) % 1000003) / 1000003) * total;
+  for (const o of options) { r -= weightOf(o); if (r < 0) return o; }
+  return options[options.length - 1];
+}
 function pickAlt(options, salt) { return options.length ? shuffled(options, st.birth + salt)[0] : null; }
 
 /* ───── 志向 ───── */
@@ -159,13 +174,15 @@ function catCount(pool, sit) {
 }
 function feasible(pool, sit, k = KEEP) { return Object.values(catCount(pool, sit)).some((n) => n >= k); }
 const byCat = (pool, sit, c) => pool.filter((p) => p.acts[sit] && p.acts[sit].some((a) => a.c === c));
-// 這條路走得完嗎?還需要 preNeed 個前置情境題,最後再問「最後一章」,每一步都至少要剩 KEEP 位
+// 這條路走得完嗎?還需要 preNeed 個前置情境題,最後再問「最後一章」。
+// 第一個前置情境之後至少要剩 KEEP 位;之後的情境與最後一章只要還剩 1 位就算數(這樣每位人物都有機會走到結果)
+const keepFor = (nPreAsked) => (nPreAsked === 0 ? KEEP : 1);
 function viable(pool, used, preNeed) {
-  if (pool.length < KEEP) return false;
-  if (preNeed === 0) return feasible(pool, 'L', 1);   // 最後一章可以只剩一位
+  if (pool.length < 1) return false;
+  if (preNeed === 0) return feasible(pool, 'L', 1);
   return PRE_SITS.some((s) => !used.includes(s) && CATS.some((c) => {
     const nx = byCat(pool, s, c);
-    return nx.length >= KEEP && viable(nx, [...used, s], preNeed - 1);
+    return nx.length >= keepFor(used.length) && viable(nx, [...used, s], preNeed - 1);
   }));
 }
 const preAsked = () => st.asked.filter((a) => a.kind === 'sit' && a.sit !== 'L').length;
@@ -178,11 +195,11 @@ function next() {
     const need = Math.max(0, preNeedNow() - 1);
     const free = PRE_SITS.filter((s) => !st.usedSit.includes(s) && CATS.some((c) => {
       const nx = byCat(st.pool, s, c);
-      return nx.length >= KEEP && viable(nx, [...st.usedSit, s], need);
+      return nx.length >= keepFor(st.usedSit.length) && viable(nx, [...st.usedSit, s], need);
     }));
     if (free.length) {
       // 以一位「錨點人物」為準,先問他/她有紀錄的情境;前兩題若找不到,就改問其他人有紀錄的情境
-      const anchor = st.pool.find((x) => x.id === shuffled(st.pool.map((p) => p.id), st.birth + 'a' + nPre)[0]);
+      const anchor = weightedPick(shuffled(st.pool.map((p) => p.id), st.birth + 'o' + nPre).map((id) => st.pool.find((x) => x.id === id)), st.birth + 'a' + nPre);
       const mine = free.filter((s) => anchor.acts[s]);
       const pick = mine.length ? mine : (nPre < MIN_PRE ? free : []);
       if (pick.length) return askSituation(shuffled(pick, st.birth + 's' + nPre)[0]);
@@ -198,7 +215,8 @@ function askPlace() {
   const n = {};
   for (const p of st.pool) if (p.bp) n[p.bp] = (n[p.bp] || 0) + 1;
   const types = data.bp.opts.filter((o) => (n[o.b] || 0) >= KEEP);
-  if (types.length < 2) return result();
+  // 只在剩下的人全都有出生地類型時才問,避免把資料不明的人無聲地排除
+  if (types.length < 2 || !st.pool.every((p) => p.bp)) return result();
   ask('最後一個問題', data.bp.text, '', types.map((o) => ({ t: o.t, pick: () => {
     st.pool = st.pool.filter((p) => p.bp === o.b);
     st.asked.push({ kind: 'place', text: o.t });
@@ -216,10 +234,10 @@ function chooseCat(sit, c) {
   const need = isL ? 0 : Math.max(0, preNeedNow() - 1);
   const ok = (x) => {
     const nx = byCat(st.pool, sit, x);
-    return nx.length >= (isL ? 1 : KEEP) && (isL || viable(nx, [...st.usedSit, sit], need));
+    return nx.length >= (isL ? 1 : keepFor(st.usedSit.length)) && (isL || viable(nx, [...st.usedSit, sit], need));
   };
   if (ok(c)) return applyCat(sit, c, c, false);
-  const alt = pickAlt(CATS.filter((x) => x !== c && ok(x)), 'sa' + sit + c);
+  const alt = pickAltW(CATS.filter((x) => x !== c && ok(x)), (x) => byCat(st.pool, sit, x).reduce((a, p) => a + (p.wt ?? 1), 0), st.birth + 'sa' + sit + c);
   if (!alt) { // 找不到可行的選項:取剩最多的,再沒有就跳過這題
     const count = catCount(st.pool, sit);
     const best = CATS.filter((x) => (count[x] || 0) > 0).sort((a, b) => count[b] - count[a])[0];
@@ -242,12 +260,13 @@ function applyCat(sit, chosen, eff, twisted) {
 
 /* ───── 結果:把使用者實際走上的每一步,對回人物真正做過的事 ───── */
 function result() {
-  const order = shuffled(st.pool.map((p) => p.id), st.birth + 'r');
+  const order = shuffled(st.pool.map((p) => p.id), st.birth + 'r' + st.round);
   const byId = (id) => st.pool.find((x) => x.id === id);
-  // 志向相符的人排前面;同組內仍依生日固定洗牌
-  const ranked = [...order].sort((a, b) => (byId(b).c.includes(st.career) ? 1 : 0) - (byId(a).c.includes(st.career) ? 1 : 0));
-  const p = byId(ranked[0]);
-  const others = ranked.slice(1, 4).map(byId);
+  // 志向相符的人優先;同組內依權重固定抽一位,其餘依生日固定洗牌
+  const tier = (q) => (q.c.includes(st.career) ? 1 : 0);
+  const top = Math.max(...st.pool.map(tier));
+  const p = weightedPick(order.map(byId).filter((q) => tier(q) === top), st.birth + 'f' + st.round);
+  const others = order.map(byId).filter((q) => q !== p).sort((x, y) => tier(y) - tier(x)).slice(0, 3);
   const b = st.band;
 
   const chain = st.asked.filter((a) => a.kind !== 'skip').map((a) => {
@@ -270,7 +289,7 @@ function result() {
   const otherLine = (q) => el('div', {}, el('a', { href: q.ref, target: '_blank', rel: 'noopener' }, q.name), `(${q.life},${q.job})`);
 
   show(
-    el('p', { class: 'persona' }, `你回到的是 ${b.from} 到 ${b.to} 年前後 · 你的上輩子是`),
+    el('p', { class: 'persona' }, `你回到的是 ${b.to >= 2026 ? `${b.from} 年以後` : `${b.from} 到 ${b.to} 年前後`} · 你的上輩子是`),
     el('div', { class: 'card' },
       el('div', { class: 'big' }, p.name),
       el('p', {}, el('span', { class: 'tag' }, p.country), el('span', { class: 'tag' }, p.life), el('span', { class: 'tag' }, p.job)),
@@ -287,7 +306,7 @@ function result() {
     el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'));
 }
 
-fetch('data/game.json?v=20261108')
+fetch('data/game.json?v=20261108c')
   .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then((d) => { data = d; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
