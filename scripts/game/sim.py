@@ -37,7 +37,13 @@ def play(birth, rng, wt):
         r -= n
     pool = [p for p in elig if p['band'] == band]; pool0 = list(pool)
     cn = collections.Counter(x for p in pool for x in p['c'])
-    c = rng.choice(rng.sample(CO, 5))
+    # 志向由考試成績決定:四科各 0–100(約一成機率跳過=0),取最高與第二高的科目查表
+    order = ['lang', 'math', 'sci', 'soc']
+    sc = {k: (0 if rng.random() < 0.1 else rng.randint(0, 100)) for k in order}
+    rank = sorted(order, key=lambda k: (-sc[k], order.index(k)))
+    PAIR = {'lang': {'math': 'art', 'sci': 'art', 'soc': 'edu'}, 'math': {'lang': 'biz', 'sci': 'med', 'soc': 'biz'},
+            'sci': {'lang': 'med', 'math': 'med', 'soc': 'act'}, 'soc': {'lang': 'law', 'math': 'pol', 'sci': 'act'}}
+    c = PAIR[rank[0]][rank[1]]
     if cn[c] < KEEP:
         alts = [x for x in CO if x != c and cn[x] >= KEEP]
         if alts: c = rng.choice(alts)

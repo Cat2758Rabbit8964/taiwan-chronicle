@@ -50,3 +50,14 @@ select{flex:1;min-width:90px;font:inherit;color:inherit;background:var(--bg);bor
 .scene{font-size:17px;line-height:1.9;margin:0 0 16px}
 .chain .you.off{color:var(--muted);text-decoration:line-through;font-weight:400}
 .chain .twist{color:var(--accent);font-size:13px;margin-top:2px}
+.timer{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:14px;color:var(--muted)}
+.timer .track{flex:1;height:8px;border-radius:4px;background:var(--bar);overflow:hidden}
+.timer .track i{display:block;height:100%;width:100%;background:var(--accent)}
+.txt{font:inherit;font-size:20px;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%;letter-spacing:2px}
+.guesslog{margin:0;padding-left:1.4em;font-variant-numeric:tabular-nums;max-height:220px;overflow:auto}
+.examcard{display:flex;flex-direction:column;gap:6px}
+canvas.snake{width:100%;max-width:340px;aspect-ratio:1;border-radius:10px;touch-action:none;align-self:center}
+.dpad{display:flex;flex-direction:column;align-items:center;gap:6px}
+.dpad div{display:flex;gap:6px}
+.dpad .btn{min-width:56px;padding:10px 14px}
+button:disabled{opacity:.5;cursor:not-allowed}

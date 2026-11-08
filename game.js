@@ -10,6 +10,7 @@ const KEEP = 2;            // 選擇之後至少要剩幾位,否則故事會轉�
 const MAX_PRE = 3;         // 最後一章之前最多問幾個情境題
 const MIN_PRE = 2;         // 最後一章之前至少問幾個(加上最後一章,至少三個情境題)
 let data = null;
+let exam = null;
 let st = null; // { birth, bands, band, pool, career, asked, usedSit }
 
 function el(tag, attrs = {}, ...kids) {
@@ -144,24 +145,23 @@ function pickAltW(options, weightOf, salt) {
 }
 function pickAlt(options, salt) { return options.length ? shuffled(options, st.birth + salt)[0] : null; }
 
-/* ───── 志向 ───── */
+/* ───── 志向:由考試成績決定 ───── */
+const careerName = (c) => data.q1.careers[c].split(':')[0];
 function askCareer() {
-  const shown = shuffled(CAREER_ORDER, st.birth + 'c').slice(0, 5);
-  const keep = CAREER_ORDER.filter((c) => shown.includes(c));
-  ask('故事開始', '求學階段,你的志向是?', '', keep.map((c) => ({ t: data.q1.careers[c], pick: () => chooseCareer(c) })));
+  Exam.run(exam, careerName, (res) => chooseCareer(res.career, res));
 }
-function chooseCareer(c) {
-  // 志向只影響故事與配對加分,不限制候選人;但該志向在這個時間帶人太少時,故事仍會轉折
+function chooseCareer(c, res) {
+  // 志向只影響故事與配對優先順序,不限制候選人;但該志向在這個時間帶人太少時,故事仍會轉折
   const count = careerCount(st.pool);
-  if ((count[c] || 0) >= KEEP) return applyCareer(c, c, false);
+  if ((count[c] || 0) >= KEEP) return applyCareer(c, c, false, res);
   const alt = pickAlt(CAREER_ORDER.filter((x) => x !== c && (count[x] || 0) >= KEEP), 'ca' + c);
-  if (!alt) return applyCareer(c, c, false);
+  if (!alt) return applyCareer(c, c, false, res);
   const T = data.twist.career;
-  interlude(`時機不對。${T[c]}之路比你預期的更難走,幾番波折之後,你最後走向了${T[alt]}之路。`, () => applyCareer(c, alt, true));
+  interlude(`時機不對。${T[c]}之路比你預期的更難走,幾番波折之後,你最後走向了${T[alt]}之路。`, () => applyCareer(c, alt, true, res));
 }
-function applyCareer(chosen, eff, twisted) {
+function applyCareer(chosen, eff, twisted, res) {
   st.career = eff;
-  st.asked.push({ kind: 'career', chosen, eff, twisted, text: data.q1.careers[eff], chosenText: data.q1.careers[chosen] });
+  st.asked.push({ kind: 'career', chosen, eff, twisted, res, text: careerName(eff), chosenText: careerName(chosen) });
   next();
 }
 
@@ -274,10 +274,15 @@ function result() {
     const isL = a.kind === 'sit' && a.sit === 'L';
     if (a.kind === 'sit') rows.push(el('div', { class: 'q' }, a.title));
     if (a.twisted) {
-      rows.push(el('div', { class: 'you off' }, isL ? '你原本以為記得的是:' : '你原本選了:', a.chosenText));
+      rows.push(el('div', { class: 'you off' }, isL ? '你原本以為記得的是:' : a.kind === 'career' ? '考試成績原本指向:' : '你原本選了:', a.chosenText));
       rows.push(el('div', { class: 'twist' }, isL ? '記憶模糊了,浮上來的是:' : '故事轉折了,你實際走上的是:'));
     }
-    rows.push(el('div', { class: 'you' }, a.twisted ? a.text : (isL ? `你依稀記得:${a.text}` : `你選了:${a.text}`)));
+    if (a.kind === 'career' && a.res) {
+      const n = { lang: '語文', math: '數學', sci: '自然', soc: '社會' };
+      rows.push(el('div', { class: 'q' }, '命運的考場'));
+      rows.push(el('div', { class: 'you' }, `考試成績:${Object.entries(a.res.scores).map(([k, v]) => `${n[k]} ${v}`).join('、')}`));
+    }
+    rows.push(el('div', { class: 'you' }, a.twisted ? a.text : (isL ? `你依稀記得:${a.text}` : a.kind === 'career' ? `志向:${a.text}` : `你選了:${a.text}`)));
     if (a.kind === 'career') rows.push(el('div', { class: 'real' }, p.c.includes(a.eff) ? `他/她的職業:${p.job}` : `他/她的職業是${p.job},不是這條志向,但他/她走過和你一樣的情境選擇`));
     else if (a.kind === 'place') rows.push(el('div', { class: 'real' }, '他/她出生地的類型與此相符(這是本遊戲自行的分類,不是史實)'));
     else p.acts[a.sit].filter((x) => x.c === a.eff).forEach((x) => rows.push(el('div', { class: 'real' }, isL ? '他/她真正的結局:' : '他/她真正做的:', x.ev)));
@@ -306,8 +311,8 @@ function result() {
     el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'));
 }
 
-fetch('data/game.json?v=20261108c')
-  .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then((d) => { data = d; start(); })
+Promise.all([fetch('data/game.json?v=20261109').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261109').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+  .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
