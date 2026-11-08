@@ -39,7 +39,11 @@ def play(birth, rng, wt):
     cn = collections.Counter(x for p in pool for x in p['c'])
     # 志向由考試成績決定:四科各 0–100(約一成機率跳過=0),取最高與第二高的科目查表
     order = ['lang', 'math', 'sci', 'soc']
-    sc = {k: (0 if rng.random() < 0.1 else rng.randint(0, 100)) for k in order}
+    # 貪食蛇分數沒有上限(約 40–160);社會科只有 0/33/67/100
+    sc = {'lang': rng.randint(0, 100), 'math': rng.choice([0, 30, 40, 55, 55, 70, 70, 85, 85, 100, 100, 100]) if rng.random() < 0.8 else rng.randint(0, 60),
+          'sci': rng.randint(20, 160), 'soc': rng.choice([0, 33, 33, 67, 67, 100])}
+    for k in order:
+        if rng.random() < 0.08: sc[k] = 0     # 約 8% 機率跳過該科
     rank = sorted(order, key=lambda k: (-sc[k], order.index(k)))
     PAIR = {'lang': {'math': 'art', 'sci': 'art', 'soc': 'edu'}, 'math': {'lang': 'biz', 'sci': 'med', 'soc': 'biz'},
             'sci': {'lang': 'med', 'math': 'med', 'soc': 'act'}, 'soc': {'lang': 'law', 'math': 'pol', 'sci': 'act'}}

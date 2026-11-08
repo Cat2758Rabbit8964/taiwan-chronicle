@@ -61,3 +61,11 @@ canvas.snake{width:100%;max-width:340px;aspect-ratio:1;border-radius:10px;touch-
 .dpad div{display:flex;gap:6px}
 .dpad .btn{min-width:56px;padding:10px 14px}
 button:disabled{opacity:.5;cursor:not-allowed}
+.examgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.examcol{display:flex;flex-direction:column;gap:8px;align-items:stretch;text-align:center;padding:16px 12px}
+.examcol .subj{font-size:24px;font-weight:800;letter-spacing:4px}
+.examcol .persona{margin:0}
+.examcol .btn{padding:10px 8px}
+.kanagrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.kanagrid .opt{text-align:center;font-size:24px}
+.detail{padding-left:1.4em;display:flex;flex-direction:column;gap:6px}

@@ -12,7 +12,7 @@ function find(n,pred,out=[]){if(typeof n==='string')return out;if(pred(n))out.pu
 const app=mk('main');
 globalThis.document={getElementById:()=>app,createElement:mk,createTextNode:t=>String(t),addEventListener(){},removeEventListener(){}};
 globalThis.window={scrollTo(){}};
-globalThis.setInterval=()=>1; globalThis.clearInterval=()=>{}; globalThis.setTimeout=(f)=>{f();return 1};
+globalThis.setInterval=()=>1; globalThis.clearInterval=()=>{}; globalThis.setTimeout=()=>1; globalThis.clearTimeout=()=>{};
 globalThis.fetch=()=>({then(){return {then(){return {catch(){}}}}}});
 const src=readFile(root+'exam.js')+'\n'+readFile(root+'game.js')+';globalThis.__t={set(d,e){data=d;exam=e},start};';
 (0,eval)(src);
@@ -24,19 +24,14 @@ const ys=find(app,n=>n.attrs.id==='by')[0], ms=find(app,n=>n.attrs.id==='bm')[0]
 ys.value=String(BY); ys.ls.change(); ms.value=String(BM); ms.ls.change(); ds.value=String(BD);
 find(app,n=>n.tag==='form')[0].ls.submit({preventDefault(){}});
 out.push('HUB: '+text(app).slice(0,60));
-// 前三科跳過:每次畫面重畫後取第一個「跳過」
+
 for(let k=0;k<3;k++){ btn('跳過').ls.click(); }
-out.push('跳過後按鈕狀態: 公布成績單 disabled='+btn('公布成績單')?.disabled+' / 提示='+(btn('才能公布')?'有':'無'));
-// 應考社會(第四張卡的「應考」)
+out.push('跳過後 公布成績單 disabled='+find(app,n=>n.tag==='button'&&text(n).includes('才能公布'))[0].disabled);
 const takes=find(app,n=>n.tag==='button'&&text(n)==='應考'); takes[takes.length-1].ls.click();
-out.push('INTRO: '+text(app).slice(0,70));
 btn('開始作答').ls.click();
-for(let g=0;g<3;g++){ const o=find(app,n=>n.cls==='opt'); out.push('社會題 '+(g+1)+': '+text(find(app,n=>n.tag==='h2')[0])+' | 選項數 '+o.length); o[0].ls.click(); }
-out.push('FINISH: '+text(app).replace(/\s+/g,' ').slice(0,110));
-btn('確定交卷').ls.click();
-out.push('HUB2 公布成績單 disabled='+btn('公布成績單').disabled);
-btn('公布成績單').ls.click();
-out.push('REPORT: '+text(app).replace(/\s+/g,' ').slice(0,260));
-btn('帶著成績單出發').ls.click();
-out.push('NEXT: '+text(app).replace(/\s+/g,' ').slice(0,120));
+for(let g=0;g<3;g++){ const o=find(app,n=>n.cls==='opt'); out.push('社會題 '+(g+1)+': '+text(find(app,n=>n.tag==='h2')[0])+' | '+o.length+' 選項'); o[0].ls.click(); }
+out.push('HUB: '+text(find(app,n=>n.cls==='examgrid')[0]).replace(/\s+/g,' ').slice(0,120));
+btn('查看考試結果').ls.click(); out.push('結果: '+text(app).replace(/\s+/g,' ').slice(0,260)); btn('回考場').ls.click();
+btn('公布成績單').ls.click(); out.push('REPORT: '+text(app).replace(/\s+/g,' ').slice(0,220));
+btn('帶著成績單出發').ls.click(); out.push('NEXT: '+text(app).replace(/\s+/g,' ').slice(0,100));
 out.join('\n');
