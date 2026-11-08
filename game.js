@@ -296,13 +296,11 @@ function result() {
   const sourceLine = el('p', { class: 'persona' }, '資料出處:', sources.flatMap((x, i) => (i ? [' · ', x] : [x])));
   const otherLine = (q) => el('div', {}, el('a', { href: q.ref, target: '_blank', rel: 'noopener' }, q.name), `(${q.life},${q.job})`);
 
-  show(
+  const reveal = () => show(
     el('p', { class: 'persona' }, `你回到的是 ${b.to >= 2026 ? `${b.from} 年以後` : `${b.from} 到 ${b.to} 年前後`} · 你的上輩子是`),
     el('div', { class: 'card' },
       el('div', { class: 'big' }, p.name),
       el('p', {}, el('span', { class: 'tag' }, p.country), el('span', { class: 'tag' }, p.life), el('span', { class: 'tag' }, p.job)),
-      p.c.includes(st.career) ? null : el('div', { class: 'twistbox' }, el('b', {}, '命運的轉折'),
-        el('p', {}, `考場的成績單把你指向「${careerName(st.career)}」。然而命運另有安排——時局與機緣把你帶往另一條路,你最後走上的,是「${p.job}」的人生。`)),
       el('div', { class: 'sec' }, el('h3', {}, '你走過的路,與他/她實際做過的事'), el('ol', { class: 'chain' }, chain)),
       el('div', { class: 'sec' }, el('h3', {}, '他/她做過的事'), el('p', {}, p.story)),
       el('div', { class: 'sec' }, el('h3', {}, '後來的遭遇'), el('p', {}, p.fate)),
@@ -314,10 +312,29 @@ function result() {
       el('button', { class: 'btn ghost', type: 'button', onclick: () => begin(st.birth, null, st.round + 1, st.usedBands) }, '再玩一次(換一個時間)'),
       el('button', { class: 'btn ghost', type: 'button', onclick: start }, '重新開始')),
     el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'));
+  story(p, reveal);
 }
 
-Promise.all([fetch('data/game.json?v=20261111').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261111').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+/* ───── 放榜之後:從成績單說起,一路引導到這個人最後的行業 ───── */
+const SUBJ = { lang: '語文', math: '數學', sci: '自然', soc: '社會' };
+const FLAVOR = { lang: '你總能在字句裡讀出世界的形狀', math: '你習慣在數字與規則裡找答案', sci: '你對生命與自然,永遠有問不完的問題', soc: '你比別人更在意人與人之間的規矩' };
+function story(p, reveal) {
+  const a = st.asked.find((x) => x.kind === 'career'); const r = a.res;
+  const lines = [`放榜那天,成績單上寫著:${SUBJ[r.top]}最高,${SUBJ[r.second]}其次。${FLAVOR[r.top]}。`,
+    `老師看著成績單,對你說:「你最適合走『${careerName(a.chosen)}』這條路。」`];
+  if (a.twisted) lines.push(`可是時機不對,幾番波折之後,你改走了「${careerName(a.eff)}」之路。`);
+  lines.push(p.c.includes(st.career)
+    ? `你循著這條路,一步一步走下去。多年以後,你成了「${p.job}」。`
+    : `然而命運另有安排——時局與機緣一再改寫你的計畫,你最後走上的,是「${p.job}」的人生。`);
+  lines.push('這是怎樣的一生?翻到下一頁,就知道你是誰。');
+  show(el('p', { class: 'persona' }, '放榜之後'), el('h2', {}, '你的故事'),
+    ...lines.map((x) => el('p', { class: 'scene' }, x)),
+    el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: reveal }, '揭曉你的上輩子')));
+}
+
+
+Promise.all([fetch('data/game.json?v=20261112').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261112').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));

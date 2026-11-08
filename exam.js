@@ -5,8 +5,8 @@
 const SUBJECTS = [
   { id: 'lang', name: '語文', secs: 100, intro: '限時 100 秒,共 12 題單字填空。可以選英文或日文。' },
   { id: 'math', name: '數學', secs: 120, intro: '限時 120 秒,有兩種考卷可以選。\nA 卷「猜數字」:電腦想了 4 個不含 0、不重複的數字(1 到 9),你每次猜 4 個數字;A 是數字和位置都對,B 是數字對但位置不對。\nB 卷「四則運算」:電腦給你 4 個 1 到 10 的數字和一個目標數字(1 到 100),用 + − × ÷ 和括號把 4 個數字各用一次,算出目標。題目一題接一題出,解得越多分越高(每題 20 分,滿分 100)。' },
-  { id: 'sci', name: '自然', secs: 60, intro: '限時 60 秒,養一隻貓。用方向鍵或螢幕按鈕帶貓去吃東西,吃到東西貓就會長大(身體變長)。牆壁會穿過去,貓撞到自己的身體或時間到就結算。小魚乾 1 分、罐頭 2 分、金魚 5 分(只出現幾秒)。分數沒有上限。' },
-  { id: 'soc', name: '社會', secs: 60, intro: '限時 60 秒,三題歷史題,四選一,題目取自台灣事件簿。' },
+  { id: 'sci', name: '自然', secs: 60, intro: '限時 60 秒,養一隻貓。用方向鍵或螢幕按鈕帶貓去吃東西,吃到東西貓就會長大(身體變長)。牆壁會穿過去,貓撞到自己的身體或時間到就結算。小魚乾 1 分、罐頭 2 分、金魚 5 分(只出現幾秒)。分數沒有上限(每 1 分換算 2 分)。' },
+  { id: 'soc', name: '社會', secs: 90, intro: '限時 90 秒,共 5 題歷史題(事件細節,不考年份),四選一,題目取自台灣事件簿。前 4 題每題 25 分,第 5 題是較難的加分題,答對再加 25 分,所以最高可以拿到 125 分。' },
 ];
 const SUBJECT_ORDER = ['lang', 'math', 'sci', 'soc'];   // 同分時的固定順序
 // 最高分科目 → 第二高分科目 → 志向
@@ -278,7 +278,7 @@ function playSci(ctx, subject, mount, finish) {
   const loop = setInterval(step, 130);
   const end = (why) => {
     if (done) return; done = true; clearInterval(loop); t.stop(); document.removeEventListener('keydown', onKey);
-    finish(points * 4, `${why || '時間到'},共得 ${points} 分(換算 ${points * 4} 分,沒有上限)`,
+    finish(points * 2, `${why || '時間到'},共得 ${points} 分(換算 ${points * 2} 分,沒有上限)`,
       [`結束原因:${why || '時間到'}`, `小魚乾 ${eaten.fish} 條(各 1 分)、罐頭 ${eaten.can} 罐(各 2 分)、金魚 ${eaten.gold} 條(各 5 分)`, `貓的長度:${cat.length} 格`]);
   };
   const pad = el('div', { class: 'dpad' },
@@ -290,20 +290,23 @@ function playSci(ctx, subject, mount, finish) {
   return () => { done = true; clearInterval(loop); t.stop(); document.removeEventListener('keydown', onKey); };
 }
 
-/* ───── 社會:三題歷史題(作答時不告知對錯) ───── */
+/* ───── 社會:五題歷史題(前四題各 25 分,第五題加分題) ───── */
 function playSoc(ctx, subject, mount, finish) {
-  const qs = pickFresh(ctx.exam.social, 3, ctx.seen.soc, (x) => x.q); let i = 0, done = false; const picks = [];
-  const box = el('div', { class: 'stack' }); let shown = [];
+  const normal = pickFresh(ctx.exam.social.filter((x) => !x.hard), 4, ctx.seen.soc, (x) => x.q);
+  const bonus = pickFresh(ctx.exam.social.filter((x) => x.hard), 1, ctx.seen.socHard, (x) => x.q);
+  const qs = [...normal, ...bonus]; let i = 0, done = false; const picks = [];
+  const box = el('div', { class: 'stack' });
   const end = () => {
     if (done) return; done = true; t.stop();
-    const right = qs.filter((q, k) => picks[k] === q.right).length;
-    finish(Math.round((right / qs.length) * 100), `答對 ${right} / ${qs.length} 題`,
-      qs.map((q, k) => `${k + 1}. ${q.q} 你的答案:${picks[k] || '未作答'}(正解:${q.right})${picks[k] === q.right ? ' ✔' : ' ✘'}`));
+    const ok = qs.map((q, k) => picks[k] === q.right);
+    const score = ok.reduce((a, v, k) => a + (v ? 25 : 0), 0);
+    finish(score, `前 4 題答對 ${ok.slice(0, 4).filter(Boolean).length} 題;加分題${ok[4] ? '答對(+25 分)' : '沒有答對'}`,
+      qs.map((q, k) => `${k === 4 ? '加分題' : `第 ${k + 1} 題`}:${q.q} 你的答案:${picks[k] || '未作答'}(正解:${q.right})${ok[k] ? ' ✔' : ' ✘'}`));
   };
   const show1 = () => {
     if (i >= qs.length) return end();
-    const q = qs[i]; shown = rshuffle([q.right, ...q.wrong]);
-    box.replaceChildren(el('p', { class: 'persona' }, `第 ${i + 1} / ${qs.length} 題`), el('h2', {}, q.q),
+    const q = qs[i]; const shown = rshuffle([q.right, ...q.wrong]);
+    box.replaceChildren(el('p', { class: 'persona' }, i === 4 ? '加分題(答對再加 25 分)' : `第 ${i + 1} / 4 題`), el('h2', {}, q.q),
       ...shown.map((o, k) => el('button', { class: 'opt', type: 'button', onclick: () => { picks[i] = o; i++; show1(); } }, el('b', {}, 'ABCD'[k] + '.'), o)));
   };
   const f = frame(subject, '歷史題', box, end);
@@ -319,7 +322,7 @@ const Exam = {
   // exam: exam.json;careerLabel(c): 志向文字;onDone({ scores, career, top, second })
   run(exam, careerLabel, onDone) {
     const state = Object.fromEntries(SUBJECT_ORDER.map((id) => [id, { status: 'todo', score: 0, note: '', detail: [] }]));
-    const seen = { en: new Set(), jp: new Set(), soc: new Set() };
+    const seen = { en: new Set(), jp: new Set(), soc: new Set(), socHard: new Set() };
     let cleanup = null;
     const stop = () => { if (cleanup) { cleanup(); cleanup = null; } };
     const hub = () => {

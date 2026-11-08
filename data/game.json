@@ -89,7 +89,7 @@
   "L": {
    "title": "依稀的最後一刻",
    "text": "你閉上眼睛,依稀記得上輩子的最後一刻。那是——",
-   "R": "一聲槍響,或一道冰冷的牆",
+   "R": "一道無法回頭的暗影:槍聲、烈焰,或黑暗中落下的暴力",
    "E": "身邊圍著人,有人宣讀你的名字與功績",
    "S": "一間安靜的屋子,藥味與未完成的稿件",
    "X": "陌生的海風,和說著別種語言的街道",
@@ -181,7 +181,7 @@
    "band": 2,
    "ly": 1931,
    "country": "台灣",
-   "wt": 0.001
+   "wt": 0.192
   },
   {
    "id": "lai-he",
@@ -228,7 +228,7 @@
    "band": 2,
    "ly": 1943,
    "country": "台灣",
-   "wt": 6.711
+   "wt": 181.546
   },
   {
    "id": "li-yingzhang",
@@ -369,7 +369,7 @@
    "band": 3,
    "ly": 1967,
    "country": "台灣",
-   "wt": 12.293
+   "wt": 11.067
   },
   {
    "id": "chen-chengbo",
@@ -468,7 +468,7 @@
    "band": 2,
    "ly": 1930,
    "country": "台灣",
-   "wt": 101.764
+   "wt": 84.56
   },
   {
    "id": "guo-xuehu",
@@ -699,7 +699,7 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4408"
     }
    ],
-   "wt": 1000.0
+   "wt": 675.627
   },
   {
    "id": "zhang-wojun",
@@ -746,7 +746,7 @@
    "band": 2,
    "ly": 1955,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 968.819
   },
   {
    "id": "lin-xiantang",
@@ -841,7 +841,7 @@
    "band": 2,
    "ly": 1983,
    "country": "台灣",
-   "wt": 642.95
+   "wt": 622.852
   },
   {
    "id": "gu-xianrong",
@@ -888,7 +888,7 @@
    "band": 1,
    "ly": 1937,
    "country": "台灣",
-   "wt": 111.303
+   "wt": 95.448
   },
   {
    "id": "lin-maosheng",
@@ -934,7 +934,7 @@
    "band": 2,
    "ly": 1947,
    "country": "台灣",
-   "wt": 0.365
+   "wt": 0.001
   },
   {
    "id": "jian-ji",
@@ -987,7 +987,7 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5676"
     }
    ],
-   "wt": 328.214
+   "wt": 304.531
   },
   {
    "id": "luo-fuxing",
@@ -1202,7 +1202,7 @@
    "band": 2,
    "ly": 1947,
    "country": "台灣",
-   "wt": 334.567
+   "wt": 233.045
   },
   {
    "id": "tang-dezhang",
@@ -1248,7 +1248,7 @@
    "band": 3,
    "ly": 1947,
    "country": "台灣",
-   "wt": 253.952
+   "wt": 149.972
   },
   {
    "id": "wang-yulin",
@@ -1341,7 +1341,7 @@
    "band": 2,
    "ly": 1947,
    "country": "台灣",
-   "wt": 269.028
+   "wt": 202.601
   },
   {
    "id": "lei-zhen",
@@ -1488,7 +1488,7 @@
    "band": 2,
    "ly": 1966,
    "country": "台灣",
-   "wt": 257.94
+   "wt": 338.052
   },
   {
    "id": "wu-sanlian",
@@ -1814,7 +1814,7 @@
    "band": 3,
    "ly": 2001,
    "country": "台灣",
-   "wt": 553.789
+   "wt": 748.835
   },
   {
    "id": "li-meishu",
@@ -2000,7 +2000,7 @@
    "band": 3,
    "ly": 1960,
    "country": "台灣",
-   "wt": 183.451
+   "wt": 118.93
   },
   {
    "id": "ye-shitao",
@@ -2326,7 +2326,7 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/16539"
     }
    ],
-   "wt": 0.002
+   "wt": 0.003
   },
   {
    "id": "zhong-haodong",
@@ -2379,7 +2379,7 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5629"
     }
    ],
-   "wt": 1000.0
+   "wt": 446.914
   },
   {
    "id": "ke-qihua",
@@ -2697,7 +2697,7 @@
    "band": 3,
    "ly": 2007,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 989.085
   },
   {
    "id": "chen-yi",
@@ -2791,7 +2791,7 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4115"
     }
    ],
-   "wt": 625.423
+   "wt": 589.074
   },
   {
    "id": "shi-mingde",
@@ -2884,7 +2884,7 @@
    "band": 3,
    "ly": 1988,
    "country": "台灣",
-   "wt": 227.92
+   "wt": 214.858
   },
   {
    "id": "li-denghui",
@@ -3019,7 +3019,7 @@
    "band": 3,
    "ly": 2000,
    "country": "台灣",
-   "wt": 433.656
+   "wt": 622.451
   },
   {
    "id": "zheng-nanrong",
@@ -3140,7 +3140,7 @@
    "band": 3,
    "ly": 1996,
    "country": "台灣",
-   "wt": 82.485
+   "wt": 60.521
   },
   {
    "id": "gao-junming",
@@ -3405,7 +3405,7 @@
    "band": 1,
    "ly": 1896,
    "country": "台灣",
-   "wt": 156.496
+   "wt": 163.877
   },
   {
    "id": "shen-baozhen",
@@ -3535,7 +3535,7 @@
    "band": 1,
    "ly": 1903,
    "country": "台灣",
-   "wt": 20.627
+   "wt": 24.007
   },
   {
    "id": "qiu-fengjia",
@@ -3586,7 +3586,7 @@
    "band": 1,
    "ly": 1912,
    "country": "台灣",
-   "wt": 22.364
+   "wt": 14.826
   },
   {
    "id": "liu-yongfu",
@@ -3642,7 +3642,7 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4821"
     }
    ],
-   "wt": 21.646
+   "wt": 8.871
   },
   {
    "id": "wu-tangxing",
@@ -3779,7 +3779,7 @@
    "band": 1,
    "ly": 1928,
    "country": "台灣",
-   "wt": 105.977
+   "wt": 164.732
   },
   {
    "id": "lin-zhanmei",
@@ -3825,7 +3825,7 @@
    "band": 1,
    "ly": 1868,
    "country": "台灣",
-   "wt": 206.869
+   "wt": 174.687
   },
   {
    "id": "li-chunsheng",
@@ -3924,7 +3924,7 @@
      "url": "https://kotobank.jp/word/%E5%90%89%E7%94%B0%E6%9D%BE%E9%99%B0"
     }
    ],
-   "wt": 337.716
+   "wt": 329.62
   },
   {
    "id": "sakamoto-ryoma",
@@ -3965,7 +3965,7 @@
    "band": 1,
    "ly": 1867,
    "country": "日本",
-   "wt": 763.148,
+   "wt": 479.636,
    "refs": [
     {
      "label": "コトバンク「坂本龍馬」",
@@ -4018,7 +4018,7 @@
    "band": 1,
    "ly": 1877,
    "country": "日本",
-   "wt": 362.114,
+   "wt": 353.909,
    "refs": [
     {
      "label": "コトバンク「西郷隆盛」",
@@ -4169,7 +4169,7 @@
      "url": "https://kotobank.jp/word/%E7%94%B0%E4%B8%AD%E6%AD%A3%E9%80%A0"
     }
    ],
-   "wt": 276.838
+   "wt": 480.285
   },
   {
    "id": "natsume-soseki",
@@ -4271,7 +4271,7 @@
      "url": "https://kotobank.jp/word/%E5%8C%97%E9%87%8C%E6%9F%B4%E4%B8%89%E9%83%8E"
     }
    ],
-   "wt": 0.001
+   "wt": 0.008
   },
   {
    "id": "noguchi-hideyo",
@@ -4550,7 +4550,7 @@
    "band": 2,
    "ly": 1942,
    "country": "日本",
-   "wt": 873.813,
+   "wt": 716.994,
    "refs": [
     {
      "label": "コトバンク「与謝野晶子」",
@@ -4609,7 +4609,7 @@
      "url": "https://kotobank.jp/word/%E5%BE%8C%E8%97%A4%E6%96%B0%E5%B9%B3"
     }
    ],
-   "wt": 0.015
+   "wt": 0.112
   },
   {
    "id": "ozaki-yukio",
@@ -4661,7 +4661,7 @@
      "url": "https://kotobank.jp/word/%E5%B0%BE%E5%B4%8E%E8%A1%8C%E9%9B%84"
     }
    ],
-   "wt": 5.182
+   "wt": 1.248
   },
   {
    "id": "tojo-hideki",
@@ -4800,7 +4800,7 @@
      "url": "https://kotobank.jp/word/%E5%90%89%E7%94%B0%E8%8C%82"
     }
    ],
-   "wt": 494.317
+   "wt": 419.022
   },
   {
    "id": "ishibashi-tanzan",
@@ -5078,7 +5078,7 @@
    "band": 1,
    "ly": 1883,
    "country": "日本",
-   "wt": 527.645
+   "wt": 364.302
   },
   {
    "id": "tsuda-umeko",
@@ -5130,7 +5130,7 @@
      "url": "https://kotobank.jp/word/%E6%B4%A5%E7%94%B0%E6%A2%85%E5%AD%90"
     }
    ],
-   "wt": 217.123
+   "wt": 204.57
   },
   {
    "id": "ogino-ginko",
@@ -5182,7 +5182,7 @@
      "url": "https://kotobank.jp/word/%E8%8D%BB%E9%87%8E%E5%90%9F%E5%AD%90"
     }
    ],
-   "wt": 0.008
+   "wt": 0.001
   },
   {
    "id": "hiratsuka-raicho",
@@ -5229,7 +5229,7 @@
    "band": 2,
    "ly": 1971,
    "country": "日本",
-   "wt": 86.655,
+   "wt": 112.865,
    "refs": [
     {
      "label": "コトバンク「平塚らいてう」",
@@ -5480,7 +5480,7 @@
    "band": 1,
    "ly": 1901,
    "country": "中國",
-   "wt": 544.547
+   "wt": 401.644
   },
   {
    "id": "kang-youwei",
@@ -5569,7 +5569,7 @@
    "band": 1,
    "ly": 1925,
    "country": "中國",
-   "wt": 798.912
+   "wt": 1000.0
   },
   {
    "id": "yuan-shikai",
@@ -5616,7 +5616,7 @@
    "band": 2,
    "ly": 1916,
    "country": "中國",
-   "wt": 0.002
+   "wt": 0.003
   },
   {
    "id": "chen-duxiu",
@@ -5703,7 +5703,7 @@
    "band": 2,
    "ly": 1944,
    "country": "中國",
-   "wt": 0.041
+   "wt": 0.001
   },
   {
    "id": "lu-xun",
@@ -6004,7 +6004,7 @@
    "band": 3,
    "ly": 1976,
    "country": "中國",
-   "wt": 202.631
+   "wt": 180.276
   },
   {
    "id": "liu-shaoqi",
@@ -6266,7 +6266,7 @@
    "band": 2,
    "ly": 1981,
    "country": "中國",
-   "wt": 0.363
+   "wt": 0.002
   },
   {
    "id": "soong-mei-ling",
@@ -6439,7 +6439,7 @@
    "band": 2,
    "ly": 1986,
    "country": "中國",
-   "wt": 971.032
+   "wt": 1000.0
   },
   {
    "id": "xiang-jingyu",
@@ -6615,7 +6615,7 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/1980"
     }
    ],
-   "wt": 1000.0
+   "wt": 703.222
   },
   {
    "id": "cai-axin",
@@ -6813,7 +6813,7 @@
    "band": 2,
    "ly": 2011,
    "country": "台灣",
-   "wt": 0.101
+   "wt": 0.001
   },
   {
    "id": "lin-haiyin",
@@ -6860,7 +6860,7 @@
    "band": 3,
    "ly": 2001,
    "country": "台灣",
-   "wt": 155.474
+   "wt": 132.551
   },
   {
    "id": "chen-xiuxi",
@@ -7167,7 +7167,7 @@
    "band": 3,
    "ly": 1995,
    "country": "台灣",
-   "wt": 91.74
+   "wt": 150.881
   },
   {
    "id": "shen-yuanzhang",
@@ -7344,7 +7344,7 @@
    "band": 3,
    "ly": 1950,
    "country": "台灣",
-   "wt": 583.306
+   "wt": 1000.0
   },
   {
    "id": "gao-cao",
@@ -7384,7 +7384,7 @@
    "band": 3,
    "ly": 1952,
    "country": "台灣",
-   "wt": 771.222
+   "wt": 1000.0
   },
   {
    "id": "chen-qin",
@@ -7428,7 +7428,7 @@
    "band": 3,
    "ly": 2017,
    "country": "台灣",
-   "wt": 0.327
+   "wt": 20.787
   },
   {
    "id": "huang-zhuang",
@@ -7468,7 +7468,7 @@
    "band": 3,
    "ly": 1995,
    "country": "台灣",
-   "wt": 661.792
+   "wt": 289.246
   },
   {
    "id": "liang-linghui",
@@ -7555,7 +7555,7 @@
      }
     ]
    },
-   "wt": 371.869
+   "wt": 390.548
   },
   {
    "id": "wang-minchuan",
@@ -7602,7 +7602,7 @@
      }
     ]
    },
-   "wt": 1000.0
+   "wt": 820.59
   },
   {
    "id": "yang-zhaojia",
@@ -7655,7 +7655,7 @@
      }
     ]
    },
-   "wt": 0.002
+   "wt": 0.006
   },
   {
    "id": "wang-baiyuan",
@@ -7755,7 +7755,7 @@
      }
     ]
    },
-   "wt": 143.867
+   "wt": 130.886
   },
   {
    "id": "yan-shuilong",
@@ -7901,7 +7901,7 @@
      }
     ]
    },
-   "wt": 588.541
+   "wt": 653.403
   },
   {
    "id": "lyu-quansheng",
@@ -7989,7 +7989,7 @@
      }
     ]
    },
-   "wt": 636.665
+   "wt": 360.209
   },
   {
    "id": "guo-xiucong",
@@ -8142,7 +8142,7 @@
      }
     ]
    },
-   "wt": 1000.0,
+   "wt": 996.712,
    "refs": [
     {
      "label": "國家人權記憶庫「陳明忠」",
@@ -8194,7 +8194,7 @@
      }
     ]
    },
-   "wt": 989.039,
+   "wt": 1000.0,
    "refs": [
     {
      "label": "國家人權記憶庫「林書揚」",
@@ -8251,7 +8251,7 @@
      }
     ]
    },
-   "wt": 0.742,
+   "wt": 44.916,
    "refs": [
     {
      "label": "國家人權記憶庫「湯守仁」",
@@ -8352,7 +8352,7 @@
      }
     ]
    },
-   "wt": 0.001
+   "wt": 0.004
   },
   {
    "id": "wu-yongfu",
@@ -8398,7 +8398,7 @@
      }
     ]
    },
-   "wt": 222.761
+   "wt": 182.324
   },
   {
    "id": "fu-zheng",
@@ -8499,7 +8499,7 @@
      }
     ]
    },
-   "wt": 4.545,
+   "wt": 217.953,
    "refs": [
     {
      "label": "國家人權記憶庫「盧修一」",
@@ -8646,7 +8646,7 @@
      }
     ]
    },
-   "wt": 0.001
+   "wt": 0.002
   }
  ]
 }
