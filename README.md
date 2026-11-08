@@ -30,4 +30,4 @@
 
 - `scripts/game/sim.py` 以隨機玩家模擬數十萬局,檢查每位人物的出場機會,並可用 `--balance` 調整各人物的平衡權重(`wt`);`scripts/game/harness.js` 用假 DOM 在 macOS 的 `osascript -l JavaScript` 裡跑一局。權重只影響「同樣符合你選擇的人」誰先出場,不會挑出和你選擇對不上的人。
 
-- `exam.js` 是四科小遊戲(貪食蛇用 canvas,無外部函式庫);`data/exam.json` 放單字題庫與社會科題庫,社會科題目都對應站內事件 id,題目與答案取自該事件頁已載的事實。
+- `exam.js` 是四科小遊戲(養貓用 canvas,無外部函式庫;數學有 A、B 兩份考卷);`data/exam.json` 放單字題庫與社會科題庫,社會科題目都對應站內事件 id,題目與答案取自該事件頁已載的事實。

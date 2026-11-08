@@ -69,3 +69,7 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .kanagrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .kanagrid .opt{text-align:center;font-size:24px}
 .detail{padding-left:1.4em;display:flex;flex-direction:column;gap:6px}
+.opgrid{display:flex;gap:8px;flex-wrap:wrap}
+.opgrid .btn{min-width:48px;padding:10px 14px;font-size:18px}
+.twistbox{border-left:4px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);padding:8px 14px;margin:14px 0;border-radius:0 8px 8px 0}
+.twistbox p{margin:4px 0 0}

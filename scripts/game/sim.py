@@ -65,7 +65,7 @@ def play(birth, rng, wt):
         if sit is None: break
         isL = sit == 'L'; need = 0 if isL else max(0, max(0, MINPRE - npre) - 1)
         okc = lambda x: len(bycat(pool, sit, x)) >= (1 if isL else keep_for(len(used))) and (isL or viable(bycat(pool, sit, x), used + [sit], need))
-        ch = rng.choice(CATS)
+        ch = rng.choice([x for x in CATS if len(bycat(pool, sit, x)) >= 1]) if isL else rng.choice(CATS)   # 最後一刻:沒有人對應的選項直接不出現
         if not okc(ch):
             alts = [x for x in CATS if x != ch and okc(x)]
             if alts: ch = rng.choices(alts, weights=[sum(wt.get(p['id'], 1.0) for p in bycat(pool, sit, x)) for x in alts])[0]

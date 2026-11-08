@@ -227,7 +227,10 @@ function askPlace() {
 function askSituation(sit) {
   const def = data.sits[sit];
   const n = st.asked.filter((a) => a.kind === 'sit').length + 1;
-  ask(`情境 ${n}`, def.title, def.text, CATS.map((c) => ({ t: def[c], pick: () => chooseCat(sit, c) })));
+  // 依稀的最後一刻:沒有人對應的記憶片段直接拿掉,不提供轉折
+  const cc = catCount(st.pool, sit);
+  const cats = sit === 'L' ? CATS.filter((c) => (cc[c] || 0) > 0) : CATS;
+  ask(`情境 ${n}`, def.title, def.text, cats.map((c) => ({ t: def[c], pick: () => chooseCat(sit, c) })));
 }
 function chooseCat(sit, c) {
   const isL = sit === 'L';
@@ -298,6 +301,8 @@ function result() {
     el('div', { class: 'card' },
       el('div', { class: 'big' }, p.name),
       el('p', {}, el('span', { class: 'tag' }, p.country), el('span', { class: 'tag' }, p.life), el('span', { class: 'tag' }, p.job)),
+      p.c.includes(st.career) ? null : el('div', { class: 'twistbox' }, el('b', {}, '命運的轉折'),
+        el('p', {}, `考場的成績單把你指向「${careerName(st.career)}」。然而命運另有安排——時局與機緣把你帶往另一條路,你最後走上的,是「${p.job}」的人生。`)),
       el('div', { class: 'sec' }, el('h3', {}, '你走過的路,與他/她實際做過的事'), el('ol', { class: 'chain' }, chain)),
       el('div', { class: 'sec' }, el('h3', {}, '他/她做過的事'), el('p', {}, p.story)),
       el('div', { class: 'sec' }, el('h3', {}, '後來的遭遇'), el('p', {}, p.fate)),
@@ -311,8 +316,8 @@ function result() {
     el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'));
 }
 
-Promise.all([fetch('data/game.json?v=20261110').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261110').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261111').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261111').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));

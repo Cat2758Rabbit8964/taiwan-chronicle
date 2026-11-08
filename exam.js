@@ -4,8 +4,8 @@
    考試過程不告知對錯;交卷後回到考場,再由「查看考試結果」看分數與逐題對照。 */
 const SUBJECTS = [
   { id: 'lang', name: '語文', secs: 100, intro: '限時 100 秒,共 12 題單字填空。可以選英文或日文。' },
-  { id: 'math', name: '數學', secs: 120, intro: '限時 120 秒。電腦想了 4 個「不含 0、不重複」的數字(1 到 9)。每次猜 4 個數字,A 是數字和位置都對,B 是數字對但位置不對。' },
-  { id: 'sci', name: '自然', secs: 60, intro: '限時 60 秒的貪食蛇。方向鍵或螢幕按鈕控制;牆壁會穿過去,撞到自己或時間到就結算。綠色 1 分、橘色 2 分、金蛋 5 分(只出現幾秒)。分數沒有上限。' },
+  { id: 'math', name: '數學', secs: 120, intro: '限時 120 秒,有兩種考卷可以選。\nA 卷「猜數字」:電腦想了 4 個不含 0、不重複的數字(1 到 9),你每次猜 4 個數字;A 是數字和位置都對,B 是數字對但位置不對。\nB 卷「四則運算」:電腦給你 4 個 1 到 10 的數字和一個目標數字(1 到 100),用 + − × ÷ 和括號把 4 個數字各用一次,算出目標。題目一題接一題出,解得越多分越高(每題 20 分,滿分 100)。' },
+  { id: 'sci', name: '自然', secs: 60, intro: '限時 60 秒,養一隻貓。用方向鍵或螢幕按鈕帶貓去吃東西,吃到東西貓就會長大(身體變長)。牆壁會穿過去,貓撞到自己的身體或時間到就結算。小魚乾 1 分、罐頭 2 分、金魚 5 分(只出現幾秒)。分數沒有上限。' },
   { id: 'soc', name: '社會', secs: 60, intro: '限時 60 秒,三題歷史題,四選一,題目取自台灣事件簿。' },
 ];
 const SUBJECT_ORDER = ['lang', 'math', 'sci', 'soc'];   // 同分時的固定順序
@@ -109,7 +109,7 @@ function playLang(ctx, subject, mount, finish) {
 }
 
 /* ───── 數學:猜數字 4A0B(1–9、不重複) ───── */
-function playMath(ctx, subject, mount, finish) {
+function playMathA(ctx, subject, mount, finish) {
   const secret = rshuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]).slice(0, 4); const guesses = []; let done = false;
   const input = el('input', { type: 'text', inputmode: 'numeric', maxlength: '4', autocomplete: 'off', 'aria-label': '輸入 4 個數字', class: 'txt' });
   const log = el('ol', { class: 'guesslog' }); const msg = el('p', { class: 'persona' }, '');
@@ -133,54 +133,158 @@ function playMath(ctx, subject, mount, finish) {
     finish(score(), solved ? `猜了 ${guesses.length} 次猜中` : `沒有猜中,共猜了 ${guesses.length} 次`,
       [`正確答案:${secret.join('')}`, ...guesses.map((g, k) => `第 ${k + 1} 次:${g.s} → ${g.a}A${g.b}B`)]);
   };
-  const f = frame(subject, '猜數字 4A0B', el('div', { class: 'stack' }, el('p', { class: 'persona' }, '數字 1–9,不含 0、不重複'), input, el('button', { class: 'btn', type: 'button', onclick: submit }, '猜'), msg, log), end);
+  const f = frame(subject, 'A 卷 · 猜數字 4A0B', el('div', { class: 'stack' }, el('p', { class: 'persona' }, '數字 1–9,不含 0、不重複'), input, el('button', { class: 'btn', type: 'button', onclick: submit }, '猜'), msg, log), end);
   mount.replaceChildren(f.node);
   const t = countdown(subject.secs, f.bar, f.label, end); input.focus();
   return () => { done = true; t.stop(); };
 }
 
-/* ───── 自然:貪食蛇(穿牆、多種食物、分數無上限) ───── */
+
+/* ───── 數學 B 卷:四則運算湊目標 ───── */
+const gcd = (a, b) => (b ? gcd(b, a % b) : Math.abs(a));
+const frac = (n, d = 1) => { if (d < 0) { n = -n; d = -d; } const g = gcd(n, d) || 1; return [n / g, d / g]; };
+const fAdd = (a, b) => frac(a[0] * b[1] + b[0] * a[1], a[1] * b[1]);
+const fSub = (a, b) => frac(a[0] * b[1] - b[0] * a[1], a[1] * b[1]);
+const fMul = (a, b) => frac(a[0] * b[0], a[1] * b[1]);
+const fDiv = (a, b) => (b[0] === 0 ? null : frac(a[0] * b[1], a[1] * b[0]));
+// 四個數字能湊出的所有 1–100 整數
+function reachable(nums) {
+  const out = new Set();
+  const go = (list) => {
+    if (list.length === 1) { const [n, d] = list[0]; if (d === 1 && n >= 1 && n <= 100) out.add(n); return; }
+    for (let i = 0; i < list.length; i++) for (let j = i + 1; j < list.length; j++) {
+      const rest = list.filter((_, k) => k !== i && k !== j); const a = list[i], b = list[j];
+      const cands = [fAdd(a, b), fSub(a, b), fSub(b, a), fMul(a, b), fDiv(a, b), fDiv(b, a)].filter(Boolean);
+      cands.forEach((c) => go([...rest, c]));
+    }
+  };
+  go(nums.map((n) => frac(n))); return out;
+}
+// 解析算式:+ − × ÷ 與括號;回傳 { value: [n,d], used: [數字…] },不合法回傳 null
+function evalExpr(src) {
+  const t = src.replace(/\s+/g, '').replace(/[×xX*]/g, '*').replace(/[÷/]/g, '/').replace(/[−–-]/g, '-').replace(/[()]/g, (c) => c);
+  const toks = t.match(/\d+|[+\-*/()]/g); if (!toks || toks.join('') !== t) return null;
+  let p = 0; const used = [];
+  const peek = () => toks[p];
+  const expr = () => { let v = term(); while (v && (peek() === '+' || peek() === '-')) { const op = toks[p++]; const r = term(); if (!r) return null; v = op === '+' ? fAdd(v, r) : fSub(v, r); } return v; };
+  const term = () => { let v = factor(); while (v && (peek() === '*' || peek() === '/')) { const op = toks[p++]; const r = factor(); if (!r) return null; v = op === '*' ? fMul(v, r) : fDiv(v, r); if (!v) return null; } return v; };
+  const factor = () => {
+    const x = toks[p];
+    if (x === undefined) return null;
+    if (x === '(') { p++; const v = expr(); if (!v || toks[p] !== ')') return null; p++; return v; }
+    if (/^\d+$/.test(x)) { p++; used.push(Number(x)); return frac(Number(x)); }
+    return null;
+  };
+  const v = expr(); if (!v || p !== toks.length) return null;
+  return { value: v, used };
+}
+const sameNumbers = (a, b) => a.length === b.length && [...a].sort((x, y) => x - y).every((x, i) => x === [...b].sort((p, q) => p - q)[i]);
+
+function playMathB(ctx, subject, mount, finish) {
+  let done = false, solved = 0; const log = [];
+  let nums = [], target = 0;
+  const newQ = () => {
+    for (let k = 0; k < 200; k++) {
+      const n = Array.from({ length: 4 }, () => 1 + Math.floor(Math.random() * 10)); const r = [...reachable(n)];
+      if (r.length >= 3) { nums = n; target = r[Math.floor(Math.random() * r.length)]; return; }
+    }
+  };
+  const info = el('div', { class: 'big', style: 'font-size:26px' }, ''); const live = el('p', { class: 'persona' }, '');
+  const input = el('input', { type: 'text', autocomplete: 'off', spellcheck: 'false', 'aria-label': '輸入算式', class: 'txt', placeholder: '例:(3+4)×2-1' });
+  const numRow = el('div', { class: 'opgrid' }); const opRow = el('div', { class: 'opgrid' });
+  const refresh = () => {
+    const r = evalExpr(input.value);
+    live.textContent = !input.value.trim() ? '用下面的按鈕或鍵盤組出算式' : r ? `目前算式的值:${r.value[1] === 1 ? r.value[0] : `${r.value[0]}/${r.value[1]}`}` : '算式還不完整';
+  };
+  const add = (c) => { input.value += c; refresh(); input.focus(); };
+  const render = () => {
+    info.textContent = `${nums.join('  ')}  →  目標 ${target}`; input.value = ''; refresh();
+    numRow.replaceChildren(...nums.map((n) => el('button', { class: 'btn ghost', type: 'button', onclick: () => add(String(n)) }, String(n))));
+  };
+  ['+', '−', '×', '÷', '(', ')'].forEach((o) => opRow.append(el('button', { class: 'btn ghost', type: 'button', onclick: () => add(o) }, o)));
+  const record = (skipped) => {
+    const r = evalExpr(input.value); const ok = !skipped && r && r.value[1] === 1 && r.value[0] === target && sameNumbers(r.used, nums);
+    if (ok) solved++;
+    log.push(`${nums.join('、')} → 目標 ${target}:${skipped ? '換題' : `你的算式 ${input.value.trim() || '(空白)'} ${ok ? '✔' : '✘'}`}`);
+    newQ(); render();
+  };
+  input.addEventListener('input', refresh);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') record(false); });
+  const end = () => {
+    if (done) return; done = true; t.stop();
+    finish(Math.min(100, solved * 20), `共解出 ${solved} 題(每題 20 分,滿分 100)`, log.length ? log : ['沒有送出任何一題']);
+  };
+  newQ();
+  const body = el('div', { class: 'stack' }, el('p', { class: 'persona' }, '把 4 個數字各用一次,用 + − × ÷ 與括號算出目標'), info, numRow, opRow, input, live,
+    el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: () => record(false) }, '送出,下一題'),
+      el('button', { class: 'btn ghost', type: 'button', onclick: () => { input.value = input.value.slice(0, -1); refresh(); input.focus(); } }, '退格'),
+      el('button', { class: 'btn ghost', type: 'button', onclick: () => record(true) }, '換一題')));
+  const f = frame(subject, 'B 卷 · 四則運算', body, end);
+  mount.replaceChildren(f.node); render();
+  const t = countdown(subject.secs, f.bar, f.label, end);
+  return () => { done = true; t.stop(); };
+}
+
+/* ───── 自然:養貓(穿牆、多種食物、分數無上限) ───── */
 function playSci(ctx, subject, mount, finish) {
-  const N = 20, C = 17, SIZE = N * C; let done = false;
-  const cv = el('canvas', { width: String(SIZE), height: String(SIZE), class: 'snake', 'aria-label': '貪食蛇遊戲畫面' }); const g2 = cv.getContext('2d');
-  let snake = [{ x: 10, y: 10 }, { x: 9, y: 10 }, { x: 8, y: 10 }], dir = { x: 1, y: 0 }, pending = { x: 1, y: 0 }, grow = 0, points = 0;
-  const KINDS = { green: { pts: 1, grow: 1, color: '#3f9d5a' }, orange: { pts: 2, grow: 1, color: '#e08a1e' }, gold: { pts: 5, grow: 2, color: '#e9c21b', ttl: 6000 } };
-  const eaten = { green: 0, orange: 0, gold: 0 };
+  const N = 16, C = 22, SIZE = N * C; let done = false;
+  const cv = el('canvas', { width: String(SIZE), height: String(SIZE), class: 'snake', 'aria-label': '養貓遊戲畫面' }); const g2 = cv.getContext('2d');
+  let cat = [{ x: 8, y: 8 }, { x: 7, y: 8 }, { x: 6, y: 8 }], dir = { x: 1, y: 0 }, pending = { x: 1, y: 0 }, grow = 0, points = 0;
+  const KINDS = { fish: { pts: 1, grow: 1, color: '#6fb7d9', name: '小魚乾' }, can: { pts: 2, grow: 1, color: '#e08a1e', name: '罐頭' }, gold: { pts: 5, grow: 2, color: '#e9c21b', ttl: 6000, name: '金魚' } };
+  const eaten = { fish: 0, can: 0, gold: 0 };
   let foods = [];
-  const free = () => { for (let n = 0; n < 200; n++) { const p = { x: Math.floor(Math.random() * N), y: Math.floor(Math.random() * N) }; if (!snake.some((s) => s.x === p.x && s.y === p.y) && !foods.some((f) => f.x === p.x && f.y === p.y)) return p; } return { x: 0, y: 0 }; };
+  const free = () => { for (let n = 0; n < 200; n++) { const p = { x: Math.floor(Math.random() * N), y: Math.floor(Math.random() * N) }; if (!cat.some((s) => s.x === p.x && s.y === p.y) && !foods.some((f) => f.x === p.x && f.y === p.y)) return p; } return { x: 0, y: 0 }; };
   const addFood = (kind) => foods.push({ ...free(), kind, born: Date.now() });
-  addFood('green'); addFood('orange');
+  addFood('fish'); addFood('can');
   const scoreEl = el('p', { class: 'persona' }, '得分 0');
   const turn = (x, y) => { if (x === -dir.x && y === -dir.y) return; pending = { x, y }; };
   const onKey = (e) => { const m = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0] }[e.key]; if (m) { e.preventDefault(); turn(...m); } };
   document.addEventListener('keydown', onKey);
+  const ctr = (p) => [p.x * C + C / 2, p.y * C + C / 2];
+  const drawFood = (f) => {
+    const [cx, cy] = ctr(f); g2.fillStyle = KINDS[f.kind].color; g2.beginPath();
+    if (f.kind === 'can') g2.rect(cx - C * 0.32, cy - C * 0.28, C * 0.64, C * 0.56);
+    else { g2.ellipse(cx, cy, C * (f.kind === 'gold' ? 0.44 : 0.36), C * 0.22, 0, 0, 7); g2.moveTo(cx + C * 0.3, cy); g2.lineTo(cx + C * 0.5, cy - C * 0.18); g2.lineTo(cx + C * 0.5, cy + C * 0.18); }
+    g2.fill();
+  };
+  // 貓頭:圓臉、兩隻尖耳朵、眼睛、粉紅鼻子
+  const drawHead = (p) => {
+    const [cx, cy] = ctr(p); const r = C * 0.46;
+    g2.fillStyle = '#f0a955';
+    g2.beginPath(); g2.moveTo(cx - r * 0.95, cy - r * 0.2); g2.lineTo(cx - r * 0.7, cy - r * 1.25); g2.lineTo(cx - r * 0.05, cy - r * 0.7); g2.fill();
+    g2.beginPath(); g2.moveTo(cx + r * 0.95, cy - r * 0.2); g2.lineTo(cx + r * 0.7, cy - r * 1.25); g2.lineTo(cx + r * 0.05, cy - r * 0.7); g2.fill();
+    g2.beginPath(); g2.arc(cx, cy, r, 0, 7); g2.fill();
+    g2.fillStyle = '#2b2b2b'; g2.beginPath(); g2.arc(cx - r * 0.38, cy - r * 0.1, r * 0.14, 0, 7); g2.arc(cx + r * 0.38, cy - r * 0.1, r * 0.14, 0, 7); g2.fill();
+    g2.fillStyle = '#e8788a'; g2.beginPath(); g2.moveTo(cx - r * 0.12, cy + r * 0.15); g2.lineTo(cx + r * 0.12, cy + r * 0.15); g2.lineTo(cx, cy + r * 0.3); g2.fill();
+  };
   const draw = () => {
-    g2.fillStyle = '#1f2a24'; g2.fillRect(0, 0, SIZE, SIZE);
-    foods.forEach((f) => { g2.fillStyle = KINDS[f.kind].color; g2.beginPath(); g2.arc(f.x * C + C / 2, f.y * C + C / 2, f.kind === 'gold' ? C * 0.46 : C * 0.38, 0, 7); g2.fill(); });
-    snake.forEach((s, k) => { g2.fillStyle = k === 0 ? '#9fe3b4' : '#5fbf84'; g2.fillRect(s.x * C + 1, s.y * C + 1, C - 2, C - 2); });
+    g2.fillStyle = '#f6efe2'; g2.fillRect(0, 0, SIZE, SIZE);
+    foods.forEach(drawFood);
+    cat.forEach((s, k) => { if (k === 0) return; g2.fillStyle = k % 2 ? '#e69a3c' : '#f0a955'; g2.fillRect(s.x * C + 1, s.y * C + 1, C - 2, C - 2); });
+    drawHead(cat[0]);
   };
   const step = () => {
     if (done) return; dir = pending;
-    const h = { x: (snake[0].x + dir.x + N) % N, y: (snake[0].y + dir.y + N) % N };
-    const body = grow > 0 ? snake : snake.slice(0, -1);
-    if (body.some((s) => s.x === h.x && s.y === h.y)) return end('撞到自己了');
-    snake.unshift(h); if (grow > 0) grow--; else snake.pop();
+    const h = { x: (cat[0].x + dir.x + N) % N, y: (cat[0].y + dir.y + N) % N };
+    const body = grow > 0 ? cat : cat.slice(0, -1);
+    if (body.some((s) => s.x === h.x && s.y === h.y)) return end('貓撞到自己的身體了');
+    cat.unshift(h); if (grow > 0) grow--; else cat.pop();
     const k = foods.findIndex((f) => f.x === h.x && f.y === h.y);
     if (k >= 0) { const f = foods.splice(k, 1)[0]; points += KINDS[f.kind].pts; grow += KINDS[f.kind].grow; eaten[f.kind]++; scoreEl.textContent = `得分 ${points}`; if (f.kind !== 'gold') addFood(f.kind); }
     foods = foods.filter((f) => !KINDS[f.kind].ttl || Date.now() - f.born < KINDS[f.kind].ttl);
     if (!foods.some((f) => f.kind === 'gold') && Math.random() < 0.02) addFood('gold');
     draw();
   };
-  const loop = setInterval(step, 120);
+  const loop = setInterval(step, 130);
   const end = (why) => {
     if (done) return; done = true; clearInterval(loop); t.stop(); document.removeEventListener('keydown', onKey);
     finish(points * 4, `${why || '時間到'},共得 ${points} 分(換算 ${points * 4} 分,沒有上限)`,
-      [`結束原因:${why || '時間到'}`, `綠 ${eaten.green} 顆(各 1 分)、橘 ${eaten.orange} 顆(各 2 分)、金蛋 ${eaten.gold} 顆(各 5 分)`, `蛇的長度:${snake.length}`]);
+      [`結束原因:${why || '時間到'}`, `小魚乾 ${eaten.fish} 條(各 1 分)、罐頭 ${eaten.can} 罐(各 2 分)、金魚 ${eaten.gold} 條(各 5 分)`, `貓的長度:${cat.length} 格`]);
   };
   const pad = el('div', { class: 'dpad' },
     el('button', { type: 'button', class: 'btn ghost', 'aria-label': '上', onclick: () => turn(0, -1) }, '↑'),
     el('div', {}, el('button', { type: 'button', class: 'btn ghost', 'aria-label': '左', onclick: () => turn(-1, 0) }, '←'), el('button', { type: 'button', class: 'btn ghost', 'aria-label': '下', onclick: () => turn(0, 1) }, '↓'), el('button', { type: 'button', class: 'btn ghost', 'aria-label': '右', onclick: () => turn(1, 0) }, '→')));
-  const f = frame(subject, '貪食蛇', el('div', { class: 'stack' }, scoreEl, cv, pad), () => end('中途交卷'));
+  const f = frame(subject, '養貓', el('div', { class: 'stack' }, scoreEl, cv, pad), () => end('中途交卷'));
   mount.replaceChildren(f.node); draw();
   const t = countdown(subject.secs, f.bar, f.label, () => end('時間到'));
   return () => { done = true; clearInterval(loop); t.stop(); document.removeEventListener('keydown', onKey); };
@@ -208,7 +312,7 @@ function playSoc(ctx, subject, mount, finish) {
   return () => { done = true; t.stop(); };
 }
 
-const PLAYERS = { lang: playLang, math: playMath, sci: playSci, soc: playSoc };
+const PLAYERS = { lang: playLang, math: (c, s, m, f) => (c.variant === 'B' ? playMathB : playMathA)(c, s, m, f), sci: playSci, soc: playSoc };
 
 /* ───── 考場:四科並排、跳過、補考、查看結果、成績單 ───── */
 const Exam = {
@@ -237,15 +341,17 @@ const Exam = {
     };
     const intro = (s) => {
       const startBtns = s.id === 'lang'
-        ? [el('button', { class: 'btn', type: 'button', onclick: () => start(s, 'en') }, '用英文應考'), el('button', { class: 'btn', type: 'button', onclick: () => start(s, 'jp') }, '用日文應考')]
-        : [el('button', { class: 'btn', type: 'button', onclick: () => start(s) }, '開始作答')];
-      show(el('p', { class: 'persona' }, `${s.name}科`), el('h2', {}, '考卷在你面前攤開'), el('p', { class: 'scene' }, s.intro),
+        ? [el('button', { class: 'btn', type: 'button', onclick: () => start(s, { lang: 'en' }) }, '用英文應考'), el('button', { class: 'btn', type: 'button', onclick: () => start(s, { lang: 'jp' }) }, '用日文應考')]
+        : s.id === 'math'
+          ? [el('button', { class: 'btn', type: 'button', onclick: () => start(s, { variant: 'A' }) }, 'A 卷:猜數字'), el('button', { class: 'btn', type: 'button', onclick: () => start(s, { variant: 'B' }) }, 'B 卷:四則運算')]
+          : [el('button', { class: 'btn', type: 'button', onclick: () => start(s) }, '開始作答')];
+      show(el('p', { class: 'persona' }, `${s.name}科`), el('h2', {}, '考卷在你面前攤開'), el('p', { class: 'scene', style: 'white-space:pre-line' }, s.intro),
         el('p', { class: 'persona' }, '作答時不會告訴你對錯;交卷後回到考場,按「查看考試結果」才看得到。'),
         el('div', { class: 'row' }, ...startBtns, el('button', { class: 'btn ghost', type: 'button', onclick: hub }, '回考場')));
     };
-    const start = (s, lang) => {
+    const start = (s, opt = {}) => {
       const mount = el('div'); show(mount);
-      cleanup = PLAYERS[s.id]({ exam, seen, lang }, s, mount, (score, note, detail) => {
+      cleanup = PLAYERS[s.id]({ exam, seen, ...opt }, s, mount, (score, note, detail) => {
         cleanup = null; state[s.id] = { status: 'taken', score, note, detail }; hub();
       });
     };
