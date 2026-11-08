@@ -3,7 +3,7 @@
    依賴 game.js 先定義的全域函式 el()、show()(兩個檔案共用同一個頁面)。
    考試過程不告知對錯;交卷後回到考場,再由「查看考試結果」看分數與逐題對照。 */
 const SUBJECTS = [
-  { id: 'lang', name: '語文', secs: 100, intro: '限時 100 秒,共 12 題單字填空。可以選英文或日文。' },
+  { id: 'lang', name: '語文', secs: 100, intro: '限時 100 秒,共 12 題。英文為單字填空;日文為單字、動詞形容詞活用與文法選擇題。' },
   { id: 'math', name: '數學', secs: 120, intro: '限時 120 秒,有兩種考卷可以選。\nA 卷「猜數字」:電腦想了 4 個不含 0、不重複的數字(1 到 9),你每次猜 4 個數字;A 是數字和位置都對,B 是數字對但位置不對。8 次內猜中拿滿分 100 分,每多猜 1 次扣 10 分,只要猜中最低 80 分;沒猜中則依最接近的一次給部分分(最高 60 分)。\nB 卷「四則運算」:電腦給你 4 個 1 到 10 的數字和一個目標數字(1 到 100),用 + − × ÷ 和括號把 4 個數字各用一次,算出目標。題目一題接一題出,解得越多分越高(每題 20 分,滿分 100)。' },
   { id: 'sci', name: '自然', secs: 60, intro: '限時 60 秒,養一隻貓。用方向鍵或螢幕按鈕帶貓去吃東西,吃到東西貓就會長大(身體變長)。牆壁會穿過去,貓撞到自己的身體或時間到就結算。小魚乾 1 分、罐頭 2 分、金魚 5 分(只出現幾秒)。分數沒有上限(每 1 分換算 2 分)。' },
   { id: 'soc', name: '社會', secs: 90, intro: '限時 90 秒,共 5 題歷史題(事件細節,不考年份),四選一,題目取自台灣事件簿。前 4 題每題 25 分,第 5 題是較難的加分題,答對再加 25 分,所以最高可以拿到 125 分。' },
@@ -63,8 +63,40 @@ function frame(subject, title, body, onSubmit) {
 }
 
 /* ───── 語文:單字填空(英文打字、日文選假名) ───── */
+function playJp(ctx, subject, mount, finish) {
+  const W = ctx.exam.wordsJp, G = ctx.exam.grammarJp;
+  const gs = pickFresh(G, 5, ctx.seen.jpg, (x) => x.zh + x.a);
+  const vs = pickFresh(W.filter((x) => x.t), 4, ctx.seen.jp, (x) => x.w);
+  const ns = pickFresh(W.filter((x) => !x.t), 3, ctx.seen.jp, (x) => x.w);
+  const qs = rshuffle([
+    ...gs.map((g) => ({ stem: g.s ? `${g.zh}\n${g.s}` : g.zh, kind: g.s ? '助詞・文法填空' : '活用變化', a: g.a, opts: rshuffle([g.a, ...g.w]), why: '' })),
+    ...[...vs, ...ns].map((x) => {
+      const pool = W.filter((y) => y.w !== x.w && !!y.t === !!x.t);
+      return { stem: `「${x.zh}」的日文是?`, kind: x.t ? "動詞・形容詞" : "名詞", a: x.w, opts: rshuffle([x.w, ...rshuffle(pool).slice(0, 3).map((y) => y.w)]), why: '' };
+    }),
+  ]);
+  let i = 0, done = false; const answers = [];
+  const prog = el('p', { class: 'persona' }, ''); const stem = el('p', { class: 'scene', style: 'white-space:pre-line;font-size:19px' }, '');
+  const body = el('div', { class: 'stack' });
+  const next = () => {
+    if (i >= qs.length) return end();
+    const q = qs[i]; prog.textContent = `第 ${i + 1} / ${qs.length} 題 · ${q.kind}`; stem.textContent = q.stem;
+    body.replaceChildren(prog, stem, el('div', { class: 'kanagrid' }, q.opts.map((o) => el('button', { class: 'opt', type: 'button', onclick: () => { answers.push(o); i++; next(); } }, o))));
+  };
+  const end = () => {
+    if (done) return; done = true; t.stop();
+    const right = qs.filter((q, k) => answers[k] === q.a).length;
+    const detail = qs.map((q, k) => `${k + 1}. ${q.stem.replace(/\n/g, ' ')} 你的答案 ${answers[k] || '未作答'} ${answers[k] === q.a ? '✔' : `✘(正解 ${q.a})`}`);
+    finish(Math.round((right / qs.length) * 100), `日文,答對 ${right} / ${qs.length} 題`, detail);
+  };
+  const f = frame(subject, '日文(單字・活用・文法)', body, end);
+  mount.replaceChildren(f.node);
+  const t = countdown(subject.secs, f.bar, f.label, end); next();
+  return () => { done = true; t.stop(); };
+}
 function playLang(ctx, subject, mount, finish) {
-  const jp = ctx.lang === 'jp';
+  if (ctx.lang === 'jp') return playJp(ctx, subject, mount, finish);
+  const jp = false;
   const words = pickFresh(jp ? ctx.exam.wordsJp : ctx.exam.wordsEn, 12, jp ? ctx.seen.jp : ctx.seen.en, (x) => x.w);
   let i = 0, done = false; const answers = [];
   const prog = el('p', { class: 'persona' }, ''); const hint = el('div', { class: 'big', style: 'font-size:28px;letter-spacing:4px' }, ''); const zh = el('p', { class: 'lead' }, '');
@@ -322,7 +354,7 @@ const Exam = {
   // exam: exam.json;careerLabel(c): 志向文字;onDone({ scores, career, top, second })
   run(exam, careerLabel, onDone) {
     const state = Object.fromEntries(SUBJECT_ORDER.map((id) => [id, { status: 'todo', score: 0, note: '', detail: [] }]));
-    const seen = { en: new Set(), jp: new Set(), soc: new Set(), socHard: new Set() };
+    const seen = { en: new Set(), jp: new Set(), jpg: new Set(), soc: new Set(), socHard: new Set() };
     let cleanup = null;
     const stop = () => { if (cleanup) { cleanup(); cleanup = null; } };
     const hub = () => {
