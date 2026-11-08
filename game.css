@@ -73,3 +73,8 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .opgrid .btn{min-width:48px;padding:10px 14px;font-size:18px}
 .twistbox{border-left:4px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);padding:8px 14px;margin:14px 0;border-radius:0 8px 8px 0}
 .twistbox p{margin:4px 0 0}
+.memorial{border-top:1px solid var(--line);padding-top:14px}
+.memorial summary{cursor:pointer;font-weight:700}
+.fallen{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.fallen li{border-left:3px solid var(--line);padding-left:12px;font-size:14px}
+.fallen .links{margin-top:2px}
