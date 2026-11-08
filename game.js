@@ -294,12 +294,17 @@ function result() {
   const sources = [el('a', { href: p.ref, target: '_blank', rel: 'noopener' }, `${p.src}「${p.name}」`),
     ...(p.refs || []).map((r) => el('a', { href: r.url, target: '_blank', rel: 'noopener' }, `${r.label}`))];
   const sourceLine = el('p', { class: 'persona' }, '資料出處:', sources.flatMap((x, i) => (i ? [' · ', x] : [x])));
-  // 最後一頁底下:因政治事件而離世的人(被處決、遇害、自焚、死於拘禁等),附簡介與連結
-  const fallen = data.people.filter((q) => q.id !== p.id && q.acts.L && q.acts.L[0].c === 'R').sort((x, y) => (x.died < y.died ? -1 : 1));
+  // 最後一頁底下:與這位人物同一時期、因政治事件而離世的人(被處決、遇害、自焚、死於拘禁等),附簡介與連結
+  const WINDOW = 8, MIN_SHOWN = 3, MAX_SHOWN = 10;
+  const gap = (q) => Math.abs(q.ly - p.ly);
+  const pool = data.people.filter((q) => q.id !== p.id && q.acts.L && q.acts.L[0].c === 'R').sort((x, y) => gap(x) - gap(y) || (x.died < y.died ? -1 : 1));
+  const near = pool.filter((q) => gap(q) <= WINDOW);
+  const fallen = (near.length >= MIN_SHOWN ? near : pool.slice(0, MIN_SHOWN)).slice(0, MAX_SHOWN).sort((x, y) => (x.died < y.died ? -1 : 1));
   const brief = (q) => `${q.fate.split('。')[0]}。`;
+  const span = fallen.length ? `${fallen[0].ly} 至 ${fallen[fallen.length - 1].ly} 年間` : '';
   const memorial = fallen.length ? el('details', { class: 'sec memorial', open: '' },
-    el('summary', {}, `也因政治事件而離世的人(${fallen.length} 位)`),
-    el('p', { class: 'persona' }, '他們的遭遇各有出處,連結可以進一步閱讀。這裡只列有可查證記載的人,並不代表所有受難者。'),
+    el('summary', {}, `同一時期,也因政治事件而離世的人(${span},${fallen.length} 位)`),
+    el('p', { class: 'persona' }, '只列與這位人物離世時間相近、且有可查證記載的人,並不代表所有受難者。連結可以進一步閱讀。'),
     el('ul', { class: 'fallen' }, fallen.map((q) => el('li', {},
       el('b', {}, q.name), ` (${q.life} · ${q.job})`, el('div', {}, brief(q)),
       el('div', { class: 'links' }, el('a', { href: q.ref, target: '_blank', rel: 'noopener' }, q.src),
@@ -344,8 +349,8 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261113').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261113').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261114').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261114').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
