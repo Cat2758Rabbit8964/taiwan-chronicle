@@ -181,7 +181,17 @@
    "band": 2,
    "ly": 1931,
    "country": "台灣",
-   "wt": 59.725
+   "wt": 59.725,
+   "rel": [
+    {
+     "id": "cai-peihuo",
+     "why": "蔡培火的紀錄提到:…出「台灣是台灣人的台灣」,與蔣渭水共組台灣民眾黨,後另組台灣地方自…"
+    },
+    {
+     "id": "lian-wenqing",
+     "why": "連溫卿的紀錄提到:…社會主義傾向;1923 年與蔣渭水等籌組社會問題研究會,遭日本官方…"
+    }
+   ]
   },
   {
    "id": "lai-he",
@@ -228,7 +238,8 @@
    "band": 2,
    "ly": 1943,
    "country": "台灣",
-   "wt": 111.98
+   "wt": 111.98,
+   "rel": []
   },
   {
    "id": "li-yingzhang",
@@ -275,7 +286,8 @@
    "band": 2,
    "ly": 1954,
    "country": "台灣",
-   "wt": 0.014
+   "wt": 0.014,
+   "rel": []
   },
   {
    "id": "wu-xinrong",
@@ -322,7 +334,8 @@
    "band": 3,
    "ly": 1967,
    "country": "台灣",
-   "wt": 0.009
+   "wt": 0.009,
+   "rel": []
   },
   {
    "id": "chen-chengbo",
@@ -375,7 +388,8 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/16211"
     }
    ],
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "lyu-heruo",
@@ -421,7 +435,8 @@
    "band": 2,
    "ly": 1950,
    "country": "台灣",
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "yang-kui",
@@ -474,7 +489,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4408"
     }
    ],
-   "wt": 457.217
+   "wt": 457.217,
+   "rel": [
+    {
+     "id": "ye-tao",
+     "why": "葉陶的紀錄提到:…灣農民組合婦女部部長;與丈夫楊逵參與文化協會等團體;戰後投身婦女…"
+    }
+   ]
   },
   {
    "id": "lin-xiantang",
@@ -521,7 +542,8 @@
    "band": 2,
    "ly": 1956,
    "country": "台灣",
-   "wt": 0.142
+   "wt": 0.142,
+   "rel": []
   },
   {
    "id": "cai-peihuo",
@@ -569,7 +591,17 @@
    "band": 2,
    "ly": 1983,
    "country": "台灣",
-   "wt": 317.612
+   "wt": 317.612,
+   "rel": [
+    {
+     "id": "jiang-weishui",
+     "why": "蔡培火的紀錄提到:…出「台灣是台灣人的台灣」,與蔣渭水共組台灣民眾黨,後另組台灣地方自…"
+    },
+    {
+     "id": "yang-zhaojia",
+     "why": "楊肇嘉的紀錄提到:…1940 年蔡培火、吳三連被捕後避往中國,1941…"
+    }
+   ]
   },
   {
    "id": "gu-xianrong",
@@ -616,7 +648,13 @@
    "band": 1,
    "ly": 1937,
    "country": "台灣",
-   "wt": 480.439
+   "wt": 480.439,
+   "rel": [
+    {
+     "id": "chiang-kai-shek",
+     "why": "辜顯榮的紀錄提到:…建台北孔廟、1933 年協助蔣介石平定閩變;批評者稱他為「民賊」,…"
+    }
+   ]
   },
   {
    "id": "lin-maosheng",
@@ -662,7 +700,8 @@
    "band": 2,
    "ly": 1947,
    "country": "台灣",
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "jian-ji",
@@ -715,7 +754,8 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5676"
     }
    ],
-   "wt": 240.669
+   "wt": 240.669,
+   "rel": []
   },
   {
    "id": "luo-fuxing",
@@ -756,7 +796,13 @@
    "band": 2,
    "ly": 1914,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "chiang-kai-shek",
+     "why": "羅福星的紀錄提到:…年 28 歲。1953 年獲蔣中正明令褒揚。…"
+    }
+   ]
   },
   {
    "id": "yu-qingfang",
@@ -796,7 +842,8 @@
    "band": 2,
    "ly": 1915,
    "country": "台灣",
-   "wt": 869.359
+   "wt": 869.359,
+   "rel": []
   },
   {
    "id": "mona-rudao",
@@ -843,7 +890,8 @@
    "band": 2,
    "ly": 1930,
    "country": "台灣",
-   "wt": 0.017
+   "wt": 0.017,
+   "rel": []
   },
   {
    "id": "xie-xuehong",
@@ -883,7 +931,17 @@
    "band": 2,
    "ly": 1970,
    "country": "台灣",
-   "wt": 960.943
+   "wt": 960.943,
+   "rel": [
+    {
+     "id": "su-xin",
+     "why": "蘇新的紀錄提到:…出獄;二二八事件後赴香港,與謝雪紅等創立台灣民主自治同盟。1967…"
+    },
+    {
+     "id": "zhang-shenqie",
+     "why": "張深切的紀錄提到:…刑兩年;二二八事件後被指協助謝雪紅,藏匿山區半年,一年後平反,但長…"
+    }
+   ]
   },
   {
    "id": "wang-tiandeng",
@@ -930,7 +988,13 @@
    "band": 2,
    "ly": 1947,
    "country": "台灣",
-   "wt": 64.005
+   "wt": 64.005,
+   "rel": [
+    {
+     "id": "su-xin",
+     "why": "王添燈的紀錄提到:…凌晨在家中被捕後未歸。據編輯蘇新說法,他遭酷刑後被淋汽油燒死、屍…"
+    }
+   ]
   },
   {
    "id": "tang-dezhang",
@@ -976,7 +1040,8 @@
    "band": 3,
    "ly": 1947,
    "country": "台灣",
-   "wt": 135.876
+   "wt": 135.876,
+   "rel": []
   },
   {
    "id": "wang-yulin",
@@ -1022,7 +1087,8 @@
    "band": 3,
    "ly": 1947,
    "country": "台灣",
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "lin-lianzong",
@@ -1069,7 +1135,8 @@
    "band": 2,
    "ly": 1947,
    "country": "台灣",
-   "wt": 165.652
+   "wt": 165.652,
+   "rel": []
   },
   {
    "id": "lei-zhen",
@@ -1117,7 +1184,21 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4624"
     }
    ],
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "li-wanju",
+     "why": "李萬居的紀錄提到:…1960 年雷震被捕後,當局以購股與司法手段奪走…"
+    },
+    {
+     "id": "guo-yuxin",
+     "why": "郭雨新的紀錄提到:…推動地方自治;1960 年與雷震等人籌組中國民主黨;1975 年…"
+    },
+    {
+     "id": "fu-zheng",
+     "why": "傅正的紀錄提到:…1960 年參與組黨運動,與雷震同遭逮捕,判處感化三年;他拒絕感…"
+    }
+   ]
   },
   {
    "id": "jiang-weichuan",
@@ -1169,7 +1250,8 @@
    "band": 2,
    "ly": 1975,
    "country": "台灣",
-   "wt": 0.003
+   "wt": 0.003,
+   "rel": []
   },
   {
    "id": "li-wanju",
@@ -1216,7 +1298,13 @@
    "band": 2,
    "ly": 1966,
    "country": "台灣",
-   "wt": 684.815
+   "wt": 684.815,
+   "rel": [
+    {
+     "id": "lei-zhen",
+     "why": "李萬居的紀錄提到:…1960 年雷震被捕後,當局以購股與司法手段奪走…"
+    }
+   ]
   },
   {
    "id": "guo-yuxin",
@@ -1262,7 +1350,13 @@
    "band": 3,
    "ly": 1985,
    "country": "台灣",
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": [
+    {
+     "id": "lei-zhen",
+     "why": "郭雨新的紀錄提到:…推動地方自治;1960 年與雷震等人籌組中國民主黨;1975 年…"
+    }
+   ]
   },
   {
    "id": "xu-shixian",
@@ -1303,7 +1397,8 @@
    "band": 3,
    "ly": 1983,
    "country": "台灣",
-   "wt": 0.081
+   "wt": 0.081,
+   "rel": []
   },
   {
    "id": "han-shiquan",
@@ -1356,7 +1451,8 @@
    "band": 2,
    "ly": 1963,
    "country": "台灣",
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "li-zhenyuan",
@@ -1403,7 +1499,8 @@
    "band": 3,
    "ly": 2001,
    "country": "台灣",
-   "wt": 5.696
+   "wt": 5.696,
+   "rel": []
   },
   {
    "id": "ye-shitao",
@@ -1450,7 +1547,8 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4494"
     }
    ],
-   "wt": 278.304
+   "wt": 278.304,
+   "rel": []
   },
   {
    "id": "bo-yang",
@@ -1497,7 +1595,8 @@
    "band": 3,
    "ly": 2008,
    "country": "台灣",
-   "wt": 931.763
+   "wt": 931.763,
+   "rel": []
   },
   {
    "id": "chen-yingzhen",
@@ -1544,7 +1643,8 @@
    "band": 3,
    "ly": 2016,
    "country": "台灣",
-   "wt": 368.168
+   "wt": 368.168,
+   "rel": []
   },
   {
    "id": "li-ao",
@@ -1591,7 +1691,13 @@
    "band": 3,
    "ly": 2018,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "hu-shih",
+     "why": "胡適的紀錄提到:… 年曾發動批判運動;夏志清、李敖等人則給予高度肯定。…"
+    }
+   ]
   },
   {
    "id": "yin-haiguang",
@@ -1631,7 +1737,8 @@
    "band": 3,
    "ly": 1969,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "peng-mingmin",
@@ -1684,7 +1791,8 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/16539"
     }
    ],
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "zhong-haodong",
@@ -1737,7 +1845,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5629"
     }
    ],
-   "wt": 416.569
+   "wt": 416.569,
+   "rel": [
+    {
+     "id": "jiang-biyu",
+     "why": "蔣碧玉的紀錄提到:…40 年前往中國參與抗戰,是鍾浩東的妻子。…"
+    }
+   ]
   },
   {
    "id": "ke-qihua",
@@ -1783,7 +1897,8 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2031"
     }
    ],
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "chen-wencheng",
@@ -1823,7 +1938,8 @@
    "band": 3,
    "ly": 1981,
    "country": "台灣",
-   "wt": 9.314
+   "wt": 9.314,
+   "rel": []
   },
   {
    "id": "sun-liren",
@@ -1875,7 +1991,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/22237"
     }
    ],
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": [
+    {
+     "id": "jiang-jingguo",
+     "why": "蔣經國的紀錄提到:…著重情治系統的人權侵害與軟禁孫立人。…"
+    }
+   ]
   },
   {
    "id": "wu-shi",
@@ -1915,7 +2037,8 @@
    "band": 3,
    "ly": 1950,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "li-youbang",
@@ -1962,7 +2085,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/966"
     }
    ],
-   "wt": 959.006
+   "wt": 959.006,
+   "rel": [
+    {
+     "id": "chiang-kai-shek",
+     "why": "李友邦的紀錄提到:…被蔣介石下令逮捕,因涉朱諶之匪諜案,19…"
+    }
+   ]
   },
   {
    "id": "gao-yisheng",
@@ -2009,7 +2138,17 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2443"
     }
    ],
-   "wt": 295.022
+   "wt": 295.022,
+   "rel": [
+    {
+     "id": "tang-shouren",
+     "why": "高一生的紀錄提到:…被以「高山族匪諜湯守仁等叛亂案」及貪污罪嫌起訴,195…"
+    },
+    {
+     "id": "gao-juhua",
+     "why": "高菊花的紀錄提到:…高一生的女兒;父親被捕後以藝名「派娜娜…"
+    }
+   ]
   },
   {
    "id": "chen-yi",
@@ -2050,7 +2189,8 @@
    "band": 3,
    "ly": 1950,
    "country": "台灣",
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "huang-xinjie",
@@ -2103,7 +2243,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4115"
     }
    ],
-   "wt": 358.31
+   "wt": 358.31,
+   "rel": [
+    {
+     "id": "li-denghui",
+     "why": "黃信介的紀錄提到:…擔任民進黨第三、四屆主席,獲李登輝總統接見…"
+    }
+   ]
   },
   {
    "id": "shi-mingde",
@@ -2150,7 +2296,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/1988"
     }
    ],
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "gao-junming",
+     "why": "高俊明的紀錄提到:…1980 年因協助施明德逃亡被捕,軍事法庭判刑七年,19…"
+    }
+   ]
   },
   {
    "id": "jiang-jingguo",
@@ -2196,7 +2348,13 @@
    "band": 3,
    "ly": 1988,
    "country": "台灣",
-   "wt": 0.018
+   "wt": 0.018,
+   "rel": [
+    {
+     "id": "sun-liren",
+     "why": "蔣經國的紀錄提到:…著重情治系統的人權侵害與軟禁孫立人。…"
+    }
+   ]
   },
   {
    "id": "li-denghui",
@@ -2237,7 +2395,13 @@
    "band": 3,
    "ly": 2020,
    "country": "台灣",
-   "wt": 0.038
+   "wt": 0.038,
+   "rel": [
+    {
+     "id": "huang-xinjie",
+     "why": "黃信介的紀錄提到:…擔任民進黨第三、四屆主席,獲李登輝總統接見…"
+    }
+   ]
   },
   {
    "id": "jiang-pengjian",
@@ -2284,7 +2448,8 @@
    "band": 3,
    "ly": 2000,
    "country": "台灣",
-   "wt": 606.645
+   "wt": 606.645,
+   "rel": []
   },
   {
    "id": "zheng-nanrong",
@@ -2325,7 +2490,13 @@
    "band": 3,
    "ly": 1989,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "zhan-yihua",
+     "why": "詹益樺的紀錄提到:…89 年 5 月 19 日,鄭南榕喪禮遊行至總統府前,他以預藏的汽…"
+    }
+   ]
   },
   {
    "id": "zhan-yihua",
@@ -2365,7 +2536,13 @@
    "band": 3,
    "ly": 1989,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "zheng-nanrong",
+     "why": "詹益樺的紀錄提到:…89 年 5 月 19 日,鄭南榕喪禮遊行至總統府前,他以預藏的汽…"
+    }
+   ]
   },
   {
    "id": "peng-wanru",
@@ -2405,7 +2582,8 @@
    "band": 3,
    "ly": 1996,
    "country": "台灣",
-   "wt": 0.002
+   "wt": 0.002,
+   "rel": []
   },
   {
    "id": "gao-junming",
@@ -2457,7 +2635,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2473"
     }
    ],
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "shi-mingde",
+     "why": "高俊明的紀錄提到:…1980 年因協助施明德逃亡被捕,軍事法庭判刑七年,19…"
+    }
+   ]
   },
   {
    "id": "liu-mingchuan",
@@ -2503,7 +2687,8 @@
    "band": 1,
    "ly": 1896,
    "country": "台灣",
-   "wt": 97.587
+   "wt": 97.587,
+   "rel": []
   },
   {
    "id": "tang-jingsong",
@@ -2553,7 +2738,13 @@
    "band": 1,
    "ly": 1903,
    "country": "台灣",
-   "wt": 1.523
+   "wt": 1.523,
+   "rel": [
+    {
+     "id": "liu-yongfu",
+     "why": "唐景崧的紀錄提到:…中法戰爭時招撫劉永福並領軍抗法;倡導詩文、組牡丹詩社…"
+    }
+   ]
   },
   {
    "id": "qiu-fengjia",
@@ -2604,7 +2795,8 @@
    "band": 1,
    "ly": 1912,
    "country": "台灣",
-   "wt": 7.603
+   "wt": 7.603,
+   "rel": []
   },
   {
    "id": "liu-yongfu",
@@ -2660,7 +2852,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/4821"
     }
    ],
-   "wt": 0.456
+   "wt": 0.456,
+   "rel": [
+    {
+     "id": "tang-jingsong",
+     "why": "唐景崧的紀錄提到:…中法戰爭時招撫劉永福並領軍抗法;倡導詩文、組牡丹詩社…"
+    }
+   ]
   },
   {
    "id": "wu-tangxing",
@@ -2701,7 +2899,8 @@
    "band": 1,
    "ly": 1895,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "ito-hirobumi",
@@ -2753,7 +2952,13 @@
      "url": "https://kotobank.jp/word/%E4%BC%8A%E8%97%A4%E5%8D%9A%E6%96%87"
     }
    ],
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": [
+    {
+     "id": "li-hongzhang",
+     "why": "伊藤博文的紀錄提到:…持制訂《大日本帝國憲法》;與李鴻章簽訂《馬關條約》,台灣、澎湖納入…"
+    }
+   ]
   },
   {
    "id": "kotoku-shusui",
@@ -2800,7 +3005,8 @@
      "label": "コトバンク「幸徳秋水」",
      "url": "https://kotobank.jp/word/%E5%B9%B8%E5%BE%B3%E7%A7%8B%E6%B0%B4"
     }
-   ]
+   ],
+   "rel": []
   },
   {
    "id": "osugi-sakae",
@@ -2846,7 +3052,8 @@
      "label": "コトバンク「大杉栄」",
      "url": "https://kotobank.jp/word/%E5%A4%A7%E6%9D%89%E6%A0%84"
     }
-   ]
+   ],
+   "rel": []
   },
   {
    "id": "kobayashi-takiji",
@@ -2893,7 +3100,8 @@
      "url": "https://kotobank.jp/word/%E5%B0%8F%E6%9E%97%E5%A4%9A%E5%96%9C%E4%BA%8C"
     }
    ],
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "goto-shimpei",
@@ -2946,7 +3154,8 @@
      "url": "https://kotobank.jp/word/%E5%BE%8C%E8%97%A4%E6%96%B0%E5%B9%B3"
     }
    ],
-   "wt": 9.743
+   "wt": 9.743,
+   "rel": []
   },
   {
    "id": "tojo-hideki",
@@ -2993,7 +3202,8 @@
      "label": "コトバンク「東条英機」",
      "url": "https://kotobank.jp/word/%E6%9D%B1%E6%9D%A1%E8%8B%B1%E6%A9%9F"
     }
-   ]
+   ],
+   "rel": []
   },
   {
    "id": "ishibashi-tanzan",
@@ -3040,7 +3250,8 @@
      "url": "https://kotobank.jp/word/%E7%9F%B3%E6%A9%8B%E6%B9%9B%E5%B1%B1"
     }
    ],
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "li-hongzhang",
@@ -3086,7 +3297,13 @@
    "band": 1,
    "ly": 1901,
    "country": "中國",
-   "wt": 543.045
+   "wt": 543.045,
+   "rel": [
+    {
+     "id": "ito-hirobumi",
+     "why": "伊藤博文的紀錄提到:…持制訂《大日本帝國憲法》;與李鴻章簽訂《馬關條約》,台灣、澎湖納入…"
+    }
+   ]
   },
   {
    "id": "sun-yat-sen",
@@ -3128,7 +3345,8 @@
    "band": 1,
    "ly": 1925,
    "country": "中國",
-   "wt": 68.667
+   "wt": 68.667,
+   "rel": []
   },
   {
    "id": "hu-shih",
@@ -3174,7 +3392,13 @@
    "band": 2,
    "ly": 1962,
    "country": "中國",
-   "wt": 275.147
+   "wt": 275.147,
+   "rel": [
+    {
+     "id": "li-ao",
+     "why": "胡適的紀錄提到:… 年曾發動批判運動;夏志清、李敖等人則給予高度肯定。…"
+    }
+   ]
   },
   {
    "id": "chiang-kai-shek",
@@ -3215,7 +3439,33 @@
    "band": 2,
    "ly": 1975,
    "country": "中國",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "gu-xianrong",
+     "why": "辜顯榮的紀錄提到:…建台北孔廟、1933 年協助蔣介石平定閩變;批評者稱他為「民賊」,…"
+    },
+    {
+     "id": "luo-fuxing",
+     "why": "羅福星的紀錄提到:…年 28 歲。1953 年獲蔣中正明令褒揚。…"
+    },
+    {
+     "id": "li-youbang",
+     "why": "李友邦的紀錄提到:…被蔣介石下令逮捕,因涉朱諶之匪諜案,19…"
+    },
+    {
+     "id": "zhang-xueliang",
+     "why": "張學良的紀錄提到:…年與楊虎城發動西安事變,扣押蔣中正。…"
+    },
+    {
+     "id": "soong-mei-ling",
+     "why": "宋美齡的紀錄提到:…1975 年蔣介石逝世後長居美國,2003 年 1…"
+    },
+    {
+     "id": "fu-zheng",
+     "why": "傅正的紀錄提到:…在黨外雜誌撰文批評蔣介石第三度連任總統…"
+    }
+   ]
   },
   {
    "id": "zhang-xueliang",
@@ -3256,7 +3506,13 @@
    "band": 2,
    "ly": 2001,
    "country": "中國",
-   "wt": 0.007
+   "wt": 0.007,
+   "rel": [
+    {
+     "id": "chiang-kai-shek",
+     "why": "張學良的紀錄提到:…年與楊虎城發動西安事變,扣押蔣中正。…"
+    }
+   ]
   },
   {
    "id": "mao-zedong",
@@ -3297,7 +3553,8 @@
    "band": 3,
    "ly": 1976,
    "country": "中國",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "lin-zhao",
@@ -3338,7 +3595,8 @@
    "band": 3,
    "ly": 1968,
    "country": "中國",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "liu-xiaobo",
@@ -3379,7 +3637,8 @@
    "band": 3,
    "ly": 2017,
    "country": "中國",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "soong-mei-ling",
@@ -3419,7 +3678,17 @@
    "band": 2,
    "ly": 2003,
    "country": "中國",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "chiang-kai-shek",
+     "why": "宋美齡的紀錄提到:…1975 年蔣介石逝世後長居美國,2003 年 1…"
+    },
+    {
+     "id": "shen-yuanzhang",
+     "why": "沈嫄璋的紀錄提到:…《台灣新生報》記者,因採訪蔣宋美齡與婦聯會新聞而知名,人稱「沈大姊…"
+    }
+   ]
   },
   {
    "id": "ding-yaotiao",
@@ -3465,7 +3734,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/11"
     }
    ],
-   "wt": 750.721
+   "wt": 750.721,
+   "rel": [
+    {
+     "id": "shi-shuihuan",
+     "why": "施水環的紀錄提到:…56 年 7 月 24 日與丁窈窕同日槍決,得年 29 歲。…"
+    }
+   ]
   },
   {
    "id": "shi-shuihuan",
@@ -3515,7 +3790,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/1980"
     }
    ],
-   "wt": 451.427
+   "wt": 451.427,
+   "rel": [
+    {
+     "id": "ding-yaotiao",
+     "why": "施水環的紀錄提到:…56 年 7 月 24 日與丁窈窕同日槍決,得年 29 歲。…"
+    }
+   ]
   },
   {
    "id": "ye-tao",
@@ -3568,7 +3849,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/18330"
     }
    ],
-   "wt": 883.465
+   "wt": 883.465,
+   "rel": [
+    {
+     "id": "yang-kui",
+     "why": "葉陶的紀錄提到:…灣農民組合婦女部部長;與丈夫楊逵參與文化協會等團體;戰後投身婦女…"
+    }
+   ]
   },
   {
    "id": "cai-ruiyue",
@@ -3620,7 +3907,8 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/19969"
     }
    ],
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "ji-meizhen",
@@ -3667,7 +3955,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/11867"
     }
    ],
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "qian-jingzhi",
+     "why": "錢靜芝的紀錄提到:…1946 年隨計梅真來台,在郵務工會國語補習班任教,…"
+    }
+   ]
   },
   {
    "id": "qian-jingzhi",
@@ -3714,7 +4008,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/20811"
     }
    ],
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": [
+    {
+     "id": "ji-meizhen",
+     "why": "錢靜芝的紀錄提到:…1946 年隨計梅真來台,在郵務工會國語補習班任教,…"
+    }
+   ]
   },
   {
    "id": "xu-jinyu",
@@ -3761,7 +4061,8 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/2979"
     }
    ],
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "cui-xiaoping",
@@ -3801,7 +4102,8 @@
    "band": 3,
    "ly": 2017,
    "country": "台灣",
-   "wt": 415.614
+   "wt": 415.614,
+   "rel": []
   },
   {
    "id": "jiang-biyu",
@@ -3847,7 +4149,13 @@
    "band": 3,
    "ly": 1995,
    "country": "台灣",
-   "wt": 3.056
+   "wt": 3.056,
+   "rel": [
+    {
+     "id": "zhong-haodong",
+     "why": "蔣碧玉的紀錄提到:…40 年前往中國參與抗戰,是鍾浩東的妻子。…"
+    }
+   ]
   },
   {
    "id": "shen-yuanzhang",
@@ -3897,7 +4205,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/9528"
     }
    ],
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": [
+    {
+     "id": "soong-mei-ling",
+     "why": "沈嫄璋的紀錄提到:…《台灣新生報》記者,因採訪蔣宋美齡與婦聯會新聞而知名,人稱「沈大姊…"
+    }
+   ]
   },
   {
    "id": "gao-juhua",
@@ -3944,7 +4258,13 @@
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/12697"
     }
    ],
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": [
+    {
+     "id": "gao-yisheng",
+     "why": "高菊花的紀錄提到:…高一生的女兒;父親被捕後以藝名「派娜娜…"
+    }
+   ]
   },
   {
    "id": "fu-ruzhi",
@@ -3984,7 +4304,8 @@
    "band": 3,
    "ly": 1956,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "lai-qiongyan",
@@ -4024,7 +4345,8 @@
    "band": 3,
    "ly": 1950,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "gao-cao",
@@ -4064,7 +4386,8 @@
    "band": 3,
    "ly": 1952,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "chen-qin",
@@ -4108,7 +4431,8 @@
    "band": 3,
    "ly": 2017,
    "country": "台灣",
-   "wt": 66.768
+   "wt": 66.768,
+   "rel": []
   },
   {
    "id": "huang-zhuang",
@@ -4148,7 +4472,8 @@
    "band": 3,
    "ly": 1995,
    "country": "台灣",
-   "wt": 1000.0
+   "wt": 1000.0,
+   "rel": []
   },
   {
    "id": "liang-linghui",
@@ -4188,7 +4513,8 @@
    "band": 3,
    "ly": 2004,
    "country": "台灣",
-   "wt": 9.389
+   "wt": 9.389,
+   "rel": []
   },
   {
    "id": "lian-wenqing",
@@ -4235,7 +4561,13 @@
      }
     ]
    },
-   "wt": 508.924
+   "wt": 508.924,
+   "rel": [
+    {
+     "id": "jiang-weishui",
+     "why": "連溫卿的紀錄提到:…社會主義傾向;1923 年與蔣渭水等籌組社會問題研究會,遭日本官方…"
+    }
+   ]
   },
   {
    "id": "wang-minchuan",
@@ -4282,7 +4614,8 @@
      }
     ]
    },
-   "wt": 582.43
+   "wt": 582.43,
+   "rel": []
   },
   {
    "id": "yang-zhaojia",
@@ -4335,7 +4668,13 @@
      }
     ]
    },
-   "wt": 0.002
+   "wt": 0.002,
+   "rel": [
+    {
+     "id": "cai-peihuo",
+     "why": "楊肇嘉的紀錄提到:…1940 年蔡培火、吳三連被捕後避往中國,1941…"
+    }
+   ]
   },
   {
    "id": "wang-baiyuan",
@@ -4388,7 +4727,8 @@
      "label": "國家人權記憶庫「王白淵」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/134"
     }
-   ]
+   ],
+   "rel": []
   },
   {
    "id": "cai-huiru",
@@ -4435,7 +4775,8 @@
      }
     ]
    },
-   "wt": 476.628
+   "wt": 476.628,
+   "rel": []
   },
   {
    "id": "guo-xiucong",
@@ -4494,7 +4835,8 @@
      "label": "國家人權記憶庫「郭琇琮」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/3086"
     }
-   ]
+   ],
+   "rel": []
   },
   {
    "id": "su-xin",
@@ -4541,7 +4883,17 @@
      }
     ]
    },
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": [
+    {
+     "id": "wang-tiandeng",
+     "why": "王添燈的紀錄提到:…凌晨在家中被捕後未歸。據編輯蘇新說法,他遭酷刑後被淋汽油燒死、屍…"
+    },
+    {
+     "id": "xie-xuehong",
+     "why": "蘇新的紀錄提到:…出獄;二二八事件後赴香港,與謝雪紅等創立台灣民主自治同盟。1967…"
+    }
+   ]
   },
   {
    "id": "chen-mingzhong",
@@ -4594,7 +4946,8 @@
      "label": "國家人權記憶庫「陳明忠」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/3301"
     }
-   ]
+   ],
+   "rel": []
   },
   {
    "id": "lin-shuyang",
@@ -4646,7 +4999,8 @@
      "label": "國家人權記憶庫「林書揚」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/1680"
     }
-   ]
+   ],
+   "rel": []
   },
   {
    "id": "tang-shouren",
@@ -4703,6 +5057,12 @@
      "label": "國家人權記憶庫「湯守仁」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/3918"
     }
+   ],
+   "rel": [
+    {
+     "id": "gao-yisheng",
+     "why": "高一生的紀錄提到:…被以「高山族匪諜湯守仁等叛亂案」及貪污罪嫌起訴,195…"
+    }
    ]
   },
   {
@@ -4757,7 +5117,13 @@
      }
     ]
    },
-   "wt": 0.071
+   "wt": 0.071,
+   "rel": [
+    {
+     "id": "xie-xuehong",
+     "why": "張深切的紀錄提到:…刑兩年;二二八事件後被指協助謝雪紅,藏匿山區半年,一年後平反,但長…"
+    }
+   ]
   },
   {
    "id": "fu-zheng",
@@ -4817,6 +5183,16 @@
      "label": "國家人權記憶庫「傅正」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/3735"
     }
+   ],
+   "rel": [
+    {
+     "id": "lei-zhen",
+     "why": "傅正的紀錄提到:…1960 年參與組黨運動,與雷震同遭逮捕,判處感化三年;他拒絕感…"
+    },
+    {
+     "id": "chiang-kai-shek",
+     "why": "傅正的紀錄提到:…在黨外雜誌撰文批評蔣介石第三度連任總統…"
+    }
    ]
   },
   {
@@ -4864,7 +5240,8 @@
      "label": "國家人權記憶庫「盧修一」",
      "url": "https://memory.nhrm.gov.tw/TopicExploration/Person/Detail/5346"
     }
-   ]
+   ],
+   "rel": []
   },
   {
    "id": "gu-zhenfu",
@@ -4905,7 +5282,8 @@
      }
     ]
    },
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "cai-xiaoqian",
@@ -4958,7 +5336,8 @@
      }
     ]
    },
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
   },
   {
    "id": "cai-tongrong",
@@ -5005,7 +5384,290 @@
      }
     ]
    },
-   "wt": 0.001
+   "wt": 0.001,
+   "rel": []
+  }
+ ],
+ "groups": [
+  {
+   "label": "台灣文化協會與議會設置請願運動",
+   "members": [
+    "jiang-weishui",
+    "lin-xiantang",
+    "cai-peihuo",
+    "lai-he",
+    "cai-huiru",
+    "lian-wenqing",
+    "wang-minchuan",
+    "yang-zhaojia",
+    "han-shiquan",
+    "li-yingzhang",
+    "yang-kui",
+    "ye-tao"
+   ]
+  },
+  {
+   "label": "農民運動(二林事件、台灣農民組合)",
+   "members": [
+    "li-yingzhang",
+    "jian-ji",
+    "yang-kui",
+    "ye-tao",
+    "xie-xuehong"
+   ]
+  },
+  {
+   "label": "嘉義的政治與二二八",
+   "members": [
+    "chen-chengbo",
+    "xu-shixian",
+    "tang-shouren",
+    "gao-yisheng"
+   ]
+  },
+  {
+   "label": "台灣新文學與作家",
+   "members": [
+    "lai-he",
+    "yang-kui",
+    "lyu-heruo",
+    "wang-baiyuan",
+    "ye-shitao",
+    "bo-yang",
+    "chen-yingzhen",
+    "zhang-shenqie"
+   ]
+  },
+  {
+   "label": "台灣共產黨與左翼運動",
+   "members": [
+    "xie-xuehong",
+    "su-xin",
+    "cai-xiaoqian",
+    "lian-wenqing",
+    "wang-minchuan",
+    "jian-ji"
+   ]
+  },
+  {
+   "label": "日治時期的武裝抗日",
+   "members": [
+    "luo-fuxing",
+    "yu-qingfang",
+    "mona-rudao",
+    "wu-tangxing"
+   ]
+  },
+  {
+   "label": "1895 年的台灣民主國與乙未戰爭",
+   "members": [
+    "tang-jingsong",
+    "qiu-fengjia",
+    "liu-yongfu",
+    "wu-tangxing",
+    "liu-mingchuan",
+    "ito-hirobumi",
+    "li-hongzhang"
+   ]
+  },
+  {
+   "label": "日本統治台灣初期",
+   "members": [
+    "goto-shimpei",
+    "ito-hirobumi",
+    "gu-xianrong",
+    "li-hongzhang"
+   ]
+  },
+  {
+   "label": "二二八事件",
+   "members": [
+    "wang-tiandeng",
+    "tang-dezhang",
+    "wang-yulin",
+    "lin-lianzong",
+    "lin-maosheng",
+    "chen-chengbo",
+    "jiang-weichuan",
+    "li-wanju",
+    "han-shiquan",
+    "xie-xuehong",
+    "chen-yi",
+    "wu-xinrong",
+    "zhang-shenqie",
+    "ye-tao",
+    "tang-shouren",
+    "wang-baiyuan",
+    "gu-zhenfu",
+    "su-xin"
+   ]
+  },
+  {
+   "label": "1950 年代的白色恐怖",
+   "members": [
+    "zhong-haodong",
+    "jiang-biyu",
+    "wu-shi",
+    "cai-xiaoqian",
+    "li-youbang",
+    "guo-xiucong",
+    "ji-meizhen",
+    "qian-jingzhi",
+    "gao-yisheng",
+    "tang-shouren",
+    "fu-ruzhi",
+    "chen-qin",
+    "lai-qiongyan",
+    "gao-cao",
+    "huang-zhuang",
+    "xu-jinyu",
+    "ding-yaotiao",
+    "shi-shuihuan",
+    "shen-yuanzhang",
+    "cui-xiaoping",
+    "liang-linghui",
+    "su-xin",
+    "lin-shuyang",
+    "chen-mingzhong",
+    "ke-qihua",
+    "ye-shitao",
+    "yang-kui",
+    "cai-ruiyue",
+    "sun-liren",
+    "gao-juhua",
+    "lyu-heruo"
+   ]
+  },
+  {
+   "label": "郵電支部案",
+   "members": [
+    "ji-meizhen",
+    "qian-jingzhi",
+    "xu-jinyu",
+    "ding-yaotiao",
+    "shi-shuihuan"
+   ]
+  },
+  {
+   "label": "綠島的女性政治犯",
+   "members": [
+    "fu-ruzhi",
+    "chen-qin",
+    "cai-ruiyue",
+    "lai-qiongyan"
+   ]
+  },
+  {
+   "label": "高一生與鄒族的政治案",
+   "members": [
+    "gao-yisheng",
+    "tang-shouren",
+    "gao-juhua"
+   ]
+  },
+  {
+   "label": "軍中與情治案件",
+   "members": [
+    "sun-liren",
+    "wu-shi",
+    "li-youbang",
+    "cai-xiaoqian",
+    "jiang-jingguo"
+   ]
+  },
+  {
+   "label": "《自由中國》與組織反對黨",
+   "members": [
+    "lei-zhen",
+    "yin-haiguang",
+    "fu-zheng",
+    "li-wanju",
+    "guo-yuxin",
+    "hu-shih"
+   ]
+  },
+  {
+   "label": "1960 至 70 年代的異議者與政治犯",
+   "members": [
+    "peng-mingmin",
+    "bo-yang",
+    "li-ao",
+    "chen-yingzhen",
+    "chen-mingzhong",
+    "lin-shuyang",
+    "ke-qihua",
+    "yin-haiguang"
+   ]
+  },
+  {
+   "label": "美麗島事件與黨外運動",
+   "members": [
+    "huang-xinjie",
+    "shi-mingde",
+    "gao-junming",
+    "jiang-pengjian",
+    "chen-wencheng",
+    "lu-xiuyi",
+    "fu-zheng",
+    "guo-yuxin",
+    "li-zhenyuan"
+   ]
+  },
+  {
+   "label": "解嚴與民主化",
+   "members": [
+    "jiang-jingguo",
+    "li-denghui",
+    "zheng-nanrong",
+    "zhan-yihua",
+    "peng-wanru",
+    "cai-tongrong",
+    "jiang-pengjian",
+    "shi-mingde",
+    "li-zhenyuan"
+   ]
+  },
+  {
+   "label": "國民黨在台灣的領導",
+   "members": [
+    "chiang-kai-shek",
+    "soong-mei-ling",
+    "jiang-jingguo",
+    "li-denghui",
+    "chen-yi",
+    "zhang-xueliang",
+    "sun-liren"
+   ]
+  },
+  {
+   "label": "國共與民國政治",
+   "members": [
+    "chiang-kai-shek",
+    "soong-mei-ling",
+    "sun-yat-sen",
+    "zhang-xueliang",
+    "mao-zedong",
+    "hu-shih",
+    "li-hongzhang"
+   ]
+  },
+  {
+   "label": "中國的異議者",
+   "members": [
+    "lin-zhao",
+    "liu-xiaobo",
+    "mao-zedong"
+   ]
+  },
+  {
+   "label": "日本的社會主義者與政治案件",
+   "members": [
+    "kotoku-shusui",
+    "osugi-sakae",
+    "kobayashi-takiji",
+    "ishibashi-tanzan",
+    "tojo-hideki"
+   ]
   }
  ]
 }

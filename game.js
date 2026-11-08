@@ -309,6 +309,23 @@ function result() {
       el('b', {}, q.name), ` (${q.life} · ${q.job})`, el('div', {}, brief(q)),
       el('div', { class: 'links' }, el('a', { href: q.ref, target: '_blank', rel: 'noopener' }, q.src),
         ...(q.refs || []).flatMap((r) => [' · ', el('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.label.replace(/「.*」/, ''))])))))) : null;
+  // 主要人物若不是因政治事件離世,最後一頁底下放「與他/她有關聯的人」(條目互相提到,或同屬一個事件/團體)
+  const political = (q) => (q.acts.L && q.acts.L[0].c === 'R') || q.id === 'chen-yi';
+  const byIdAll = (id) => data.people.find((x) => x.id === id);
+  const relMap = new Map();
+  (p.rel || []).forEach((r) => relMap.set(r.id, r.why));
+  data.groups.filter((g) => g.members.includes(p.id)).sort((x, y) => x.members.length - y.members.length)
+    .forEach((g) => g.members.slice().sort((a, b) => Math.abs(byIdAll(a).ly - p.ly) - Math.abs(byIdAll(b).ly - p.ly))
+      .forEach((id) => { if (id !== p.id && !relMap.has(id)) relMap.set(id, `同屬「${g.label}」`); }));
+  const relList = [...relMap.entries()].slice(0, 6);
+  const relatedBox = relList.length ? el('details', { class: 'sec memorial', open: '' },
+    el('summary', {}, `與${p.name}有關聯的人(${relList.length} 位)`),
+    el('p', { class: 'persona' }, '依資料出處裡彼此提到的紀錄,或同屬一個事件、團體挑選;連結可以進一步閱讀。'),
+    el('ul', { class: 'fallen' }, relList.map(([id, why]) => { const q = byIdAll(id); return el('li', {},
+      el('b', {}, q.name), ` (${q.life} · ${q.job})`, el('div', { class: 'persona' }, why), el('div', {}, brief(q)),
+      el('div', { class: 'links' }, el('a', { href: q.ref, target: '_blank', rel: 'noopener' }, q.src),
+        ...(q.refs || []).flatMap((r) => [' · ', el('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.label.replace(/「.*」/, ''))]))); }))) : null;
+  const bottom = political(p) ? memorial : relatedBox;
   const otherLine = (q) => el('div', {}, el('a', { href: q.ref, target: '_blank', rel: 'noopener' }, q.name), `(${q.life},${q.job})`);
 
   const reveal = () => show(
@@ -322,7 +339,7 @@ function result() {
       p.note ? el('div', { class: 'sec' }, el('h3', {}, '資料註記'), el('p', { class: 'note' }, p.note)) : null,
       sourceLine),
     others.length ? el('div', { class: 'sec' }, el('h3', {}, '走過同一條路的其他人'), el('div', { class: 'also' }, others.map(otherLine))) : null,
-    memorial,
+    bottom,
     el('div', { class: 'row' },
       el('a', { class: 'btn', href: `index.html#y=${p.ly}`, style: 'text-decoration:none' }, `到台灣事件簿,看 ${p.ly} 年前後的台灣`),
       el('button', { class: 'btn ghost', type: 'button', onclick: () => begin(st.birth, null, st.round + 1, st.usedBands) }, '再玩一次(換一個時間)'),
@@ -349,8 +366,8 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261114').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261114').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261115').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261115').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
