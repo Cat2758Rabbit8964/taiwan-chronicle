@@ -40,7 +40,7 @@ def play(birth, rng, wt):
     # 志向由考試成績決定:四科各 0–100(約一成機率跳過=0),取最高與第二高的科目查表
     order = ['lang', 'math', 'sci', 'soc']
     # 養貓分數沒有上限(約 10–80);社會科 5 題:前 4 題各 25 分、加分題再 +25,最高 125
-    sc = {'lang': rng.randint(0, 100), 'math': rng.choice([0, 30, 40, 55, 55, 70, 70, 85, 85, 100, 100, 100]) if rng.random() < 0.8 else rng.randint(0, 60),
+    sc = {'lang': rng.randint(0, 100), 'math': rng.choice([0, 30, 45, 60, 80, 80, 90, 100, 100, 20, 40, 60, 80, 100]),
           'sci': rng.randint(10, 80), 'soc': rng.choice([0, 25, 25, 50, 50, 75, 100, 125])}
     for k in order:
         if rng.random() < 0.08: sc[k] = 0     # 約 8% 機率跳過該科
