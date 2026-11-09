@@ -537,8 +537,8 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261123').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261123').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261124').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261124').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));

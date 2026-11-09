@@ -1,7 +1,7 @@
 :root{--bg:#f6f3ec;--ink:#2a2620;--muted:#6f675a;--card:#fffdf8;--line:#d9d2c2;--accent:#a8761f;--accent-ink:#fff;--bar:#e8dfc9}
 @media (prefers-color-scheme:dark){:root{--bg:#1d1b17;--ink:#ece6d8;--muted:#a59d8c;--card:#2a2722;--line:#443f35;--accent:#d9a441;--accent-ink:#1d1b17;--bar:#3a352c}}
 *{box-sizing:border-box}
-body{position:relative;margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+body{position:relative;margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Songti TC","STSong","Noto Serif TC","Source Han Serif TC","PMingLiU","MingLiU","SimSun",serif;
   min-height:100vh;display:flex;flex-direction:column;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #app{width:100%;max-width:680px;margin:0 auto;padding-block:32px 16px;flex:1}
