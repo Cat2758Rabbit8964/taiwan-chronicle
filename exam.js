@@ -3,10 +3,10 @@
    依賴 game.js 先定義的全域函式 el()、show()(兩個檔案共用同一個頁面)。
    考試過程不告知對錯;交卷後回到考場,再由「查看考試結果」看分數與逐題對照。 */
 const SUBJECTS = [
-  { id: 'lang', name: '語文', secs: 100, intro: '限時 100 秒,題目不限數量,一題接一題,答對越多越好。英文為單字填空;日文為單字、動詞形容詞活用與文法選擇題。答錯不扣分。每答對 1 題 5 分,20 題滿分 100;排行榜以答對題數計。' },
-  { id: 'math', name: '數學', secs: 120, intro: '限時 120 秒,四則運算湊目標。電腦給你 4 個 1 到 10 的數字和一個目標數字(1 到 100),用 + − × ÷ 和括號把 4 個數字各用一次,算出目標。題目一題接一題出,解得越多分越高:每題 20 分,分數沒有上限。排行榜以分數計。' },
-  { id: 'sci', name: '自然', secs: 60, intro: '限時 60 秒,養一隻貓。用方向鍵或螢幕按鈕帶貓去吃東西,吃到東西貓就會長大(身體變長)。牆壁會穿過去,貓撞到自己的身體或時間到就結算。小魚乾 1 分、罐頭 2 分、金魚 5 分(只出現幾秒)。分數沒有上限(每 1 分換算 2 分)。' },
-  { id: 'soc', name: '社會', secs: 90, intro: '限時 90 秒,題目不限數量,一題接一題(事件細節,不考年份),四選一,題目取自台灣事件簿。答錯不扣分。每答對 1 題 10 分,10 題滿分 100;排行榜以答對題數計。' },
+  { id: 'lang', name: '語文', secs: 100, intro: '限時 100 秒,題目不限數量,一題接一題,答對越多越好。英文為單字填空;日文為單字、動詞形容詞活用與文法選擇題。答錯不扣分。英文每答對 1 題 10 分,日文每答對 1 題 5 分。成績單最多計 100 分,芳名錄以實際分數計(沒有上限)。' },
+  { id: 'math', name: '數學', secs: 120, intro: '限時 120 秒,四則運算湊目標。電腦給你 4 個 1 到 10 的數字和一個目標數字(1 到 100),用 + − × ÷ 和括號把 4 個數字各用一次,算出目標。題目一題接一題出,解得越多分越高:每題 20 分。成績單最多計 100 分,芳名錄以實際分數計(沒有上限)。' },
+  { id: 'sci', name: '自然', secs: 60, intro: '限時 60 秒,養一隻貓。用方向鍵或螢幕按鈕帶貓去吃東西,吃到東西貓就會長大(身體變長)。牆壁會穿過去,貓撞到自己的身體或時間到就結算。小魚乾 1 分、罐頭 2 分、金魚 5 分(只出現幾秒)。每 1 分換算 2 分;成績單最多計 100 分,芳名錄以實際分數計(沒有上限)。' },
+  { id: 'soc', name: '社會', secs: 90, intro: '限時 90 秒,題目不限數量,一題接一題(事件細節,不考年份),四選一,題目取自台灣事件簿。答錯不扣分。每答對 1 題 5 分。成績單最多計 100 分,芳名錄以實際分數計(沒有上限)。' },
 ];
 const SUBJECT_ORDER = ['lang', 'math', 'sci', 'soc'];   // 同分時的固定順序
 // 最高分科目 → 第二高分科目 → 志向
@@ -86,8 +86,8 @@ function playEndless(ctx, subject, mount, finish, cfg) {
   };
   const end = () => {
     if (done) return; done = true; t.stop();
-    const score = Math.min(100, right * cfg.per);
-    finish(score, `${cfg.label},限時內答對 ${right} 題(共作答 ${log.length} 題;每答對 1 題 ${cfg.per} 分,${100 / cfg.per} 題即滿分,榜單以答對題數計)`, log.length ? log : ['沒有作答任何一題'], right);
+    const pts = right * cfg.per;
+    finish(pts, `${cfg.label},限時內答對 ${right} 題(共作答 ${log.length} 題),每題 ${cfg.per} 分,共 ${pts} 分${pts > 100 ? '(成績單最多計 100 分,芳名錄以實際分數計)' : ''}`, log.length ? log : ['沒有作答任何一題'], pts);
   };
   const f = frame(subject, cfg.label, body, end);
   mount.replaceChildren(f.node);
@@ -114,7 +114,7 @@ function playLang(ctx, subject, mount, finish) {
   const nw = stream(ctx.exam.wordsEn, ctx.seen.en, (x) => x.w);
   const maskEn = (w) => { const keep = new Set([0]); rshuffle([...w].map((_, k) => k).slice(1)).slice(0, Math.floor(w.length * 0.35)).forEach((k) => keep.add(k)); return [...w].map((c, k) => (keep.has(k) ? c : '_')).join(' '); };
   return playEndless(ctx, subject, mount, finish, {
-    label: '英文單字填空', per: 5, same: (v, q) => (v || '').trim().toLowerCase() === q.a,
+    label: '英文單字填空', per: 10, same: (v, q) => (v || '').trim().toLowerCase() === q.a,
     next: () => { const w = nw(); return { stem: `${w.zh}(${maskEn(w.w)})`, kind: '單字', a: w.w }; },
     render: (body, prog, q, give) => {
       const input = el('input', { type: 'text', autocomplete: 'off', autocapitalize: 'none', spellcheck: 'false', 'aria-label': '填入完整單字', class: 'txt' });
@@ -198,7 +198,7 @@ function playMathB(ctx, subject, mount, finish) {
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') record(false); });
   const end = () => {
     if (done) return; done = true; t.stop();
-    finish(solved * 20, `共解出 ${solved} 題(每題 20 分,分數沒有上限)`, log.length ? log : ['沒有送出任何一題']);
+    finish(solved * 20, `共解出 ${solved} 題,每題 20 分,共 ${solved * 20} 分${solved > 5 ? '(成績單最多計 100 分,芳名錄以實際分數計)' : ''}`, log.length ? log : ['沒有送出任何一題']);
   };
   newQ();
   const body = el('div', { class: 'stack' }, el('p', { class: 'persona' }, '把 4 個數字各用一次,用 + − × ÷ 與括號算出目標'), info, numRow, opRow, input, live,
@@ -280,7 +280,7 @@ function playSci(ctx, subject, mount, finish) {
 function playSoc(ctx, subject, mount, finish) {
   const ns = stream(ctx.exam.social, ctx.seen.soc, (x) => x.q);
   return playEndless(ctx, subject, mount, finish, {
-    label: '歷史題', per: 10, same: (v, q) => v === q.a,
+    label: '歷史題', per: 5, same: (v, q) => v === q.a,
     next: () => { const x = ns(); return { stem: x.q, kind: x.hard ? '較難' : '歷史', a: x.right, opts: rshuffle([x.right, ...x.wrong]) }; },
     render: (body, prog, q, give) => mcq(body, prog, q, give, true),
   });
@@ -323,8 +323,9 @@ const Exam = {
     const start = (s, opt = {}) => {
       const mount = el('div'); show(mount);
       cleanup = PLAYERS[s.id]({ exam, seen, ...opt }, s, mount, (score, note, detail, raw) => {
-        cleanup = null; state[s.id] = { status: 'taken', score, note, detail };
-        if (typeof Hall !== 'undefined') Hall.offer(s.id, raw === undefined ? score : raw, hub); else hub();
+        cleanup = null; state[s.id] = { status: 'taken', score: Math.min(100, score), note, detail };
+        const board = s.id === 'lang' ? `lang_${opt.lang}` : s.id;
+        if (typeof Hall !== 'undefined') Hall.offer(board, raw === undefined ? score : raw, hub); else hub();
       });
     };
     const viewResult = (s) => {
