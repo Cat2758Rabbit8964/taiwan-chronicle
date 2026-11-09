@@ -3,10 +3,10 @@
    依賴 game.js 先定義的全域函式 el()、show()(兩個檔案共用同一個頁面)。
    考試過程不告知對錯;交卷後回到考場,再由「查看考試結果」看分數與逐題對照。 */
 const SUBJECTS = [
-  { id: 'lang', name: '語文', secs: 100, intro: '限時 100 秒,共 12 題。英文為單字填空;日文為單字、動詞形容詞活用與文法選擇題。' },
+  { id: 'lang', name: '語文', secs: 100, intro: '限時 100 秒,題目不限數量,一題接一題,答對越多越好。英文為單字填空;日文為單字、動詞形容詞活用與文法選擇題。答錯不扣分。每答對 1 題 5 分,20 題滿分 100;排行榜以答對題數計。' },
   { id: 'math', name: '數學', secs: 120, intro: '限時 120 秒,有兩種考卷可以選。\nA 卷「猜數字」:電腦想了 4 個不含 0、不重複的數字(1 到 9),你每次猜 4 個數字;A 是數字和位置都對,B 是數字對但位置不對。8 次內猜中拿滿分 100 分,每多猜 1 次扣 10 分,只要猜中最低 80 分;沒猜中則依最接近的一次給部分分(最高 60 分)。\nB 卷「四則運算」:電腦給你 4 個 1 到 10 的數字和一個目標數字(1 到 100),用 + − × ÷ 和括號把 4 個數字各用一次,算出目標。題目一題接一題出,解得越多分越高(每題 20 分,滿分 100)。' },
   { id: 'sci', name: '自然', secs: 60, intro: '限時 60 秒,養一隻貓。用方向鍵或螢幕按鈕帶貓去吃東西,吃到東西貓就會長大(身體變長)。牆壁會穿過去,貓撞到自己的身體或時間到就結算。小魚乾 1 分、罐頭 2 分、金魚 5 分(只出現幾秒)。分數沒有上限(每 1 分換算 2 分)。' },
-  { id: 'soc', name: '社會', secs: 90, intro: '限時 90 秒,共 5 題歷史題(事件細節,不考年份),四選一,題目取自台灣事件簿。前 4 題每題 25 分,第 5 題是較難的加分題,答對再加 25 分,所以最高可以拿到 125 分。' },
+  { id: 'soc', name: '社會', secs: 90, intro: '限時 90 秒,題目不限數量,一題接一題(事件細節,不考年份),四選一,題目取自台灣事件簿。答錯不扣分。每答對 1 題 10 分,10 題滿分 100;排行榜以答對題數計。' },
 ];
 const SUBJECT_ORDER = ['lang', 'math', 'sci', 'soc'];   // 同分時的固定順序
 // 最高分科目 → 第二高分科目 → 志向
@@ -63,81 +63,67 @@ function frame(subject, title, body, onSubmit) {
 }
 
 /* ───── 語文:單字填空(英文打字、日文選假名) ───── */
-function playJp(ctx, subject, mount, finish) {
-  const W = ctx.exam.wordsJp, G = ctx.exam.grammarJp;
-  const gs = pickFresh(G, 5, ctx.seen.jpg, (x) => x.zh + x.a);
-  const vs = pickFresh(W.filter((x) => x.t), 4, ctx.seen.jp, (x) => x.w);
-  const ns = pickFresh(W.filter((x) => !x.t), 3, ctx.seen.jp, (x) => x.w);
-  const qs = rshuffle([
-    ...gs.map((g) => ({ stem: g.s ? `${g.zh}\n${g.s}` : g.zh, kind: g.s ? '助詞・文法填空' : '活用變化', a: g.a, opts: rshuffle([g.a, ...g.w]), why: '' })),
-    ...[...vs, ...ns].map((x) => {
-      const pool = W.filter((y) => y.w !== x.w && !!y.t === !!x.t);
-      return { stem: `「${x.zh}」的日文是?`, kind: x.t ? "動詞・形容詞" : "名詞", a: x.w, opts: rshuffle([x.w, ...rshuffle(pool).slice(0, 3).map((y) => y.w)]), why: '' };
-    }),
-  ]);
-  let i = 0, done = false; const answers = [];
-  const prog = el('p', { class: 'persona' }, ''); const stem = el('p', { class: 'scene', style: 'white-space:pre-line;font-size:19px' }, '');
-  const body = el('div', { class: 'stack' });
+// 無限題庫:一題接一題,抽完一輪才重新洗牌(同一場考試內不重複)
+function stream(list, seen, key) {
+  let q = [];
+  return () => {
+    if (!q.length) { let pool = list.filter((x) => !seen.has(key(x))); if (!pool.length) { seen.clear(); pool = list; } q = rshuffle(pool); }
+    const x = q.pop(); seen.add(key(x)); return x;
+  };
+}
+// 限時無限題的共同外殼:q = next() 回傳 {stem,kind,a,opts?};答對題數即成績
+function playEndless(ctx, subject, mount, finish, cfg) {
+  let done = false, n = 0, right = 0; const log = []; let cur = null;
+  const body = el('div', { class: 'stack' }); const prog = el('p', { class: 'persona' }, '');
+  const give = (v) => {
+    log.push(`${log.length + 1}. ${cur.stem.replace(/\n/g, ' ')} 你的答案 ${v || '(空白)'} ${cfg.same(v, cur) ? '✔' : `✘(正解 ${cur.a})`}`);
+    if (cfg.same(v, cur)) right++;
+    next();
+  };
   const next = () => {
-    if (i >= qs.length) return end();
-    const q = qs[i]; prog.textContent = `第 ${i + 1} / ${qs.length} 題 · ${q.kind}`; stem.textContent = q.stem;
-    body.replaceChildren(prog, stem, el('div', { class: 'kanagrid' }, q.opts.map((o) => el('button', { class: 'opt', type: 'button', onclick: () => { answers.push(o); i++; next(); } }, o))));
+    if (done) return; cur = cfg.next(); n++; prog.textContent = `第 ${n} 題 · ${cur.kind}(不限題數,時間到即交卷)`;
+    cfg.render(body, prog, cur, give);
   };
   const end = () => {
     if (done) return; done = true; t.stop();
-    const right = qs.filter((q, k) => answers[k] === q.a).length;
-    const detail = qs.map((q, k) => `${k + 1}. ${q.stem.replace(/\n/g, ' ')} 你的答案 ${answers[k] || '未作答'} ${answers[k] === q.a ? '✔' : `✘(正解 ${q.a})`}`);
-    finish(Math.round((right / qs.length) * 100), `日文,答對 ${right} / ${qs.length} 題`, detail);
+    const score = Math.min(100, right * cfg.per);
+    finish(score, `${cfg.label},限時內答對 ${right} 題(共作答 ${log.length} 題;每答對 1 題 ${cfg.per} 分,${100 / cfg.per} 題即滿分,榜單以答對題數計)`, log.length ? log : ['沒有作答任何一題'], right);
   };
-  const f = frame(subject, '日文(單字・活用・文法)', body, end);
+  const f = frame(subject, cfg.label, body, end);
   mount.replaceChildren(f.node);
   const t = countdown(subject.secs, f.bar, f.label, end); next();
   return () => { done = true; t.stop(); };
 }
+const mcq = (body, prog, q, give, big) => body.replaceChildren(prog, el(big ? 'h2' : 'p', { class: big ? '' : 'scene', style: big ? '' : 'white-space:pre-line;font-size:19px' }, q.stem),
+  big ? el('div', { class: 'stack' }, q.opts.map((o, k) => el('button', { class: 'opt', type: 'button', onclick: () => give(o) }, el('b', {}, 'ABCD'[k] + '.'), o)))
+    : el('div', { class: 'kanagrid' }, q.opts.map((o) => el('button', { class: 'opt', type: 'button', onclick: () => give(o) }, o))));
+
+function playJp(ctx, subject, mount, finish) {
+  const W = ctx.exam.wordsJp, G = ctx.exam.grammarJp;
+  const ng = stream(G, ctx.seen.jpg, (x) => x.zh + x.a);
+  const nv = stream(W.filter((x) => x.t), ctx.seen.jp, (x) => x.w), nn = stream(W.filter((x) => !x.t), ctx.seen.jp, (x) => x.w);
+  const wq = (x) => { const pool = W.filter((y) => y.w !== x.w && !!y.t === !!x.t); return { stem: `「${x.zh}」的日文是?`, kind: x.t ? '動詞・形容詞' : '名詞', a: x.w, opts: rshuffle([x.w, ...rshuffle(pool).slice(0, 3).map((y) => y.w)]) }; };
+  return playEndless(ctx, subject, mount, finish, {
+    label: '日文(單字・活用・文法)', per: 5, same: (v, q) => v === q.a,
+    next: () => { const r = Math.random(); if (r < 0.42) { const g = ng(); return { stem: g.s ? `${g.zh}\n${g.s}` : g.zh, kind: g.s ? '助詞・文法填空' : '活用變化', a: g.a, opts: rshuffle([g.a, ...g.w]) }; } return r < 0.77 ? wq(nv()) : wq(nn()); },
+    render: (body, prog, q, give) => mcq(body, prog, q, give, false),
+  });
+}
 function playLang(ctx, subject, mount, finish) {
   if (ctx.lang === 'jp') return playJp(ctx, subject, mount, finish);
-  const jp = false;
-  const words = pickFresh(jp ? ctx.exam.wordsJp : ctx.exam.wordsEn, 12, jp ? ctx.seen.jp : ctx.seen.en, (x) => x.w);
-  let i = 0, done = false; const answers = [];
-  const prog = el('p', { class: 'persona' }, ''); const hint = el('div', { class: 'big', style: 'font-size:28px;letter-spacing:4px' }, ''); const zh = el('p', { class: 'lead' }, '');
-  const body = el('div', { class: 'stack' });
-  const KANA = { hira: [...'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん'], kata: [...'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン'] };
-  let cur = null, blank = -1, opts = [];
+  const nw = stream(ctx.exam.wordsEn, ctx.seen.en, (x) => x.w);
   const maskEn = (w) => { const keep = new Set([0]); rshuffle([...w].map((_, k) => k).slice(1)).slice(0, Math.floor(w.length * 0.35)).forEach((k) => keep.add(k)); return [...w].map((c, k) => (keep.has(k) ? c : '_')).join(' '); };
-  const next = () => {
-    if (i >= words.length) return end();
-    cur = words[i]; prog.textContent = `第 ${i + 1} / ${words.length} 題`; zh.textContent = cur.zh;
-    if (jp) {
-      const chars = [...cur.w]; const isKata = /[ァ-ヶ]/.test(cur.w[0]); const set = isKata ? KANA.kata : KANA.hira;
-      const cand = chars.map((c, k) => k).filter((k) => set.includes(chars[k])); blank = cand[Math.floor(Math.random() * cand.length)];
-      hint.textContent = chars.map((c, k) => (k === blank ? '＿' : c)).join(' ');
-      opts = rshuffle([chars[blank], ...rshuffle(set.filter((c) => c !== chars[blank])).slice(0, 3)]);
-      body.replaceChildren(prog, hint, zh, el('div', { class: 'kanagrid' }, opts.map((o) => el('button', { class: 'opt', type: 'button', onclick: () => answer(o) }, o))));
-    } else {
-      hint.textContent = maskEn(cur.w);
+  return playEndless(ctx, subject, mount, finish, {
+    label: '英文單字填空', per: 5, same: (v, q) => (v || '').trim().toLowerCase() === q.a,
+    next: () => { const w = nw(); return { stem: `${w.zh}(${maskEn(w.w)})`, kind: '單字', a: w.w }; },
+    render: (body, prog, q, give) => {
       const input = el('input', { type: 'text', autocomplete: 'off', autocapitalize: 'none', spellcheck: 'false', 'aria-label': '填入完整單字', class: 'txt' });
-      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') answer(input.value); });
-      body.replaceChildren(prog, hint, zh, input, el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: () => answer(input.value) }, '送出(Enter)'), el('button', { class: 'btn ghost', type: 'button', onclick: () => answer('') }, '跳過這題')));
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') give(input.value); });
+      body.replaceChildren(prog, el('div', { class: 'big', style: 'font-size:28px;letter-spacing:4px' }, q.stem.slice(q.stem.indexOf('(') + 1, -1)), el('p', { class: 'lead' }, q.stem.slice(0, q.stem.indexOf('('))), input,
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: () => give(input.value) }, '送出(Enter)'), el('button', { class: 'btn ghost', type: 'button', onclick: () => give('') }, '跳過這題')));
       input.focus();
-    }
-  };
-  const answer = (v) => { answers.push({ w: cur, blank, given: v }); i++; next(); };
-  const isRight = (a) => (jp ? a.given === [...a.w.w][a.blank] : a.given.trim().toLowerCase() === a.w.w);
-  const end = () => {
-    if (done) return; done = true; t.stop();
-    const right = answers.filter(isRight).length;
-    const detail = words.map((w, k) => {
-      const a = answers[k];
-      if (!a) return `${k + 1}. ${w.zh}(${w.w}):未作答 ✘`;
-      const mine = jp ? (a.given || '(空白)') : (a.given.trim() || '(空白)');
-      return `${k + 1}. ${w.zh}(${w.w}):你的答案 ${mine} ${isRight(a) ? '✔' : '✘'}`;
-    });
-    finish(Math.round((right / words.length) * 100), `${jp ? '日文' : '英文'},答對 ${right} / ${words.length} 題`, detail);
-  };
-  const f = frame(subject, jp ? '日文單字填空' : '英文單字填空', body, end);
-  mount.replaceChildren(f.node);
-  const t = countdown(subject.secs, f.bar, f.label, end); next();
-  return () => { done = true; t.stop(); };
+    },
+  });
 }
 
 /* ───── 數學:猜數字 4A0B(1–9、不重複) ───── */
@@ -324,29 +310,13 @@ function playSci(ctx, subject, mount, finish) {
 
 /* ───── 社會:五題歷史題(前四題各 25 分,第五題加分題) ───── */
 function playSoc(ctx, subject, mount, finish) {
-  const normal = pickFresh(ctx.exam.social.filter((x) => !x.hard), 4, ctx.seen.soc, (x) => x.q);
-  const bonus = pickFresh(ctx.exam.social.filter((x) => x.hard), 1, ctx.seen.socHard, (x) => x.q);
-  const qs = [...normal, ...bonus]; let i = 0, done = false; const picks = [];
-  const box = el('div', { class: 'stack' });
-  const end = () => {
-    if (done) return; done = true; t.stop();
-    const ok = qs.map((q, k) => picks[k] === q.right);
-    const score = ok.reduce((a, v, k) => a + (v ? 25 : 0), 0);
-    finish(score, `前 4 題答對 ${ok.slice(0, 4).filter(Boolean).length} 題;加分題${ok[4] ? '答對(+25 分)' : '沒有答對'}`,
-      qs.map((q, k) => `${k === 4 ? '加分題' : `第 ${k + 1} 題`}:${q.q} 你的答案:${picks[k] || '未作答'}(正解:${q.right})${ok[k] ? ' ✔' : ' ✘'}`));
-  };
-  const show1 = () => {
-    if (i >= qs.length) return end();
-    const q = qs[i]; const shown = rshuffle([q.right, ...q.wrong]);
-    box.replaceChildren(el('p', { class: 'persona' }, i === 4 ? '加分題(答對再加 25 分)' : `第 ${i + 1} / 4 題`), el('h2', {}, q.q),
-      ...shown.map((o, k) => el('button', { class: 'opt', type: 'button', onclick: () => { picks[i] = o; i++; show1(); } }, el('b', {}, 'ABCD'[k] + '.'), o)));
-  };
-  const f = frame(subject, '歷史題', box, end);
-  mount.replaceChildren(f.node);
-  const t = countdown(subject.secs, f.bar, f.label, end); show1();
-  return () => { done = true; t.stop(); };
+  const ns = stream(ctx.exam.social, ctx.seen.soc, (x) => x.q);
+  return playEndless(ctx, subject, mount, finish, {
+    label: '歷史題', per: 10, same: (v, q) => v === q.a,
+    next: () => { const x = ns(); return { stem: x.q, kind: x.hard ? '較難' : '歷史', a: x.right, opts: rshuffle([x.right, ...x.wrong]) }; },
+    render: (body, prog, q, give) => mcq(body, prog, q, give, true),
+  });
 }
-
 const PLAYERS = { lang: playLang, math: (c, s, m, f) => (c.variant === 'B' ? playMathB : playMathA)(c, s, m, f), sci: playSci, soc: playSoc };
 
 /* ───── 考場:四科並排、跳過、補考、查看結果、成績單 ───── */
@@ -372,7 +342,7 @@ const Exam = {
       const goBtn = el('button', { class: 'btn', type: 'button', onclick: () => { if (allDecided) report(); } }, allDecided ? '公布成績單' : '每科都應考或跳過後,才能公布成績單');
       goBtn.disabled = !allDecided;
       show(el('h2', {}, '命運的考場'), el('p', { class: 'lead' }, '求學階段,你要面對四科考試。每科一次,可以跳過,也可以單科補考(以最後一次為準)。交卷後的成績,會決定你走上的志向。'),
-        el('div', { class: 'examgrid' }, cols), el('div', { class: 'row' }, goBtn));
+        el('div', { class: 'examgrid' }, cols), el('div', { class: 'row' }, goBtn, typeof Hall !== 'undefined' && Hall.on ? el('button', { class: 'btn ghost', type: 'button', onclick: () => Hall.page(null, hub) }, '芳名錄') : null));
     };
     const intro = (s) => {
       const startBtns = s.id === 'lang'
@@ -386,8 +356,9 @@ const Exam = {
     };
     const start = (s, opt = {}) => {
       const mount = el('div'); show(mount);
-      cleanup = PLAYERS[s.id]({ exam, seen, ...opt }, s, mount, (score, note, detail) => {
-        cleanup = null; state[s.id] = { status: 'taken', score, note, detail }; hub();
+      cleanup = PLAYERS[s.id]({ exam, seen, ...opt }, s, mount, (score, note, detail, raw) => {
+        cleanup = null; state[s.id] = { status: 'taken', score, note, detail };
+        if (typeof Hall !== 'undefined') Hall.offer(s.id, raw === undefined ? score : raw, hub); else hub();
       });
     };
     const viewResult = (s) => {

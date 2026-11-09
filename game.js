@@ -86,7 +86,8 @@ function start() {
   show(
     el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'lead' }, '選擇生日,系統會把你帶回過去的某個時間。故事會替你安排一連串的抉擇;你走的每一步,最後都會對回一位真實存在過的人,在歷史上真正做過的事。有時命運不照你的意思走,那也會被寫進故事裡。'),
-    el('div', { class: 'card' }, form));
+    el('div', { class: 'card' }, form),
+    typeof Hall !== 'undefined' && Hall.on ? el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: () => Hall.page(null, start) }, '芳名錄')) : null);
 }
 
 function begin(birth, msg, round = 0, usedBands = []) {
@@ -366,8 +367,8 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261117').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261117').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261118').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261118').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
