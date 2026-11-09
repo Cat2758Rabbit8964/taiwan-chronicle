@@ -145,3 +145,9 @@ body.login footer{color:var(--red);border-top:1px solid rgba(179,23,15,.4);font-
 
 .harm{border-left:4px solid #b3372c;padding-left:14px}
 .harm ul{margin:6px 0;padding-left:1.3em}
+
+/* 底圖:固定在最後面、很淡,內容(卡片、按鈕)蓋在上面 */
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background-size:cover;background-position:center;opacity:0;transition:opacity .7s;filter:grayscale(.55) sepia(.2)}
+.bg.on{opacity:.14}
+@media (prefers-color-scheme:dark){.bg.on{opacity:.1}}
+.bgcredit{margin:0 0 6px;font-size:12px}

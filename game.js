@@ -10,6 +10,7 @@ const KEEP = 2;            // 選擇之後至少要剩幾位,否則故事會轉�
 const MAX_PRE = 3;         // 最後一章之前最多問幾個情境題
 const MIN_PRE = 2;         // 最後一章之前至少問幾個(加上最後一章,至少三個情境題)
 let data = null;
+let bd = {};     // data/backdrops.json:各時間帶的底圖(台灣事件簿的老照片)
 let harm = {};   // 結果頁「加害者是誰」區塊的資料(data/harm.json;網址加 ?harm=draft 可預覽審稿中的草稿)
 let exam = null;
 let st = null; // { birth, bands, band, pool, career, asked, usedSit }
@@ -111,6 +112,7 @@ function begin(birth, msg, round = 0, usedBands = []) {
 
 function chooseBand(b) {
   st.band = b;
+  backdrop(b.id, st.birth + 'x');
   st.pool = eligible(st.birth).filter((p) => p.band === b.id && p.acts.L);
   st.career = null; st.asked = []; st.usedSit = [];
   askCareer();
@@ -230,6 +232,7 @@ function askPlace() {
 function askSituation(sit) {
   const def = data.sits[sit];
   const n = st.asked.filter((a) => a.kind === 'sit').length + 1 + (st.room ? 1 : 0);   // 房間算情境 2
+  backdrop(st.band.id, `${st.birth}s${n}`);
   // 依稀的最後一刻:沒有人對應的記憶片段直接拿掉,不提供轉折
   const cc = catCount(st.pool, sit);
   const cats = sit === 'L' ? CATS.filter((c) => (cc[c] || 0) > 0) : CATS;
@@ -355,6 +358,7 @@ function result() {
     (saveEl = el('p', { class: 'persona' }, saveMsg)),
     el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。' + (harm[p.id] ? '對遭到迫害的人,我們不評斷他們的選擇;該被檢視的,是加害的一方做了什麼。' : '歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'),));
   const reveal = () => {
+    backdrop(p.band, st.birth + 'r' + st.round);
     render();
     if (outcome) return;
     outcome = collect(p); announce(p, outcome);
@@ -389,7 +393,37 @@ function paperPage(...nodes) {
     el('div', { class: 'paper' }, el('div', { class: 'stamp', 'aria-hidden': 'true' }, '密'), ...nodes));
   document.body.className = 'login';   // 整個頁面(含底部說明)都換成名冊的紙張與紅字
 }
+/* ───── 底圖:淡淡的台灣老照片,放在所有內容的後面;換一個情境就換一張 ───── */
+const bgBox = { layer: null, credit: null, cur: null, used: new Set() };
+function backdrop(band, salt) {
+  try {
+    const pool = (bd[band] && bd[band].length) ? bd[band] : Object.values(bd).flat();
+    if (!pool.length || typeof Image === 'undefined') return;
+    if (!bgBox.layer) {
+      bgBox.layer = document.createElement('div'); bgBox.layer.className = 'bg'; bgBox.layer.setAttribute('aria-hidden', 'true'); document.body.prepend(bgBox.layer);
+      const f = document.querySelector && document.querySelector('footer');
+      if (f) { bgBox.credit = document.createElement('p'); bgBox.credit.className = 'bgcredit'; f.append(bgBox.credit); }
+    }
+    // 從依 salt 決定的位置開始,挑一張這一輪還沒用過的(用完才重來),所以換情境一定換圖、也盡量不重複
+    const start0 = hash(`${salt}:${band}`) % pool.length;
+    let pick = null;
+    for (let k = 0; k < pool.length && !pick; k++) { const c = pool[(start0 + k) % pool.length]; if (!bgBox.used.has(c.f) && c !== bgBox.cur) pick = c; }
+    if (!pick) { bgBox.used.clear(); pick = pool[start0] === bgBox.cur ? pool[(start0 + 1) % pool.length] : pool[start0]; }
+    bgBox.used.add(pick.f); bgBox.cur = pick;
+    const url = `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(pick.f)}?width=1280`;
+    const img = new Image();
+    img.onload = () => {
+      if (bgBox.cur !== pick) return;
+      bgBox.layer.classList.remove('on');
+      setTimeout(() => { if (bgBox.cur !== pick) return; bgBox.layer.style.backgroundImage = `url("${url}")`; bgBox.layer.classList.add('on'); }, 350);
+      if (bgBox.credit) bgBox.credit.replaceChildren(`背景圖:${pick.c}(Wikimedia Commons,${pick.l}) `, Object.assign(document.createElement('a'), { href: `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(pick.f)}`, target: '_blank', rel: 'noopener', textContent: '看原圖' }));
+    };
+    img.src = url;
+  } catch (e) { /* 底圖只是裝飾,失敗就沒有 */ }
+}
+
 function start() {
+  backdrop(0, Date.now());
   const msg = el('p', { class: 'err', role: 'alert' });
   const idIn = el('input', { type: 'text', maxlength: '16', autocomplete: 'off', autocapitalize: 'characters', spellcheck: 'false', 'aria-label': '遊戲 ID', placeholder: '遊戲 ID(6 到 16 個英數字)' });
   idIn.value = Save.on ? Save.remembered() : '';
@@ -465,6 +499,7 @@ function accountBar() {
 }
 
 function room(proceed) {
+  if (st) backdrop(st.band.id, st.birth + 'room');
   // 每扇門:門板(leaf)畫在房間的牆上,門鎖(lock)用對應的顏色;下面是文字標示
   const door = (cls, tag, state, sub, onclick, aria, lock) => el('button', { class: `doorcol ${cls}`, type: 'button', onclick, 'aria-label': aria },
     el('span', { class: 'leaf', 'aria-hidden': 'true' }, lock ? el('span', { class: `lock ${lock}` }) : null),
@@ -553,9 +588,10 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261127').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261127').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261127').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
-  .then(([d, ex, h]) => { data = d; exam = ex; harm = h || {}; start(); })
+Promise.all([fetch('data/game.json?v=20261128').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261128').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261128').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('data/backdrops.json?v=20261128').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
+  .then(([d, ex, h, b]) => { data = d; exam = ex; harm = h || {}; bd = b || {}; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
