@@ -31,3 +31,8 @@
 - `scripts/game/sim.py` 以隨機玩家模擬數十萬局,檢查每位人物的出場機會,並可用 `--balance` 調整各人物的平衡權重(`wt`);`scripts/game/harness.js` 用假 DOM 在 macOS 的 `osascript -l JavaScript` 裡跑一局。權重只影響「同樣符合你選擇的人」誰先出場,不會挑出和你選擇對不上的人。
 
 - `exam.js` 是四科小遊戲(養貓用 canvas,無外部函式庫;數學有 A、B 兩份考卷);`data/exam.json` 放單字題庫與社會科題庫,社會科題目都對應站內事件 id,題目與答案取自該事件頁已載的事實。
+
+## 遊戲的存檔、芳名錄與鑰匙
+- `save.js`、`hall.js`、`hall-config.js`:以 Supabase 實作遊戲 ID 存檔與每科芳名錄,資料表與函式見 [docs/hall-setup.md](docs/hall-setup.md)。
+- `scripts/game/tag_keys.py`:替每位人物標註鑰匙類別(黃=日治時期台灣人、淺藍=戰後政治受難者、粉紅=女性),寫入 `data/game.json` 的 `k` 欄位;名單是人工判定,規則寫在檔案開頭。
+- `archive/`:暫時下架的遊戲(數學 A 卷猜數字)。

@@ -31,3 +31,48 @@ alter table public.hall add constraint hall_subject_check check (subject in ('la
 alter table public.hall drop constraint hall_score_check;
 alter table public.hall add constraint hall_score_check check (score between 1 and 100000);
 ```
+
+## 存檔(遊戲 ID)用的資料表與函式
+資料表不開放任何直接存取,只能透過下面的函式,憑「完整的 8 碼編號」讀寫那一筆,無法列出別人的編號。在 SQL Editor 執行:
+
+```sql
+create table public.saves (
+  id text primary key check (id ~ '^[A-HJ-NP-Z2-9]{8}$'),
+  nick text not null check (char_length(nick) between 1 and 12),
+  data jsonb not null default '{}'::jsonb check (pg_column_size(data) < 30000),
+  updated_at timestamptz not null default now()
+);
+alter table public.saves enable row level security;   -- 不建立任何政策:匿名金鑰無法直接讀寫
+
+create function public.save_create(p_id text, p_nick text) returns boolean
+language plpgsql security definer set search_path = public as $$
+begin
+  insert into saves(id, nick) values (p_id, p_nick);
+  return true;
+exception when unique_violation then return false;
+end $$;
+
+create function public.save_get(p_id text) returns table(nick text, data jsonb)
+language sql security definer set search_path = public as $$
+  select s.nick, s.data from saves s where s.id = p_id;
+$$;
+
+create function public.save_put(p_id text, p_nick text, p_data jsonb) returns boolean
+language plpgsql security definer set search_path = public as $$
+begin
+  update saves set nick = p_nick, data = p_data, updated_at = now() where id = p_id;
+  return found;
+end $$;
+
+create function public.save_del(p_id text) returns boolean
+language plpgsql security definer set search_path = public as $$
+begin
+  delete from saves where id = p_id;
+  return found;
+end $$;
+
+revoke all on function public.save_create, public.save_get, public.save_put, public.save_del from public;
+grant execute on function public.save_create, public.save_get, public.save_put, public.save_del to anon;
+```
+
+注意:編號等同密碼,知道編號的人就能讀寫、刪除那份進度。編號有 32^8 約 1 兆種組合,不易猜到,但不要公開張貼。

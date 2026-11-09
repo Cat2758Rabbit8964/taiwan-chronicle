@@ -3,6 +3,7 @@
    需要 el()、show()(game.js)。設定見 hall-config.js、docs/hall-setup.md。 */
 const HALL_SUBJECTS = [['lang_en', '語文科・英文', '分數'], ['lang_jp', '語文科・日文', '分數'], ['math', '數學科', '分數'], ['sci', '自然科', '分數'], ['soc', '社會科', '分數']];
 const Hall = {
+  nick: null,   // 登入後由 game.js 設定:有綽號就用綽號留名
   get on() { const c = window.HALL_CONFIG || {}; return !!(c.url && c.key); },
   _h() { const c = window.HALL_CONFIG; return { apikey: c.key, Authorization: `Bearer ${c.key}`, 'Content-Type': 'application/json' }; },
   async top(subject, n = 5) {
@@ -25,14 +26,14 @@ const Hall = {
     let rows;
     try { rows = await this.top(subjectId); } catch (e) { return done(); }
     if (!this.qualifies(rows, raw)) return done();
-    const input = el('input', { type: 'text', maxlength: '12', autocomplete: 'off', class: 'txt', 'aria-label': '你的名字(最多 12 字)', placeholder: '名字或暱稱' });
+    const input = this.nick ? null : el('input', { type: 'text', maxlength: '12', autocomplete: 'off', class: 'txt', 'aria-label': '你的名字(最多 12 字)', placeholder: '名字或暱稱' });
     const msg = el('p', { class: 'err', role: 'alert' });
     const send = el('button', { class: 'btn', type: 'button', onclick: async () => {
-      const name = input.value.trim();
+      const name = this.nick || input.value.trim();
       if (!name) { msg.textContent = '請輸入名字,或選擇「不留名」。'; return; }
       send.disabled = true; msg.textContent = '';
       try { await this.submit(subjectId, name, raw); this.page(subjectId, done); } catch (e) { msg.textContent = '送出失敗,請稍後再試。'; send.disabled = false; }
-    } }, '留名到芳名錄');
+    } }, this.nick ? `以「${this.nick}」留名` : '留名到芳名錄');
     show(el('p', { class: 'persona' }, `${meta[1]} · 芳名錄`), el('h2', {}, `恭喜!你的${meta[2]} ${raw},進入前五名`),
       el('p', { class: 'lead' }, '要不要把名字寫在芳名錄上?送出後全站玩家都看得到。請不要使用真實姓名以外的個資,也不要輸入不當字詞;站長可能移除不適當的名字。只會送出你輸入的名字、科目和成績。'),
       input, msg, el('div', { class: 'row' }, send, el('button', { class: 'btn ghost', type: 'button', onclick: done }, '不留名')));

@@ -55,7 +55,7 @@ function agoLabel(b) {
 
 /* ───── 生日:三個下拉選單 ───── */
 function daysIn(y, m) { return new Date(y, m, 0).getDate(); }
-function start() {
+function birthdayPage() {
   const now = new Date();
   const ySel = el('select', { id: 'by', 'aria-label': '年' }, el('option', { value: '' }, '年'));
   for (let y = now.getFullYear(); y >= 1900; y--) ySel.append(el('option', { value: y }, String(y)));
@@ -87,7 +87,8 @@ function start() {
     el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'lead' }, '選擇生日,系統會把你帶回過去的某個時間。故事會替你安排一連串的抉擇;你走的每一步,最後都會對回一位真實存在過的人,在歷史上真正做過的事。有時命運不照你的意思走,那也會被寫進故事裡。'),
     el('div', { class: 'card' }, form),
-    typeof Hall !== 'undefined' && Hall.on ? el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: () => Hall.page(null, start) }, '芳名錄')) : null);
+    typeof Hall !== 'undefined' && Hall.on ? el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: () => Hall.page(null, birthdayPage) }, '芳名錄')) : null,
+    accountBar());
 }
 
 function begin(birth, msg, round = 0, usedBands = []) {
@@ -104,7 +105,8 @@ function begin(birth, msg, round = 0, usedBands = []) {
   let r = hash(birth + 'b' + round) % total, i = 0;
   while (r >= w[i]) { r -= w[i]; i++; }
   st = { birth, round, usedBands: [...usedBands, ok[i].id], band: null, pool: [], career: null, asked: [], usedSit: [] };
-  chooseBand(ok[i]);
+  const chosen = ok[i];
+  room(() => chooseBand(chosen));
 }
 
 function chooseBand(b) {
@@ -329,7 +331,8 @@ function result() {
   const bottom = political(p) ? memorial : relatedBox;
   const otherLine = (q) => el('div', {}, el('a', { href: q.ref, target: '_blank', rel: 'noopener' }, q.name), `(${q.life},${q.job})`);
 
-  const reveal = () => show(
+  let outcome = null, saveMsg = '', saveEl = null;
+  const render = () => show(
     el('p', { class: 'persona' }, `你回到的是 ${b.to >= 2026 ? `${b.from} 年以後` : `${b.from} 到 ${b.to} 年前後`} · 你的上輩子是`),
     el('div', { class: 'card' },
       el('div', { class: 'big' }, p.name),
@@ -344,10 +347,162 @@ function result() {
     el('div', { class: 'row' },
       el('a', { class: 'btn', href: `index.html#y=${p.ly}`, style: 'text-decoration:none' }, `到台灣事件簿,看 ${p.ly} 年前後的台灣`),
       el('button', { class: 'btn ghost', type: 'button', onclick: () => begin(st.birth, null, st.round + 1, st.usedBands) }, '再玩一次(換一個時間)'),
-      el('button', { class: 'btn ghost', type: 'button', onclick: start }, '重新開始')),
+      el('button', { class: 'btn ghost', type: 'button', onclick: () => treasure(render) }, '查看尋寶狀態'),
+      el('button', { class: 'btn ghost', type: 'button', onclick: birthdayPage }, '重新開始')),
+    (saveEl = el('p', { class: 'persona' }, saveMsg)),
     el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'));
+  const reveal = () => {
+    render();
+    if (outcome) return;
+    outcome = collect(p); announce(p, outcome);
+    persist().then((m) => { saveMsg = m; if (saveEl) saveEl.textContent = m; });
+  };
   story(p, reveal);
 }
+
+/* ───── 登入、存檔、房間與尋寶 ───── */
+const KEYS = [
+  { k: 'y', name: '黃色', label: '日治時期台灣人', need: 5, cls: 'ky' },
+  { k: 'b', name: '淺藍色', label: '戰後遭國民政府迫害的政治受難者', need: 10, cls: 'kb' },
+  { k: 'p', name: '粉紅色', label: '女性人物', need: 5, cls: 'kp' },
+];
+let acct = null;   // { id|null(訪客), nick, got:[人物 id], hist:[{id,t}] }
+const personById = (id) => data.people.find((q) => q.id === id);
+const keyHave = (K) => acct.got.map(personById).filter((q) => q && (q.k || '').includes(K.k));
+function setAcct(a) { acct = a; if (typeof Hall !== 'undefined') Hall.nick = a && a.id ? a.nick : null; if (a && a.id) Save.remember(a.id); }
+
+function modal(title, lines, onClose) {
+  const back = el('div', { class: 'modal-back' });
+  const close = () => { back.remove(); document.removeEventListener('keydown', onKey); if (onClose) onClose(); };
+  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  const ok = el('button', { class: 'btn', type: 'button', onclick: close }, '好');
+  back.append(el('div', { class: 'modal', role: 'dialog', 'aria-modal': 'true', 'aria-label': title }, el('h2', {}, title), ...lines.map((x) => (typeof x === 'string' ? el('p', {}, x) : x)), el('div', { class: 'row' }, ok)));
+  document.body.append(back); document.addEventListener('keydown', onKey); ok.focus();
+}
+
+function start() {
+  const msg = el('p', { class: 'err', role: 'alert' });
+  const idIn = el('input', { type: 'text', class: 'txt', maxlength: '12', autocomplete: 'off', 'aria-label': '遊戲 ID', placeholder: 'XXXX-XXXX' });
+  idIn.value = Save.on ? (Save.remembered() ? Save.fmt(Save.remembered()) : '') : '';
+  const nickIn = el('input', { type: 'text', class: 'txt', maxlength: '12', autocomplete: 'off', 'aria-label': '綽號(最多 12 字)', placeholder: '你的綽號' });
+  const login = el('button', { class: 'btn', type: 'button', onclick: async () => {
+    const id = Save.norm(idIn.value); msg.textContent = '';
+    if (!Save.valid(id)) { msg.textContent = '遊戲 ID 是 8 個英數字(例如 AB3D-K7MQ)。'; return; }
+    login.disabled = true;
+    try { const rec = await Save.load(id); if (!rec) { msg.textContent = '找不到這個遊戲 ID,請確認有沒有抄錯。'; login.disabled = false; return; } setAcct({ id, ...rec }); welcome(); }
+    catch (e) { msg.textContent = '連線失敗,請稍後再試。'; login.disabled = false; }
+  } }, '登入');
+  const create = el('button', { class: 'btn', type: 'button', onclick: async () => {
+    const nick = nickIn.value.trim(); msg.textContent = '';
+    if (!nick) { msg.textContent = '請先填綽號,芳名錄會用到。'; return; }
+    create.disabled = true;
+    try { const id = await Save.create(nick); setAcct({ id, nick, got: [], hist: [] }); showNewId(); }
+    catch (e) { msg.textContent = '建立失敗,請稍後再試。'; create.disabled = false; }
+  } }, '創建新的遊戲 ID');
+  const guest = () => { setAcct({ id: null, nick: '', got: [], hist: [] }); birthdayPage(); };
+  show(
+    el('a', { class: 'corner', href: 'index.html' }, '前往台灣事件簿'),
+    el('h1', {}, '尋找你上輩子的樣子'),
+    el('p', { class: 'lead' }, '請輸入或創建您的遊戲 ID 以及綽號(芳名錄會用到)。遊戲 ID 能讓你下次接著收集。'),
+    Save.on ? el('div', { class: 'stack' },
+      el('div', { class: 'card stack' }, el('label', {}, '我已經有遊戲 ID'), idIn, el('div', { class: 'row' }, login)),
+      el('div', { class: 'card stack' }, el('label', {}, '我是新玩家:綽號'), nickIn, el('div', { class: 'row' }, create)),
+      msg) : el('p', { class: 'persona' }, '存檔功能目前尚未開放,可以先不登入直接玩。'),
+    el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: guest }, '不登入,直接玩')),
+    el('p', { class: 'persona' }, '不登入也能玩,但收集到的鑰匙碎片不會保存。')) ;
+}
+function showNewId() {
+  const code = Save.fmt(acct.id);
+  const copy = el('button', { class: 'btn ghost', type: 'button', onclick: () => { try { navigator.clipboard.writeText(code).then(() => { copy.textContent = '已複製'; }, () => { copy.textContent = '請手動抄下'; }); } catch (e) { copy.textContent = '請手動抄下'; } } }, '複製');
+  show(el('p', { class: 'persona' }, `歡迎你,${acct.nick}`), el('h2', {}, '你的遊戲 ID'), el('div', { class: 'big idbox' }, code),
+    el('div', { class: 'row' }, copy),
+    el('p', { class: 'lead' }, '請抄下來或截圖保存。下次輸入這組編號,就能接著收集。知道編號的人都能讀寫你的進度,所以不要公開張貼;編號弄丟了無法找回。'),
+    el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: birthdayPage }, '我已記下,開始')));
+}
+function welcome() {
+  const nickIn = el('input', { type: 'text', class: 'txt', maxlength: '12', 'aria-label': '綽號', value: acct.nick });
+  nickIn.value = acct.nick;
+  const msg = el('p', { class: 'err', role: 'alert' });
+  const go = el('button', { class: 'btn', type: 'button', onclick: async () => {
+    const nick = nickIn.value.trim(); if (!nick) { msg.textContent = '綽號不能是空的。'; return; }
+    if (nick !== acct.nick) { acct.nick = nick; Hall.nick = nick; try { await Save.put(acct.id, nick, acct.got, acct.hist); } catch (e) { msg.textContent = '綽號沒有存成功,但可以繼續玩。'; } }
+    birthdayPage();
+  } }, '繼續');
+  show(el('p', { class: 'persona' }, `遊戲 ID ${Save.fmt(acct.id)}`), el('h2', {}, '歡迎回來'),
+    el('p', { class: 'lead' }, `已收集 ${acct.got.length} 位人物,玩過 ${acct.hist.length} 場。綽號可以修改:`), nickIn, msg, el('div', { class: 'row' }, go));
+}
+function accountBar() {
+  if (!acct) return null;
+  const box = el('div', { class: 'acct' });
+  const render = () => {
+    if (!acct.id) { box.replaceChildren(el('span', {}, '目前是訪客,收集不會保存。'), el('button', { class: 'btn ghost', type: 'button', onclick: start }, '登入或創建 ID')); return; }
+    box.replaceChildren(el('span', {}, `${acct.nick} · ID ${Save.fmt(acct.id)}`),
+      el('button', { class: 'btn ghost', type: 'button', onclick: () => { setAcct(null); start(); } }, '登出'),
+      el('button', { class: 'btn ghost', type: 'button', onclick: confirmDel }, '刪除我的存檔'));
+  };
+  const confirmDel = () => box.replaceChildren(el('span', {}, '確定刪除這份存檔嗎?收集的人物與紀錄都會消失,無法復原。'),
+    el('button', { class: 'btn', type: 'button', onclick: async () => { try { await Save.del(acct.id); Save.remember(''); setAcct(null); start(); } catch (e) { box.replaceChildren(el('span', { class: 'err' }, '刪除失敗,請稍後再試。')); } } }, '確定刪除'),
+    el('button', { class: 'btn ghost', type: 'button', onclick: render }, '取消'));
+  render(); return box;
+}
+
+function room(proceed) {
+  const door = (cls, tag, state, sub, onclick, aria) => el('button', { class: `door ${cls}`, type: 'button', onclick, 'aria-label': aria }, el('span', { class: 'dtag' }, tag), el('b', {}, state), el('small', {}, sub));
+  const doors = [door('d0', '第一扇門', '🚪 開著', '尋找你上輩子的樣子', proceed, '第一扇門,開著,通往尋找你上輩子的樣子'),
+    ...KEYS.map((K, i) => {
+      const n = keyHave(K).length, open = n >= K.need;
+      return door(K.cls, `第${['二', '三', '四'][i]}扇門`, open ? '🔓 已解鎖' : '🔒 上鎖', `${K.name}的門 ${Math.min(n, K.need)} / ${K.need}`, () => {
+        if (open) modal(`${K.name}的門打開了`, ['鑰匙完成,門鎖喀的一聲開了。', '不過這扇門後面的世界,還沒有開放。']);
+        else modal(`${K.name}的門上了鎖`, [`需要集滿 ${K.need} 位${K.label},才能解開這道鎖。`, `目前集到 ${n} 位。每一場遊戲揭曉的人物若屬於這一類,就會得到一個鑰匙碎片。`]);
+      }, `${K.name}的門,${open ? '已解鎖' : '上鎖'}`);
+    })];
+  show(el('p', { class: 'persona' }, '房間'), el('h2', {}, '你在一個陌生的房間醒來'),
+    el('p', { class: 'scene' }, '四周有四扇門。其中一扇敞開著,門縫透出光;另外三扇都上了鎖,鎖的顏色各不相同。'),
+    el('div', { class: 'doors' }, doors),
+    el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: () => treasure(() => room(proceed)) }, '查看尋寶狀態')));
+}
+
+function collect(p) {
+  if (!acct) setAcct({ id: null, nick: '', got: [], hist: [] });
+  const first = !acct.got.includes(p.id);
+  acct.hist.push({ id: p.id, t: new Date().toISOString().slice(0, 10) });
+  if (first) acct.got.push(p.id);
+  return { first, hit: KEYS.filter((K) => (p.k || '').includes(K.k)) };
+}
+function announce(p, r) {
+  if (!r.hit.length) return;
+  if (!r.first) { modal('這位人物你已經收集過了', [`${p.name}已經在你的名冊裡,不會重複計算。`]); return; }
+  const lines = r.hit.map((K) => { const n = keyHave(K).length; return `${K.name}鑰匙碎片:${Math.min(n, K.need)} / ${K.need}(${K.label})${n >= K.need ? ' ——鑰匙集滿了!回到房間,那扇門已經可以打開。' : ''}`; });
+  if (!acct.id) lines.push('你目前是訪客,關掉網頁後這些碎片就不見了。');
+  modal(`恭喜!你得到了鑰匙碎片`, [`${p.name}符合:`, ...lines]);
+}
+async function persist() {
+  if (!acct || !acct.id) return acct && acct.hist.length ? '未登入,這次的收集不會被保存。' : '';
+  try {
+    const cur = await Save.load(acct.id);
+    if (!cur) return '存檔失敗:這個遊戲 ID 已不存在。';
+    const m = Save.merge(acct, cur); acct.got = m.got; acct.hist = m.hist;
+    return (await Save.put(acct.id, acct.nick, acct.got, acct.hist)) ? '已存檔。' : '存檔失敗:這個遊戲 ID 已不存在。';
+  } catch (e) { return '存檔失敗(網路問題),下次揭曉人物時會再試一次。'; }
+}
+// 尋寶狀態:各類收集進度,與仿戒嚴時期公文的名冊
+function treasure(back) {
+  const sections = KEYS.map((K) => {
+    const have = keyHave(K), n = have.length, pct = Math.min(100, Math.round((n / K.need) * 100));
+    return el('section', { class: 'sec' },
+      el('h3', {}, `${K.name}鑰匙 · ${K.label}`),
+      el('div', { class: 'keybar' }, el('i', { class: K.cls, style: `width:${pct}%` })),
+      el('p', { class: 'persona' }, `${n} / ${K.need}${n >= K.need ? ' · 鑰匙已完成' : ''}`),
+      el('div', { class: 'register', role: 'region', 'aria-label': `${K.name}鑰匙名冊` },
+        el('div', { class: 'stamp', 'aria-hidden': 'true' }, '密'),
+        el('div', { class: 'rtitle' }, `${K.label}　名冊`),
+        have.length ? el('ol', {}, have.map((q) => el('li', {}, el('span', { class: 'rname' }, q.name), `　${q.life}　${q.job}`))) : el('p', { class: 'rempty' }, '(尚無人名)')));
+  });
+  show(el('h2', {}, '尋寶狀態'), el('p', { class: 'lead' }, `已收集 ${acct.got.length} 位人物。同一個人符合多類時,每一類都會算。名冊的樣式是仿戒嚴時期公文的設計,只列姓名、生卒與職業。`),
+    !acct.id ? el('p', { class: 'persona' }, '你目前是訪客,這些收集不會保存。') : null,
+    ...sections, el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: back }, '回上一頁')));
+}
+
 
 /* ───── 放榜之後:從成績單說起,一路引導到這個人最後的行業 ───── */
 const SUBJ = { lang: '語文', math: '數學', sci: '自然', soc: '社會' };
@@ -367,8 +522,8 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261120').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261120').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261121').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261121').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));

@@ -1,7 +1,7 @@
 :root{--bg:#f6f3ec;--ink:#2a2620;--muted:#6f675a;--card:#fffdf8;--line:#d9d2c2;--accent:#a8761f;--accent-ink:#fff;--bar:#e8dfc9}
 @media (prefers-color-scheme:dark){:root{--bg:#1d1b17;--ink:#ece6d8;--muted:#a59d8c;--card:#2a2722;--line:#443f35;--accent:#d9a441;--accent-ink:#1d1b17;--bar:#3a352c}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+body{position:relative;margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,"PingFang TC","Noto Sans TC",sans-serif;
   min-height:100vh;display:flex;flex-direction:column;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #app{width:100%;max-width:680px;margin:0 auto;padding-block:32px 16px;flex:1}
@@ -78,3 +78,31 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .fallen{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
 .fallen li{border-left:3px solid var(--line);padding-left:12px;font-size:14px}
 .fallen .links{margin-top:2px}
+
+.corner{position:absolute;top:10px;right:max(16px,env(safe-area-inset-right,0px));font-size:13px}
+.acct{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:16px;font-size:13px;color:var(--muted)}
+.acct .btn{padding:6px 12px;font-size:13px}
+.idbox{letter-spacing:6px;text-align:center;border:2px dashed var(--accent);border-radius:10px;padding:12px;user-select:all}
+.doors{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:8px 0 16px}
+.door{display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center;border:3px solid;border-radius:14px 14px 4px 4px;padding:22px 8px;min-height:130px;color:#2a2620;font-weight:600}
+.door b{font-size:18px}
+.door small{font-size:12px;opacity:.85}
+.door .dtag{font-size:12px;letter-spacing:2px;opacity:.75}
+.door.d0{background:#c89a5e;border-color:#7a5428}
+.door.ky{background:#f2cf4b;border-color:#a48414}
+.door.kb{background:#a9d9ee;border-color:#4f8fb0}
+.door.kp{background:#f6b9cf;border-color:#c0698d}
+.door:hover,.door:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.modal-back{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:20px;max-width:440px;width:100%;max-height:90vh;overflow:auto}
+.keybar{height:10px;border-radius:5px;background:var(--bar);overflow:hidden;margin:4px 0}
+.keybar i{display:block;height:100%}
+.keybar .ky{background:#e0b81c}.keybar .kb{background:#5aa7cf}.keybar .kp{background:#e07aa3}
+.register{position:relative;background:#efe2c0;color:#b3170f;border:3px double #b3170f;border-radius:4px;padding:18px 18px 14px;
+  font-family:"Xingkai TC","STXingkai","HanziPen TC","華文行楷","BiauKai","DFKai-SB","標楷體","Kaiti TC",serif;font-size:20px;line-height:1.9}
+.register .rtitle{text-align:center;font-size:24px;letter-spacing:6px;border-bottom:2px solid #b3170f;padding-bottom:6px;margin-bottom:8px}
+.register ol{margin:0;padding-left:2.4em;list-style:cjk-ideographic}
+.register li{border-bottom:1px dotted #b3170f}
+.register .rname{font-size:22px;font-weight:700}
+.register .rempty{margin:0;text-align:center}
+.register .stamp{position:absolute;top:10px;right:12px;width:44px;height:44px;border:3px solid #b3170f;border-radius:50%;display:flex;align-items:center;justify-content:center;transform:rotate(-12deg);font-size:24px;opacity:.75}
