@@ -4,7 +4,7 @@
    考試過程不告知對錯;交卷後回到考場,再由「查看考試結果」看分數與逐題對照。 */
 const SUBJECTS = [
   { id: 'lang', name: '語文', secs: 100, intro: '限時 100 秒,題目不限數量,一題接一題,答對越多越好。英文為單字填空;日文為單字、動詞形容詞活用與文法選擇題。答錯不扣分。每答對 1 題 5 分,20 題滿分 100;排行榜以答對題數計。' },
-  { id: 'math', name: '數學', secs: 120, intro: '限時 120 秒,有兩種考卷可以選。\nA 卷「猜數字」:電腦想了 4 個不含 0、不重複的數字(1 到 9),你每次猜 4 個數字;A 是數字和位置都對,B 是數字對但位置不對。8 次內猜中拿滿分 100 分,每多猜 1 次扣 10 分,只要猜中最低 80 分;沒猜中則依最接近的一次給部分分(最高 60 分)。\nB 卷「四則運算」:電腦給你 4 個 1 到 10 的數字和一個目標數字(1 到 100),用 + − × ÷ 和括號把 4 個數字各用一次,算出目標。題目一題接一題出,解得越多分越高(每題 20 分,滿分 100)。' },
+  { id: 'math', name: '數學', secs: 120, intro: '限時 120 秒,四則運算湊目標。電腦給你 4 個 1 到 10 的數字和一個目標數字(1 到 100),用 + − × ÷ 和括號把 4 個數字各用一次,算出目標。題目一題接一題出,解得越多分越高:每題 20 分,分數沒有上限。排行榜以分數計。' },
   { id: 'sci', name: '自然', secs: 60, intro: '限時 60 秒,養一隻貓。用方向鍵或螢幕按鈕帶貓去吃東西,吃到東西貓就會長大(身體變長)。牆壁會穿過去,貓撞到自己的身體或時間到就結算。小魚乾 1 分、罐頭 2 分、金魚 5 分(只出現幾秒)。分數沒有上限(每 1 分換算 2 分)。' },
   { id: 'soc', name: '社會', secs: 90, intro: '限時 90 秒,題目不限數量,一題接一題(事件細節,不考年份),四選一,題目取自台灣事件簿。答錯不扣分。每答對 1 題 10 分,10 題滿分 100;排行榜以答對題數計。' },
 ];
@@ -126,38 +126,6 @@ function playLang(ctx, subject, mount, finish) {
   });
 }
 
-/* ───── 數學:猜數字 4A0B(1–9、不重複) ───── */
-function playMathA(ctx, subject, mount, finish) {
-  const secret = rshuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]).slice(0, 4); const guesses = []; let done = false;
-  const input = el('input', { type: 'text', inputmode: 'numeric', maxlength: '4', autocomplete: 'off', 'aria-label': '輸入 4 個數字', class: 'txt' });
-  const log = el('ol', { class: 'guesslog' }); const msg = el('p', { class: 'persona' }, '');
-  const judge = (g) => { let a = 0, b = 0; g.forEach((d, k) => { if (d === secret[k]) a++; else if (secret.includes(d)) b++; }); return [a, b]; };
-  const submit = () => {
-    const s = input.value.trim();
-    if (!/^[1-9]{4}$/.test(s) || new Set(s).size !== 4) { msg.textContent = '請輸入 4 個 1 到 9 的數字,不含 0、不重複'; return; }
-    const g = [...s].map(Number); const [a, b] = judge(g); guesses.push({ s, a, b }); msg.textContent = '';
-    log.prepend(el('li', {}, `${s}  →  ${a}A${b}B`)); input.value = '';
-    if (a === 4) end();
-  };
-  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
-  const score = () => {
-    const solved = guesses.some((g) => g.a === 4);
-    if (solved) return clamp(100 - (guesses.length - 8) * 10, 80, 100);   // 8 次內猜中滿分,每多猜 1 次扣 10 分,只要猜中最低 80 分
-    const best = guesses.reduce((m, g) => Math.max(m, 15 * g.a + 5 * g.b), 0);
-    return clamp(best > 0 ? 20 + best : 0, 0, 60);
-  };
-  const end = () => {
-    if (done) return; done = true; t.stop(); const solved = guesses.some((g) => g.a === 4);
-    finish(score(), solved ? `猜了 ${guesses.length} 次猜中` : `沒有猜中,共猜了 ${guesses.length} 次`,
-      [`正確答案:${secret.join('')}`, ...guesses.map((g, k) => `第 ${k + 1} 次:${g.s} → ${g.a}A${g.b}B`)]);
-  };
-  const f = frame(subject, 'A 卷 · 猜數字 4A0B', el('div', { class: 'stack' }, el('p', { class: 'persona' }, '數字 1–9,不含 0、不重複'), input, el('button', { class: 'btn', type: 'button', onclick: submit }, '猜'), msg, log), end);
-  mount.replaceChildren(f.node);
-  const t = countdown(subject.secs, f.bar, f.label, end); input.focus();
-  return () => { done = true; t.stop(); };
-}
-
-
 /* ───── 數學 B 卷:四則運算湊目標 ───── */
 const gcd = (a, b) => (b ? gcd(b, a % b) : Math.abs(a));
 const frac = (n, d = 1) => { if (d < 0) { n = -n; d = -d; } const g = gcd(n, d) || 1; return [n / g, d / g]; };
@@ -230,14 +198,14 @@ function playMathB(ctx, subject, mount, finish) {
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') record(false); });
   const end = () => {
     if (done) return; done = true; t.stop();
-    finish(Math.min(100, solved * 20), `共解出 ${solved} 題(每題 20 分,滿分 100)`, log.length ? log : ['沒有送出任何一題']);
+    finish(solved * 20, `共解出 ${solved} 題(每題 20 分,分數沒有上限)`, log.length ? log : ['沒有送出任何一題']);
   };
   newQ();
   const body = el('div', { class: 'stack' }, el('p', { class: 'persona' }, '把 4 個數字各用一次,用 + − × ÷ 與括號算出目標'), info, numRow, opRow, input, live,
     el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: () => record(false) }, '送出,下一題'),
       el('button', { class: 'btn ghost', type: 'button', onclick: () => { input.value = input.value.slice(0, -1); refresh(); input.focus(); } }, '退格'),
       el('button', { class: 'btn ghost', type: 'button', onclick: () => record(true) }, '換一題')));
-  const f = frame(subject, 'B 卷 · 四則運算', body, end);
+  const f = frame(subject, '四則運算', body, end);
   mount.replaceChildren(f.node); render();
   const t = countdown(subject.secs, f.bar, f.label, end);
   return () => { done = true; t.stop(); };
@@ -317,7 +285,7 @@ function playSoc(ctx, subject, mount, finish) {
     render: (body, prog, q, give) => mcq(body, prog, q, give, true),
   });
 }
-const PLAYERS = { lang: playLang, math: (c, s, m, f) => (c.variant === 'B' ? playMathB : playMathA)(c, s, m, f), sci: playSci, soc: playSoc };
+const PLAYERS = { lang: playLang, math: playMathB, sci: playSci, soc: playSoc };
 
 /* ───── 考場:四科並排、跳過、補考、查看結果、成績單 ───── */
 const Exam = {
@@ -347,9 +315,7 @@ const Exam = {
     const intro = (s) => {
       const startBtns = s.id === 'lang'
         ? [el('button', { class: 'btn', type: 'button', onclick: () => start(s, { lang: 'en' }) }, '用英文應考'), el('button', { class: 'btn', type: 'button', onclick: () => start(s, { lang: 'jp' }) }, '用日文應考')]
-        : s.id === 'math'
-          ? [el('button', { class: 'btn', type: 'button', onclick: () => start(s, { variant: 'A' }) }, 'A 卷:猜數字'), el('button', { class: 'btn', type: 'button', onclick: () => start(s, { variant: 'B' }) }, 'B 卷:四則運算')]
-          : [el('button', { class: 'btn', type: 'button', onclick: () => start(s) }, '開始作答')];
+        : [el('button', { class: 'btn', type: 'button', onclick: () => start(s) }, '開始作答')];
       show(el('p', { class: 'persona' }, `${s.name}科`), el('h2', {}, '考卷在你面前攤開'), el('p', { class: 'scene', style: 'white-space:pre-line' }, s.intro),
         el('p', { class: 'persona' }, '作答時不會告訴你對錯;交卷後回到考場,按「查看考試結果」才看得到。'),
         el('div', { class: 'row' }, ...startBtns, el('button', { class: 'btn ghost', type: 'button', onclick: hub }, '回考場')));
