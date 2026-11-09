@@ -380,47 +380,59 @@ function modal(title, lines, onClose) {
   document.body.append(back); document.addEventListener('keydown', onKey); ok.focus();
 }
 
+// 登入相關頁面共用的「公文紙」版面:紅字、紅框、右上角的「密」章
+function paperPage(...nodes) {
+  show(el('a', { class: 'corner', href: 'index.html' }, '前往台灣事件簿'),
+    el('div', { class: 'paper' }, el('div', { class: 'stamp', 'aria-hidden': 'true' }, '密'), ...nodes));
+}
 function start() {
   const msg = el('p', { class: 'err', role: 'alert' });
-  const idIn = el('input', { type: 'text', class: 'txt', maxlength: '12', autocomplete: 'off', 'aria-label': '遊戲 ID', placeholder: 'XXXX-XXXX' });
-  idIn.value = Save.on ? (Save.remembered() ? Save.fmt(Save.remembered()) : '') : '';
-  const nickIn = el('input', { type: 'text', class: 'txt', maxlength: '12', autocomplete: 'off', 'aria-label': '綽號(最多 12 字)', placeholder: '你的綽號' });
-  const login = el('button', { class: 'btn', type: 'button', onclick: async () => {
+  const idIn = el('input', { type: 'text', maxlength: '16', autocomplete: 'off', autocapitalize: 'characters', spellcheck: 'false', 'aria-label': '遊戲 ID', placeholder: '遊戲 ID(6 到 16 個英數字)' });
+  idIn.value = Save.on ? Save.remembered() : '';
+  const go = el('button', { class: 'btn', type: 'button', onclick: async () => {
     const id = Save.norm(idIn.value); msg.textContent = '';
-    if (!Save.valid(id)) { msg.textContent = '遊戲 ID 是 8 個英數字(例如 AB3D-K7MQ)。'; return; }
-    login.disabled = true;
-    try { const rec = await Save.load(id); if (!rec) { msg.textContent = '找不到這個遊戲 ID,請確認有沒有抄錯。'; login.disabled = false; return; } setAcct({ id, ...rec }); welcome(); }
-    catch (e) { msg.textContent = '連線失敗,請稍後再試。'; login.disabled = false; }
-  } }, '登入');
-  const create = el('button', { class: 'btn', type: 'button', onclick: async () => {
-    const nick = nickIn.value.trim(); msg.textContent = '';
-    if (!nick) { msg.textContent = '請先填綽號,芳名錄會用到。'; return; }
-    create.disabled = true;
-    try { const id = await Save.create(nick); setAcct({ id, nick, got: [], hist: [] }); showNewId(); }
-    catch (e) { msg.textContent = '建立失敗,請稍後再試。'; create.disabled = false; }
-  } }, '創建新的遊戲 ID');
+    if (!Save.valid(id)) { msg.textContent = '遊戲 ID 要 6 到 16 個英文字母或數字。'; return; }
+    go.disabled = true;
+    try {
+      const rec = await Save.load(id);
+      if (rec) { setAcct({ id, ...rec }); welcome(); } else newPlayer(id);
+    } catch (e) { msg.textContent = '連線失敗,請稍後再試。'; go.disabled = false; }
+  } }, '繼續');
+  idIn.addEventListener('keydown', (e) => { if (e.key === 'Enter') go.click(); });
+  const suggest = el('button', { class: 'btn', type: 'button', onclick: () => { idIn.value = Save.newId(); } }, '幫我想一組');
   const guest = () => { setAcct({ id: null, nick: '', got: [], hist: [] }); birthdayPage(); };
-  show(
-    el('a', { class: 'corner', href: 'index.html' }, '前往台灣事件簿'),
+  paperPage(
     el('h1', {}, '尋找你上輩子的樣子'),
-    el('p', { class: 'lead' }, '請輸入或創建您的遊戲 ID 以及綽號(芳名錄會用到)。遊戲 ID 能讓你下次接著收集。'),
+    el('p', { class: 'lead' }, '請輸入或創建您的遊戲 ID 以及綽號(芳名錄會用到)。'),
     Save.on ? el('div', { class: 'stack' },
-      el('div', { class: 'card stack' }, el('label', {}, '我已經有遊戲 ID'), idIn, el('div', { class: 'row' }, login)),
-      el('div', { class: 'card stack' }, el('label', {}, '我是新玩家:綽號'), nickIn, el('div', { class: 'row' }, create)),
-      msg) : el('p', { class: 'persona' }, '存檔功能目前尚未開放,可以先不登入直接玩。'),
-    el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: guest }, '不登入,直接玩')),
-    el('p', { class: 'persona' }, '不登入也能玩,但收集到的鑰匙碎片不會保存。')) ;
+      el('label', {}, '遊戲 ID(舊玩家直接輸入;新玩家輸入想用的 ID,下一步再取綽號)'), idIn, msg,
+      el('div', { class: 'row' }, go, suggest),
+      el('p', { class: 'persona' }, '遊戲 ID 等同密碼:知道的人就能讀寫、刪除這份存檔。請不要用生日、姓名這類容易被猜到的字。'))
+      : el('p', { class: 'persona' }, '存檔功能目前尚未開放,可以先不登入直接玩。'),
+    el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: guest }, '不登入,直接玩')),
+    el('p', { class: 'persona' }, '不登入也能玩,但收集到的鑰匙碎片不會保存。'));
 }
-function showNewId() {
-  const code = Save.fmt(acct.id);
-  const copy = el('button', { class: 'btn ghost', type: 'button', onclick: () => { try { navigator.clipboard.writeText(code).then(() => { copy.textContent = '已複製'; }, () => { copy.textContent = '請手動抄下'; }); } catch (e) { copy.textContent = '請手動抄下'; } } }, '複製');
-  show(el('p', { class: 'persona' }, `歡迎你,${acct.nick}`), el('h2', {}, '你的遊戲 ID'), el('div', { class: 'big idbox' }, code),
-    el('div', { class: 'row' }, copy),
-    el('p', { class: 'lead' }, '請抄下來或截圖保存。下次輸入這組編號,就能接著收集。知道編號的人都能讀寫你的進度,所以不要公開張貼;編號弄丟了無法找回。'),
-    el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: birthdayPage }, '我已記下,開始')));
+// 這個 ID 還沒人用:取綽號,用這個 ID 建立存檔
+function newPlayer(id) {
+  const nickIn = el('input', { type: 'text', maxlength: '12', autocomplete: 'off', 'aria-label': '綽號(最多 12 字)', placeholder: '你的綽號(最多 12 字)' });
+  const msg = el('p', { class: 'err', role: 'alert' });
+  const make = el('button', { class: 'btn', type: 'button', onclick: async () => {
+    const nick = nickIn.value.trim(); msg.textContent = '';
+    if (!nick) { msg.textContent = '請先取一個綽號,芳名錄會用到。'; return; }
+    make.disabled = true;
+    try {
+      if (!(await Save.create(nick, id))) { msg.textContent = '這個遊戲 ID 剛剛被別人使用了,請回上一步換一個。'; make.disabled = false; return; }
+      setAcct({ id, nick, got: [], hist: [] }); birthdayPage();
+    } catch (e) { msg.textContent = '建立失敗,請稍後再試。'; make.disabled = false; }
+  } }, '建立存檔並開始');
+  nickIn.addEventListener('keydown', (e) => { if (e.key === 'Enter') make.click(); });
+  paperPage(el('p', { class: 'persona' }, `遊戲 ID:${id}`), el('h2', {}, '這個 ID 還沒有人使用'),
+    el('p', { class: 'lead' }, '請為自己取一個綽號(最多 12 字),芳名錄會用到。我們會用這個 ID 為你建立存檔。請記住這組 ID,下次要用它登入;ID 忘記了無法找回。'),
+    nickIn, msg, el('div', { class: 'row' }, make, el('button', { class: 'btn', type: 'button', onclick: start }, '回上一步')));
+  nickIn.focus();
 }
 function welcome() {
-  const nickIn = el('input', { type: 'text', class: 'txt', maxlength: '12', 'aria-label': '綽號', value: acct.nick });
+  const nickIn = el('input', { type: 'text', maxlength: '12', 'aria-label': '綽號', value: acct.nick });
   nickIn.value = acct.nick;
   const msg = el('p', { class: 'err', role: 'alert' });
   const go = el('button', { class: 'btn', type: 'button', onclick: async () => {
@@ -428,15 +440,17 @@ function welcome() {
     if (nick !== acct.nick) { acct.nick = nick; Hall.nick = nick; try { await Save.put(acct.id, nick, acct.got, acct.hist); } catch (e) { msg.textContent = '綽號沒有存成功,但可以繼續玩。'; } }
     birthdayPage();
   } }, '繼續');
-  show(el('p', { class: 'persona' }, `遊戲 ID ${Save.fmt(acct.id)}`), el('h2', {}, '歡迎回來'),
-    el('p', { class: 'lead' }, `已收集 ${acct.got.length} 位人物,玩過 ${acct.hist.length} 場。綽號可以修改:`), nickIn, msg, el('div', { class: 'row' }, go));
+  nickIn.addEventListener('keydown', (e) => { if (e.key === 'Enter') go.click(); });
+  paperPage(el('p', { class: 'persona' }, `遊戲 ID:${acct.id}`), el('h2', {}, '歡迎回來'),
+    el('p', { class: 'lead' }, `已收集 ${acct.got.length} 位人物,玩過 ${acct.hist.length} 場。綽號可以直接沿用,也可以修改;修改只影響之後的留名,芳名錄上已經留下的名字不會變。`),
+    nickIn, msg, el('div', { class: 'row' }, go, el('button', { class: 'btn', type: 'button', onclick: () => { setAcct(null); start(); } }, '換一個 ID')));
 }
 function accountBar() {
   if (!acct) return null;
   const box = el('div', { class: 'acct' });
   const render = () => {
     if (!acct.id) { box.replaceChildren(el('span', {}, '目前是訪客,收集不會保存。'), el('button', { class: 'btn ghost', type: 'button', onclick: start }, '登入或創建 ID')); return; }
-    box.replaceChildren(el('span', {}, `${acct.nick} · ID ${Save.fmt(acct.id)}`),
+    box.replaceChildren(el('span', {}, `${acct.nick} · ID ${acct.id}`),
       el('button', { class: 'btn ghost', type: 'button', onclick: () => { setAcct(null); start(); } }, '登出'),
       el('button', { class: 'btn ghost', type: 'button', onclick: confirmDel }, '刪除我的存檔'));
   };
@@ -522,8 +536,8 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261121').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261121').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261122').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261122').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));

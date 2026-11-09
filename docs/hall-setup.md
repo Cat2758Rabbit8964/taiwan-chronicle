@@ -76,3 +76,13 @@ grant execute on function public.save_create, public.save_get, public.save_put, 
 ```
 
 注意:編號等同密碼,知道編號的人就能讀寫、刪除那份進度。編號有 32^8 約 1 兆種組合,不易猜到,但不要公開張貼。
+
+## 遊戲 ID 改為自訂(2026-11)
+玩家現在自己輸入想用的 ID(6 到 16 個英文字母或數字),已建立的 8 碼 ID 仍然有效。在 SQL Editor 執行:
+
+```sql
+alter table public.saves drop constraint saves_id_check;
+alter table public.saves add constraint saves_id_check check (id ~ '^[A-Z0-9]{6,16}$');
+```
+
+注意:自訂的 ID 比系統亂數產生的更容易被猜到(例如常見單字),而 ID 等同密碼,知道的人就能讀寫、刪除那份存檔。登入頁有「幫我想一組」按鈕可以產生亂數 ID。

@@ -7,8 +7,8 @@ const Save = {
   get on() { const c = window.HALL_CONFIG || {}; return !!(c.url && c.key); },
   newId() { const a = new Uint8Array(8); (window.crypto || { getRandomValues: (x) => { for (let i = 0; i < x.length; i++) x[i] = Math.floor(Math.random() * 256); return x; } }).getRandomValues(a); return [...a].map((n) => this.ALPHA[n % 32]).join(''); },
   norm(s) { return String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); },
-  fmt(id) { return `${id.slice(0, 4)}-${id.slice(4)}`; },
-  valid(id) { return /^[A-HJ-NP-Z2-9]{8}$/.test(id); },
+  fmt(id) { return id; },
+  valid(id) { return /^[A-Z0-9]{6,16}$/.test(id); },
   remembered() { try { return localStorage.getItem(this.KEY) || ''; } catch (e) { return ''; } },
   remember(id) { try { if (id) localStorage.setItem(this.KEY, id); else localStorage.removeItem(this.KEY); } catch (e) { /* 無痕模式等,略過 */ } },
   async rpc(fn, args) {
@@ -17,11 +17,8 @@ const Save = {
     if (!r.ok) throw new Error(`${fn} ${r.status}`);
     return r.json();
   },
-  // 創建新 ID,碰到重複就重抽;回傳 id
-  async create(nick) {
-    for (let i = 0; i < 6; i++) { const id = this.newId(); if (await this.rpc('save_create', { p_id: id, p_nick: nick })) return id; }
-    throw new Error('產生編號失敗');
-  },
+  // 用指定的 ID 建立存檔;已被使用回傳 false
+  async create(nick, id) { return this.rpc('save_create', { p_id: id, p_nick: nick }); },
   // 回傳 { nick, got:[], hist:[] },編號不存在回傳 null
   async load(id) {
     const rows = await this.rpc('save_get', { p_id: id });

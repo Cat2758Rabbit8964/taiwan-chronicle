@@ -106,3 +106,17 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .register .rname{font-size:22px;font-weight:700}
 .register .rempty{margin:0;text-align:center}
 .register .stamp{position:absolute;top:10px;right:12px;width:44px;height:44px;border:3px solid #b3170f;border-radius:50%;display:flex;align-items:center;justify-content:center;transform:rotate(-12deg);font-size:24px;opacity:.75}
+
+/* 登入頁:名冊的外觀當作背景,文書字體,沒有白底框,按鈕低對比 */
+.paper{--red:#b3170f;position:relative;background:#efe2c0;color:var(--red);border:3px double var(--red);border-radius:4px;margin-top:28px;padding:30px 24px 24px;
+  font-family:"Songti TC","STSong","Noto Serif TC","Source Han Serif TC","PMingLiU","MingLiU","SimSun",serif;font-size:18px;line-height:1.9}
+.paper h1,.paper h2{font-family:inherit;color:var(--red);letter-spacing:6px;border-bottom:2px solid var(--red);padding-bottom:8px}
+.paper .lead,.paper .persona,.paper label,.paper p{color:var(--red)}
+.paper .persona{opacity:.85;font-size:14px}
+.paper .err{color:#7a0c07;font-weight:700}
+.paper input{display:block;width:100%;background:transparent;border:0;border-bottom:2px solid var(--red);border-radius:0;color:var(--red);font:inherit;font-size:22px;letter-spacing:2px;padding:6px 2px}
+.paper input::placeholder{color:rgba(179,23,15,.5);font-size:16px;letter-spacing:0}
+.paper input:focus{outline:none;background:rgba(179,23,15,.07)}
+.paper .btn{background:transparent;color:var(--red);border:1px solid rgba(179,23,15,.4);font:inherit;font-size:16px;font-weight:400;padding:8px 18px;border-radius:2px}
+.paper .btn:hover,.paper .btn:focus-visible{background:rgba(179,23,15,.09);outline:none}
+.paper .stamp{position:absolute;top:12px;right:14px;width:46px;height:46px;border:3px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;transform:rotate(-12deg);font-size:24px;opacity:.7}
