@@ -23,7 +23,7 @@ function el(tag, attrs = {}, ...kids) {
   for (const c of kids.flat()) if (c != null) n.append(c.nodeType ? c : document.createTextNode(c));
   return n;
 }
-function show(...nodes) { app.replaceChildren(...nodes.filter(Boolean)); window.scrollTo(0, 0); }
+function show(...nodes) { document.body.className = ''; app.replaceChildren(...nodes.filter(Boolean)); window.scrollTo(0, 0); }
 function hash(str) {
   let h = 2166136261;
   for (const ch of str) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); }
@@ -384,6 +384,7 @@ function modal(title, lines, onClose) {
 function paperPage(...nodes) {
   show(el('a', { class: 'corner', href: 'index.html' }, '前往台灣事件簿'),
     el('div', { class: 'paper' }, el('div', { class: 'stamp', 'aria-hidden': 'true' }, '密'), ...nodes));
+  document.body.className = 'login';   // 整個頁面(含底部說明)都換成名冊的紙張與紅字
 }
 function start() {
   const msg = el('p', { class: 'err', role: 'alert' });
@@ -536,8 +537,8 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261122').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261122').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261123').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261123').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));

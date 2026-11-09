@@ -120,3 +120,11 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .paper .btn{background:transparent;color:var(--red);border:1px solid rgba(179,23,15,.4);font:inherit;font-size:16px;font-weight:400;padding:8px 18px;border-radius:2px}
 .paper .btn:hover,.paper .btn:focus-visible{background:rgba(179,23,15,.09);outline:none}
 .paper .stamp{position:absolute;top:12px;right:14px;width:46px;height:46px;border:3px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;transform:rotate(-12deg);font-size:24px;opacity:.7}
+
+/* 登入頁:整個頁面就是名冊的紙(含頁尾),不再是紙放在別的底色上 */
+body.login{--red:#b3170f;background:#efe2c0;color:var(--red);
+  font-family:"Songti TC","STSong","Noto Serif TC","Source Han Serif TC","PMingLiU","MingLiU","SimSun",serif}
+body.login .paper{background:transparent;margin-top:28px;min-height:60vh}
+body.login a{color:var(--red)}
+body.login .corner{font-size:14px}
+body.login footer{color:var(--red);border-top:1px solid rgba(179,23,15,.4);font-family:inherit}
