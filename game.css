@@ -142,3 +142,6 @@ body.login footer{color:var(--red);border-top:1px solid rgba(179,23,15,.4);font-
 .floor{height:44px;background:repeating-linear-gradient(90deg,#a98757 0 46px,#9c7b4d 46px 48px)}
 .doorcol:hover .leaf,.doorcol:focus-visible .leaf{outline:3px solid var(--accent);outline-offset:2px}
 .doorcol:focus-visible{outline:none}
+
+.harm{border-left:4px solid #b3372c;padding-left:14px}
+.harm ul{margin:6px 0;padding-left:1.3em}

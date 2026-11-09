@@ -10,6 +10,7 @@ const KEEP = 2;            // 選擇之後至少要剩幾位,否則故事會轉�
 const MAX_PRE = 3;         // 最後一章之前最多問幾個情境題
 const MIN_PRE = 2;         // 最後一章之前至少問幾個(加上最後一章,至少三個情境題)
 let data = null;
+let harm = {};   // 結果頁「加害者是誰」區塊的資料(data/harm.json;網址加 ?harm=draft 可預覽審稿中的草稿)
 let exam = null;
 let st = null; // { birth, bands, band, pool, career, asked, usedSit }
 
@@ -307,7 +308,7 @@ function result() {
   const brief = (q) => `${q.fate.split('。')[0]}。`;
   const span = fallen.length ? `${fallen[0].ly} 至 ${fallen[fallen.length - 1].ly} 年間` : '';
   const memorial = fallen.length ? el('details', { class: 'sec memorial', open: '' },
-    el('summary', {}, `同一時期,也因政治事件而離世的人(${span},${fallen.length} 位)`),
+    el('summary', {}, `同一時期,也因政治事件而失去生命的人(${span},${fallen.length} 位)`),
     el('p', { class: 'persona' }, '只列與這位人物離世時間相近、且有可查證記載的人,並不代表所有受難者。連結可以進一步閱讀。'),
     el('ul', { class: 'fallen' }, fallen.map((q) => el('li', {},
       el('b', {}, q.name), ` (${q.life} · ${q.job})`, el('div', {}, brief(q)),
@@ -341,6 +342,7 @@ function result() {
       el('div', { class: 'sec' }, el('h3', {}, '你走過的路,與他/她實際做過的事'), el('ol', { class: 'chain' }, chain)),
       el('div', { class: 'sec' }, el('h3', {}, '他/她做過的事'), el('p', {}, p.story)),
       el('div', { class: 'sec' }, el('h3', {}, '後來的遭遇'), el('p', {}, p.fate)),
+      harmBox(p),
       p.note ? el('div', { class: 'sec' }, el('h3', {}, '資料註記'), el('p', { class: 'note' }, p.note)) : null,
       sourceLine),
     others.length ? el('div', { class: 'sec' }, el('h3', {}, '走過同一條路的其他人'), el('div', { class: 'also' }, others.map(otherLine))) : null,
@@ -351,7 +353,7 @@ function result() {
       el('button', { class: 'btn ghost', type: 'button', onclick: () => treasure(render) }, '查看尋寶狀態'),
       el('button', { class: 'btn ghost', type: 'button', onclick: birthdayPage }, '重新開始')),
     (saveEl = el('p', { class: 'persona' }, saveMsg)),
-    el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'));
+    el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。' + (harm[p.id] ? '對遭到迫害的人,我們不評斷他們的選擇;該被檢視的,是加害的一方做了什麼。' : '歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'),));
   const reveal = () => {
     render();
     if (outcome) return;
@@ -526,6 +528,16 @@ function treasure(back) {
 /* ───── 放榜之後:從成績單說起,一路引導到這個人最後的行業 ───── */
 const SUBJ = { lang: '語文', math: '數學', sci: '自然', soc: '社會' };
 const FLAVOR = { lang: '你總能在字句裡讀出世界的形狀', math: '你習慣在數字與規則裡找答案', sci: '你對生命與自然,永遠有問不完的問題', soc: '你比別人更在意人與人之間的規矩' };
+// 「加害者是誰・這樣的對待合理嗎」:指名實際動手的政權與機關,只列有出處的事實,查得到才寫「後來」
+function harmBox(p) {
+  const h = harm[p.id];
+  if (!h) return null;
+  return el('div', { class: 'sec harm' }, el('h3', {}, '加害者是誰?這樣的對待合理嗎?'),
+    el('p', {}, el('b', {}, '加害者:'), h.by),
+    el('ul', {}, h.why.map((w) => el('li', {}, w))),
+    h.after ? el('p', {}, el('b', {}, '後來:'), h.after) : null,
+    el('p', { class: 'persona' }, '出處:', h.src.flatMap((r, i) => (i ? [' · ', el('a', { href: r[1], target: '_blank', rel: 'noopener' }, r[0])] : [el('a', { href: r[1], target: '_blank', rel: 'noopener' }, r[0])]))));
+}
 function story(p, reveal) {
   const a = st.asked.find((x) => x.kind === 'career'); const r = a.res;
   const lines = [`放榜那天,成績單上寫著:${SUBJ[r.top]}最高,${SUBJ[r.second]}其次。${FLAVOR[r.top]}。`,
@@ -541,8 +553,9 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261126').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261126').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
-  .then(([d, ex]) => { data = d; exam = ex; start(); })
+Promise.all([fetch('data/game.json?v=20261127').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261127').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261127').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
+  .then(([d, ex, h]) => { data = d; exam = ex; harm = h || {}; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
