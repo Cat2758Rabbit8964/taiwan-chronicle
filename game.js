@@ -105,8 +105,7 @@ function begin(birth, msg, round = 0, usedBands = []) {
   let r = hash(birth + 'b' + round) % total, i = 0;
   while (r >= w[i]) { r -= w[i]; i++; }
   st = { birth, round, usedBands: [...usedBands, ok[i].id], band: null, pool: [], career: null, asked: [], usedSit: [] };
-  const chosen = ok[i];
-  room(() => chooseBand(chosen));
+  chooseBand(ok[i]);
 }
 
 function chooseBand(b) {
@@ -229,7 +228,7 @@ function askPlace() {
 
 function askSituation(sit) {
   const def = data.sits[sit];
-  const n = st.asked.filter((a) => a.kind === 'sit').length + 1;
+  const n = st.asked.filter((a) => a.kind === 'sit').length + 1 + (st.room ? 1 : 0);   // 房間算情境 2
   // 依稀的最後一刻:沒有人對應的記憶片段直接拿掉,不提供轉折
   const cc = catCount(st.pool, sit);
   const cats = sit === 'L' ? CATS.filter((c) => (cc[c] || 0) > 0) : CATS;
@@ -261,6 +260,8 @@ function applyCat(sit, chosen, eff, twisted) {
   st.usedSit.push(sit);
   st.pool = st.pool.filter((p) => p.acts[sit] && p.acts[sit].some((a) => a.c === eff));
   st.asked.push({ kind: 'sit', sit, chosen, eff, twisted, title: def.title, scene: def.text, chosenText: def[chosen], text: def[eff] });
+  // 交完考卷、答完第一個情境題之後,主角在陌生的房間醒來(情境 2);從第一扇門繼續後面的情境
+  if (st.asked.filter((a) => a.kind === 'sit').length === 1) { st.room = true; return room(next); }
   next();
 }
 
@@ -466,7 +467,7 @@ function room(proceed) {
   const door = (cls, tag, state, sub, onclick, aria, lock) => el('button', { class: `doorcol ${cls}`, type: 'button', onclick, 'aria-label': aria },
     el('span', { class: 'leaf', 'aria-hidden': 'true' }, lock ? el('span', { class: `lock ${lock}` }) : null),
     el('span', { class: 'dtag' }, tag), el('b', {}, state), el('small', {}, sub));
-  const doors = [door('d0', '第一扇門', '開著', '尋找你上輩子的樣子', proceed, '第一扇門,開著,通往尋找你上輩子的樣子', null),
+  const doors = [door('d0', '第一扇門', '開著', '繼續你的故事', proceed, '第一扇門,開著,可以繼續你的故事', null),
     ...KEYS.map((K, i) => {
       const n = keyHave(K).length, open = n >= K.need;
       return door(K.cls, `第${['二', '三', '四'][i]}扇門`, open ? '已解鎖' : '上鎖', `${K.name}的鎖 ${Math.min(n, K.need)} / ${K.need}`, () => {
@@ -474,7 +475,7 @@ function room(proceed) {
         else modal(`${K.name}的門上了鎖`, [`需要集滿 ${K.need} 位${K.label},才能解開這道鎖。`, `目前集到 ${n} 位。每一場遊戲揭曉的人物若屬於這一類,就會得到一個鑰匙碎片。`]);
       }, `${K.name}的門,${open ? '已解鎖' : '上鎖'}`, `${K.cls}${open ? ' open' : ''}`);
     })];
-  show(el('p', { class: 'persona' }, '房間'), el('h2', {}, '你在一個陌生的房間醒來'),
+  show(el('p', { class: 'persona' }, '情境 2'), el('h2', {}, '你在一個陌生的房間醒來'),
     el('p', { class: 'scene' }, '四周有四扇門。其中一扇敞開著,門縫透出光;另外三扇都上了鎖,鎖的顏色各不相同。'),
     el('div', { class: 'roomview' }, el('div', { class: 'wall' }, doors), el('div', { class: 'floor', 'aria-hidden': 'true' })),
     el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: () => treasure(() => room(proceed)) }, '查看尋寶狀態')));
@@ -540,8 +541,8 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261125').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261125').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261126').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261126').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
