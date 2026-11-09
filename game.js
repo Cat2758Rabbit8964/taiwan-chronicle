@@ -462,18 +462,21 @@ function accountBar() {
 }
 
 function room(proceed) {
-  const door = (cls, tag, state, sub, onclick, aria) => el('button', { class: `door ${cls}`, type: 'button', onclick, 'aria-label': aria }, el('span', { class: 'dtag' }, tag), el('b', {}, state), el('small', {}, sub));
-  const doors = [door('d0', '第一扇門', '🚪 開著', '尋找你上輩子的樣子', proceed, '第一扇門,開著,通往尋找你上輩子的樣子'),
+  // 每扇門:門板(leaf)畫在房間的牆上,門鎖(lock)用對應的顏色;下面是文字標示
+  const door = (cls, tag, state, sub, onclick, aria, lock) => el('button', { class: `doorcol ${cls}`, type: 'button', onclick, 'aria-label': aria },
+    el('span', { class: 'leaf', 'aria-hidden': 'true' }, lock ? el('span', { class: `lock ${lock}` }) : null),
+    el('span', { class: 'dtag' }, tag), el('b', {}, state), el('small', {}, sub));
+  const doors = [door('d0', '第一扇門', '開著', '尋找你上輩子的樣子', proceed, '第一扇門,開著,通往尋找你上輩子的樣子', null),
     ...KEYS.map((K, i) => {
       const n = keyHave(K).length, open = n >= K.need;
-      return door(K.cls, `第${['二', '三', '四'][i]}扇門`, open ? '🔓 已解鎖' : '🔒 上鎖', `${K.name}的門 ${Math.min(n, K.need)} / ${K.need}`, () => {
+      return door(K.cls, `第${['二', '三', '四'][i]}扇門`, open ? '已解鎖' : '上鎖', `${K.name}的鎖 ${Math.min(n, K.need)} / ${K.need}`, () => {
         if (open) modal(`${K.name}的門打開了`, ['鑰匙完成,門鎖喀的一聲開了。', '不過這扇門後面的世界,還沒有開放。']);
         else modal(`${K.name}的門上了鎖`, [`需要集滿 ${K.need} 位${K.label},才能解開這道鎖。`, `目前集到 ${n} 位。每一場遊戲揭曉的人物若屬於這一類,就會得到一個鑰匙碎片。`]);
-      }, `${K.name}的門,${open ? '已解鎖' : '上鎖'}`);
+      }, `${K.name}的門,${open ? '已解鎖' : '上鎖'}`, `${K.cls}${open ? ' open' : ''}`);
     })];
   show(el('p', { class: 'persona' }, '房間'), el('h2', {}, '你在一個陌生的房間醒來'),
     el('p', { class: 'scene' }, '四周有四扇門。其中一扇敞開著,門縫透出光;另外三扇都上了鎖,鎖的顏色各不相同。'),
-    el('div', { class: 'doors' }, doors),
+    el('div', { class: 'roomview' }, el('div', { class: 'wall' }, doors), el('div', { class: 'floor', 'aria-hidden': 'true' })),
     el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: () => treasure(() => room(proceed)) }, '查看尋寶狀態')));
 }
 
@@ -537,8 +540,8 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261124').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261124').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
+Promise.all([fetch('data/game.json?v=20261125').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261125').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })])
   .then(([d, ex]) => { data = d; exam = ex; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));

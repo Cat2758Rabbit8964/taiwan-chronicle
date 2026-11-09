@@ -83,16 +83,6 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .acct{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:16px;font-size:13px;color:var(--muted)}
 .acct .btn{padding:6px 12px;font-size:13px}
 .idbox{letter-spacing:6px;text-align:center;border:2px dashed var(--accent);border-radius:10px;padding:12px;user-select:all}
-.doors{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:8px 0 16px}
-.door{display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center;border:3px solid;border-radius:14px 14px 4px 4px;padding:22px 8px;min-height:130px;color:#2a2620;font-weight:600}
-.door b{font-size:18px}
-.door small{font-size:12px;opacity:.85}
-.door .dtag{font-size:12px;letter-spacing:2px;opacity:.75}
-.door.d0{background:#c89a5e;border-color:#7a5428}
-.door.ky{background:#f2cf4b;border-color:#a48414}
-.door.kb{background:#a9d9ee;border-color:#4f8fb0}
-.door.kp{background:#f6b9cf;border-color:#c0698d}
-.door:hover,.door:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .modal-back{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
 .modal{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:20px;max-width:440px;width:100%;max-height:90vh;overflow:auto}
 .keybar{height:10px;border-radius:5px;background:var(--bar);overflow:hidden;margin:4px 0}
@@ -128,3 +118,27 @@ body.login .paper{background:transparent;margin-top:28px;min-height:60vh}
 body.login a{color:var(--red)}
 body.login .corner{font-size:14px}
 body.login footer{color:var(--red);border-top:1px solid rgba(179,23,15,.4);font-family:inherit}
+
+/* 房間:牆上並排四扇門,下面是地板;門鎖的顏色對應鑰匙 */
+.roomview{border:3px solid #5b4630;border-radius:8px;overflow:hidden;margin:8px 0 16px;background:#d9ceb6}
+.wall{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(6px,2vw,16px);padding:18px clamp(8px,3vw,24px) 0;
+  background:linear-gradient(#e4dac4 0,#d9ceb6 80%,#c9bc9f 100%);border-bottom:8px solid #8c7a5a}
+.doorcol{display:flex;flex-direction:column;align-items:center;gap:1px;background:none;border:0;padding:0;color:#2a2620;text-align:center;font-family:inherit}
+.doorcol .dtag{font-size:11px;letter-spacing:1px;opacity:.75;margin-top:6px}
+.doorcol b{font-size:clamp(13px,3.6vw,17px)}
+.doorcol small{font-size:11px;line-height:1.3;padding-bottom:8px}
+.leaf{position:relative;display:block;width:100%;aspect-ratio:1/2.1;border:3px solid #4d3318;border-bottom:0;border-radius:8px 8px 0 0;
+  background:linear-gradient(#9a6a3a,#85582c);box-shadow:inset 0 0 0 5px #8f6034,inset 0 0 0 7px #6e4723}
+.leaf::after{content:"";position:absolute;right:12%;top:52%;width:9px;height:9px;border-radius:50%;background:#d8b45a;box-shadow:0 0 0 2px #7a5a1c}
+.doorcol.d0 .leaf{border-color:#7a5a1c;background:linear-gradient(90deg,#8a5d33 0 28%,#fff3c0 28% 100%);box-shadow:inset 0 0 18px #fff8dc}
+.doorcol.d0 .leaf::after{right:auto;left:20%;background:#d8b45a}
+.lock{position:absolute;left:50%;top:60%;transform:translateX(-50%);width:clamp(18px,5vw,28px);height:clamp(14px,4vw,21px);border:2px solid;border-radius:3px;z-index:1}
+.lock::before{content:"";position:absolute;left:50%;bottom:100%;transform:translateX(-50%);width:62%;height:70%;border:3px solid #444;border-bottom:0;border-radius:50% 50% 0 0}
+.lock::after{content:"";position:absolute;left:50%;top:50%;width:3px;height:5px;transform:translate(-50%,-50%);background:#333;border-radius:1px}
+.lock.ky{background:#f2cf4b;border-color:#a48414}
+.lock.kb{background:#a9d9ee;border-color:#4f8fb0}
+.lock.kp{background:#f6b9cf;border-color:#c0698d}
+.lock.open::before{transform:translateX(-10%) rotate(28deg);transform-origin:left bottom}
+.floor{height:44px;background:repeating-linear-gradient(90deg,#a98757 0 46px,#9c7b4d 46px 48px)}
+.doorcol:hover .leaf,.doorcol:focus-visible .leaf{outline:3px solid var(--accent);outline-offset:2px}
+.doorcol:focus-visible{outline:none}
