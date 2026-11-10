@@ -31,6 +31,7 @@ function careerFromScores(scores) {
 }
 
 /* ───── 倒數計時(以截止時間計算,分頁切換也準) ───── */
+let examTimeUp = false;   // 這一科是不是因為時間到而結束(手動交卷、貓撞到自己都不算)
 function countdown(secs, bar, label, onEnd) {
   const end = Date.now() + secs * 1000; let stopped = false;
   const tick = () => {
@@ -38,7 +39,7 @@ function countdown(secs, bar, label, onEnd) {
     const left = Math.max(0, (end - Date.now()) / 1000);
     label.textContent = `剩餘 ${mmss(left)}`;
     bar.style.width = `${(left / secs) * 100}%`;
-    if (left <= 0) { stopped = true; clearInterval(h); onEnd(); }
+    if (left <= 0) { stopped = true; clearInterval(h); examTimeUp = true; onEnd(); }
   };
   const h = setInterval(tick, 200); tick();
   return { stop() { stopped = true; clearInterval(h); } };
@@ -50,7 +51,7 @@ function frame(subject, title, body, onSubmit) {
   let armed = false, timer = null;
   const submit = el('button', { class: 'btn ghost', type: 'button', onclick: () => {
     if (!armed) { armed = true; submit.textContent = '確定要交卷嗎?再按一次'; timer = setTimeout(() => { armed = false; submit.textContent = '交卷'; }, 3000); return; }
-    if (timer) clearTimeout(timer); onSubmit();
+    if (timer) clearTimeout(timer); examTimeUp = false; onSubmit();
   } }, '交卷');
   return {
     bar, label,
@@ -321,13 +322,19 @@ const Exam = {
         el('div', { class: 'row' }, ...startBtns, el('button', { class: 'btn ghost', type: 'button', onclick: hub }, '回考場')));
     };
     const start = (s, opt = {}) => {
-      const mount = el('div'); show(mount);
+      const mount = el('div'); show(mount); examTimeUp = false;
       cleanup = PLAYERS[s.id]({ exam, seen, ...opt }, s, mount, (score, note, detail, raw) => {
         cleanup = null; state[s.id] = { status: 'taken', score: Math.min(100, score), note, detail };
         const board = s.id === 'lang' ? `lang_${opt.lang}` : s.id;
-        if (typeof Hall !== 'undefined') Hall.offer(board, raw === undefined ? score : raw, hub); else hub();
+        const after = () => { if (typeof Hall !== 'undefined') Hall.offer(board, raw === undefined ? score : raw, hub); else hub(); };
+        if (examTimeUp) { examTimeUp = false; timesUp(s, after); } else after();
       });
     };
+    // 時間到:先停在這一頁,按了才往下走(不在這裡公布成績或對錯)
+    const timesUp = (s, then) => show(el('p', { class: 'persona' }, `${s.name}科`), el('h1', {}, '時間到!'),
+      el('p', { class: 'scene' }, '鈴聲響起,監考老師走過來收走了考卷。請放下筆。'),
+      el('p', { class: 'persona' }, '作答時不會告訴你對錯;回到考場後,按「查看考試結果」才看得到。'),
+      el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: then }, '交出考卷')));
     const viewResult = (s) => {
       const r = state[s.id];
       show(el('p', { class: 'persona' }, `${s.name}科 · 考試結果`), el('div', { class: 'big' }, `${r.score} 分`), el('p', { class: 'lead' }, r.note),
