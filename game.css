@@ -154,3 +154,10 @@ body.login footer{color:var(--red);border-top:1px solid rgba(179,23,15,.4);font-
 footer .leave{margin:10px 0 14px}
 footer .leave .btn{display:inline-block;text-decoration:none;font-size:17px;padding:12px 24px}
 body.login footer .leave .btn{background:transparent;color:var(--red);border:1px solid rgba(179,23,15,.5);font-weight:700}
+
+/* 回到貓貓冊店首頁:每個畫面最上面一條,頁尾再放一顆 */
+.shopbar{width:100%;max-width:680px;margin:0 auto;padding-top:12px;font-size:14px}
+.shopbar a{text-decoration:none}
+footer .leave .btn.ghost{color:var(--ink);margin-left:6px}
+body.login .shopbar a,body.login footer .leave .btn.ghost{color:var(--red)}
+body.login footer .leave .btn.ghost{background:transparent;border:1px solid rgba(179,23,15,.5)}
