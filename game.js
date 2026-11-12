@@ -389,10 +389,33 @@ function modal(title, lines, onClose) {
 
 // 登入相關頁面共用的「公文紙」版面:紅字、紅框、右上角的「密」章
 function paperPage(...nodes) {
-  show(el('a', { class: 'corner', href: 'index.html' }, '前往台灣事件簿'),
-    el('div', { class: 'paper' }, el('div', { class: 'stamp', 'aria-hidden': 'true' }, '密'), ...nodes));
+  show(el('div', { class: 'paper' }, el('div', { class: 'stamp', 'aria-hidden': 'true' }, '密'), ...nodes));
   document.body.className = 'login';   // 整個頁面(含底部說明)都換成名冊的紙張與紅字
 }
+// 點任何連結(離開遊戲的連結)前,先問一聲:按「繼續」才前往,按「返回」就留在原頁
+function confirmLeave(href, newTab) {
+  const back = el('div', { class: 'modal-back' });
+  const close = () => { back.remove(); document.removeEventListener('keydown', onKey); };
+  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  const go = el('button', { class: 'btn', type: 'button', onclick: () => { close(); if (newTab) window.open(href, '_blank', 'noopener'); else location.href = href; } }, '繼續');
+  const stay = el('button', { class: 'btn ghost', type: 'button', onclick: close }, '返回');
+  let host = href; try { host = new URL(href, location.href).hostname || href; } catch (e) { /* 保留原字串 */ }
+  back.append(el('div', { class: 'modal', role: 'dialog', 'aria-modal': 'true', 'aria-label': '即將離開遊戲' },
+    el('h2', {}, '即將離開遊戲'),
+    el('p', {}, newTab ? `這個連結會在新分頁開啟 ${host}。遊戲會留在這個分頁。` : '你要前往的頁面不在遊戲裡。離開後,這一場還沒走完的進度不會保留(已登入並存檔的收集不受影響)。'),
+    el('p', { class: 'persona' }, '要繼續前往嗎?'),
+    el('div', { class: 'row' }, go, stay)));
+  document.body.append(back); document.addEventListener('keydown', onKey); stay.focus();
+}
+document.addEventListener('click', (e) => {
+  const a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || a.dataset.stay != null) return;
+  e.preventDefault();
+  confirmLeave(a.href || href, a.getAttribute('target') === '_blank');
+});
+
 /* ───── 底圖:淡淡的台灣老照片,放在所有內容的後面;換一個情境就換一張 ───── */
 const bgBox = { layer: null, credit: null, cur: null, used: new Set() };
 function backdrop(band, salt) {
@@ -588,10 +611,10 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261129').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261129').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261129').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
-  fetch('data/backdrops.json?v=20261129').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
+Promise.all([fetch('data/game.json?v=20261130').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261130').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261130').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('data/backdrops.json?v=20261130').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
   .then(([d, ex, h, b]) => { data = d; exam = ex; harm = h || {}; bd = b || {}; start(); })
   .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
