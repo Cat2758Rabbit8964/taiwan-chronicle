@@ -86,7 +86,7 @@ function birthdayPage() {
     el('div', {}, el('label', {}, '你的出生年月日'), el('div', { class: 'dates' }, ySel, mSel, dSel)),
     el('button', { class: 'btn', type: 'submit' }, '出發'), msg);
   show(
-    el('h1', {}, '尋找你上輩子的樣子'),
+    el('h1', {}, '找尋您的前世'),
     el('p', { class: 'lead' }, '選擇生日,系統會把你帶回過去的某個時間。故事會替你安排一連串的抉擇;你走的每一步,最後都會對回一位真實存在過的人,在歷史上真正做過的事。有時命運不照你的意思走,那也會被寫進故事裡。'),
     el('div', { class: 'card' }, form),
     typeof Hall !== 'undefined' && Hall.on ? el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: () => Hall.page(null, birthdayPage) }, '芳名錄')) : null,
@@ -338,7 +338,7 @@ function result() {
 
   let outcome = null, saveMsg = '', saveEl = null;
   const render = () => show(
-    el('p', { class: 'persona' }, `你回到的是 ${b.to >= 2026 ? `${b.from} 年以後` : `${b.from} 到 ${b.to} 年前後`} · 你的上輩子是`),
+    el('p', { class: 'persona' }, `你回到的是 ${b.to >= 2026 ? `${b.from} 年以後` : `${b.from} 到 ${b.to} 年前後`} · 您的前世是`),
     el('div', { class: 'card' },
       el('div', { class: 'big' }, p.name),
       el('p', {}, el('span', { class: 'tag' }, p.country), el('span', { class: 'tag' }, p.life), el('span', { class: 'tag' }, p.job)),
@@ -463,7 +463,7 @@ function start() {
   const suggest = el('button', { class: 'btn', type: 'button', onclick: () => { idIn.value = Save.newId(); } }, '幫我想一組');
   const guest = () => { setAcct({ id: null, nick: '', got: [], hist: [] }); birthdayPage(); };
   paperPage(
-    el('h1', {}, '尋找你上輩子的樣子'),
+    el('h1', {}, '找尋您的前世'),
     el('p', { class: 'lead' }, '請輸入或創建您的遊戲 ID 以及綽號(芳名錄會用到)。'),
     Save.on ? el('div', { class: 'stack' },
       el('label', {}, '遊戲 ID(舊玩家直接輸入;新玩家輸入想用的 ID,下一步再取綽號)'), idIn, msg,
@@ -607,14 +607,14 @@ function story(p, reveal) {
   lines.push('這是怎樣的一生?翻到下一頁,就知道你是誰。');
   show(el('p', { class: 'persona' }, '放榜之後'), el('h2', {}, '你的故事'),
     ...lines.map((x) => el('p', { class: 'scene' }, x)),
-    el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: reveal }, '揭曉你的上輩子')));
+    el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: reveal }, '揭曉您的前世')));
 }
 
 
-Promise.all([fetch('data/game.json?v=20261131').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261131').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261131').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
-  fetch('data/backdrops.json?v=20261131').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
+Promise.all([fetch('data/game.json?v=20261132').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261132').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261132').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('data/backdrops.json?v=20261132').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
   .then(([d, ex, h, b]) => { data = d; exam = ex; harm = h || {}; bd = b || {}; start(); })
-  .catch(() => show(el('h1', {}, '尋找你上輩子的樣子'),
+  .catch(() => show(el('h1', {}, '找尋您的前世'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
