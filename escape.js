@@ -6,9 +6,9 @@ const ESC_WORLD = 'M-56.4 13.6L-56.3 14.8L-56 15.2L-56.1 15.7L-56.3 16L-56.6 15.
 const ESC_SPEEDUP = 2;
 const ESC_W = 360, ESC_H = 520, ESC_SECONDS = 50;
 const ESC_MODES = {
-  up:   { gap: 78, v0: 22, v1: 44, jump: true,  startY: 430, dir: 1, g: 1500, off: 5, span: 30, final: 2,
+  up:   { gap: 78, v0: 22, v1: 44, jump: true,  startY: 430, dir: 1, g: 1500, off: 5, span: 30, final: 1.6,
            steps: { v: [24, 32, 40, 48, 56], exist: [0.7, 0.5, 0.35, 0.2, 0.1] } },   // 新疆:台階往下捲,玩家要往上爬;每 10 秒升一級,加速並減少台階
-  down: { gap: 84, v0: 22, v1: 50, jump: false, startY: 110, dir: -1, g: 1000, off: 15, span: 10, final: 2 },   // 西藏:台階往上捲,玩家要往下逃
+  down: { gap: 84, v0: 22, v1: 50, jump: false, startY: 110, dir: -1, g: 1000, off: 15, span: 10, final: 1.6 },   // 西藏:台階往上捲,玩家要往下逃
 };
 const ESC_G = 1500, ESC_JUMP = 560, ESC_SPEED = 190, ESC_HW = 9, ESC_PH = 26, ESC_PW = 80;
 
@@ -28,7 +28,7 @@ class EscSim {
   }
   level() { return Math.min(4, Math.floor(this.t / 10)); }   // 新疆:0–10 秒是第 0 級,之後每 10 秒升一級
   speed() {
-    const last = ESC_SPEEDUP * (this.t >= ESC_SECONDS - 10 ? this.cfg.final : 1);   // 整體 2 倍;最後 10 秒再乘 2
+    const last = ESC_SPEEDUP * (this.t >= ESC_SECONDS - 10 ? this.cfg.final : 1);   // 整體 2 倍;最後 10 秒再乘 1.6
     if (this.cfg.steps) return this.cfg.steps.v[this.level()] * last;
     const f = Math.min(1, this.t / (ESC_SECONDS - 10)); return (this.cfg.v0 + (this.cfg.v1 - this.cfg.v0) * f) * last;
   }
