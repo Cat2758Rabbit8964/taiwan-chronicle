@@ -161,13 +161,20 @@ body.login footer .leave .btn{background:transparent;color:var(--red);border:1px
 body.login .shopbar a{color:var(--red)}
 
 /* 穿越地圖與逃脫遊戲 */
-.tmap{position:relative;width:100%;aspect-ratio:16/10;border:3px solid #5b4630;border-radius:8px;margin:8px 0 14px;overflow:hidden;
-  background:linear-gradient(#e9dfc6,#d9ccaa)}
+.tmap{position:relative;width:100%;aspect-ratio:124/80;border:3px solid #5b4630;border-radius:8px;margin:8px 0 14px;overflow:hidden;
+  background:#b9cbd0}
 .tmap .grid{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(90,70,40,.15) 0 1px,transparent 1px 12.5%),repeating-linear-gradient(0deg,rgba(90,70,40,.15) 0 1px,transparent 1px 20%)}
-.pin{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:6px;color:#2a2620;font-family:inherit;text-align:center;line-height:1.2}
-.pin i{display:block;width:18px;height:18px;margin:0 auto 3px;border-radius:50%;background:#b3170f;border:3px solid #fff3d6;box-shadow:0 0 0 2px #b3170f}
-.pin b{display:block;font-size:clamp(14px,3.6vw,17px)}
-.pin small{display:block;font-size:11px;opacity:.8}
+.worldsvg{position:absolute;inset:0;width:100%;height:100%}
+.worldsvg path{fill:#c7b78f;stroke:#8c7a5a;stroke-width:.25;stroke-linejoin:round}
+.cq{position:absolute;transform:translate(-50%,-50%);font-size:10px;color:#6b5a3a;opacity:.8;pointer-events:none}
+.cq::before{content:"";display:block;width:5px;height:5px;margin:0 auto 1px;border-radius:50%;background:#6b5a3a}
+.pin{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:8px;color:#2a2620;font-family:inherit;text-align:center;line-height:1.2}
+.pin i{display:block;width:16px;height:16px;border-radius:50%;background:#b3170f;border:3px solid #fff3d6;box-shadow:0 0 0 2px #b3170f}
+.pin .lab{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(255,248,226,.78);border-radius:4px;padding:0 4px}
+.pin.up .lab{bottom:100%;margin-bottom:-4px}
+.pin.down .lab{top:100%;margin-top:-4px}
+.pin b{display:block;font-size:clamp(13px,3.4vw,16px)}
+.pin small{display:block;font-size:10px;opacity:.8}
 .pin.sel i{animation:pinpulse 1s infinite alternate;background:#e0a21b;box-shadow:0 0 0 3px #b3170f}
 .pin.sel b{text-decoration:underline}
 .pin:focus-visible{outline:2px solid var(--accent)}

@@ -19,13 +19,21 @@ const Hall = {
   },
   qualifies(rows, score) { return score > 0 && (rows.length < 5 || score > rows[rows.length - 1].score); },
   // 顯示「進榜」頁:輸入名字後送出;done() 回到考場
-  async offer(subjectId, raw, done) {
+  async offer(subjectId, raw, done, say) {
     const meta = HALL_SUBJECTS.find((x) => x[0] === subjectId);
     if (!this.on || !(raw > 0)) return done();
     show(el('p', { class: 'lead' }, '正在查詢芳名錄…'));
     let rows;
     try { rows = await this.top(subjectId); } catch (e) { return done(); }
-    if (!this.qualifies(rows, raw)) return done();
+    if (!this.qualifies(rows, raw)) {
+      if (!say) return done();
+      return show(el('p', { class: 'persona' }, `${meta[1]} · 芳名錄`), el('h2', {}, '這次還沒進前五名'), el('p', { class: 'lead' }, `芳名錄只收各榜前五名。你這次的成績是 ${raw},再接再厲。`),
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: () => this.page(subjectId, done) }, '看芳名錄')));
+    }
+    if (say && this.nick) {   // 玩家剛按了「加進芳名錄」且已有綽號:直接以綽號留名
+      try { await this.submit(subjectId, this.nick, raw); } catch (e) { return show(el('p', { class: 'err', role: 'alert' }, '送出失敗,請稍後再試。'), el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: done }, '返回'))); }
+      return this.page(subjectId, done);
+    }
     const input = this.nick ? null : el('input', { type: 'text', maxlength: '12', autocomplete: 'off', class: 'txt', 'aria-label': '你的名字(最多 12 字)', placeholder: '名字或暱稱' });
     const msg = el('p', { class: 'err', role: 'alert' });
     const send = el('button', { class: 'btn', type: 'button', onclick: async () => {
