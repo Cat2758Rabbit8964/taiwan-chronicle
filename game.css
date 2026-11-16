@@ -159,3 +159,20 @@ body.login footer .leave .btn{background:transparent;color:var(--red);border:1px
 .shopbar{width:100%;max-width:680px;margin:0 auto;padding-top:12px;font-size:14px}
 .shopbar a{text-decoration:none}
 body.login .shopbar a{color:var(--red)}
+
+/* 穿越地圖與逃脫遊戲 */
+.tmap{position:relative;width:100%;aspect-ratio:16/10;border:3px solid #5b4630;border-radius:8px;margin:8px 0 14px;overflow:hidden;
+  background:linear-gradient(#e9dfc6,#d9ccaa)}
+.tmap .grid{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(90,70,40,.15) 0 1px,transparent 1px 12.5%),repeating-linear-gradient(0deg,rgba(90,70,40,.15) 0 1px,transparent 1px 20%)}
+.pin{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:6px;color:#2a2620;font-family:inherit;text-align:center;line-height:1.2}
+.pin i{display:block;width:18px;height:18px;margin:0 auto 3px;border-radius:50%;background:#b3170f;border:3px solid #fff3d6;box-shadow:0 0 0 2px #b3170f}
+.pin b{display:block;font-size:clamp(14px,3.6vw,17px)}
+.pin small{display:block;font-size:11px;opacity:.8}
+.pin.sel i{animation:pinpulse 1s infinite alternate;background:#e0a21b;box-shadow:0 0 0 3px #b3170f}
+.pin.sel b{text-decoration:underline}
+.pin:focus-visible{outline:2px solid var(--accent)}
+@keyframes pinpulse{to{transform:scale(1.35)}}
+.escv{display:block;width:100%;max-width:360px;margin:6px auto;border:3px solid #5b4630;border-radius:6px;touch-action:none;background:#ccc}
+.hud{text-align:center;font-weight:700;margin-bottom:2px}
+.pad{display:flex;justify-content:center;gap:14px;max-width:360px;margin:6px auto}
+.pad .ctl{flex:1;font-size:22px;padding:14px 0;touch-action:none;user-select:none;-webkit-user-select:none}

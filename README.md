@@ -34,5 +34,6 @@
 
 ## 遊戲的存檔、芳名錄與鑰匙
 - `save.js`、`hall.js`、`hall-config.js`:以 Supabase 實作遊戲 ID 存檔與每科芳名錄,資料表與函式見 [docs/hall-setup.md](docs/hall-setup.md)。
+- `escape.js` 是黃色門之後的穿越地圖與兩款逃脫遊戲(新疆往上爬、西藏往下逃);遊戲邏輯 `EscSim` 與畫面分開,可用程式模擬調整難度。兩張榜 `xj`、`tb` 需要依 `docs/hall-setup.md` 最後一節更新 Supabase 的限制。
 - `scripts/game/tag_keys.py`:替每位人物標註鑰匙類別(黃=日治時期台灣人、淺藍=戰後政治受難者、粉紅=女性),寫入 `data/game.json` 的 `k` 欄位;名單是人工判定,規則寫在檔案開頭。
 - `archive/`:暫時下架的遊戲(數學 A 卷猜數字)。

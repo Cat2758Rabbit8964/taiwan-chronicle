@@ -1,7 +1,7 @@
 'use strict';
 /* 芳名錄:每科一張榜,各取前五名。以 Supabase REST (fetch) 存取,沒有任何外部函式庫。
    需要 el()、show()(game.js)。設定見 hall-config.js、docs/hall-setup.md。 */
-const HALL_SUBJECTS = [['lang_en', '語文科・英文', '分數'], ['lang_jp', '語文科・日文', '分數'], ['math', '數學科', '分數'], ['sci', '自然科', '分數'], ['soc', '社會科', '分數']];
+const HALL_SUBJECTS = [['lang_en', '語文科・英文', '分數'], ['lang_jp', '語文科・日文', '分數'], ['math', '數學科', '分數'], ['sci', '自然科', '分數'], ['soc', '社會科', '分數'], ['xj', '逃脫・新疆', '階數'], ['tb', '逃脫・西藏', '階數']];
 const Hall = {
   nick: null,   // 登入後由 game.js 設定:有綽號就用綽號留名
   get on() { const c = window.HALL_CONFIG || {}; return !!(c.url && c.key); },

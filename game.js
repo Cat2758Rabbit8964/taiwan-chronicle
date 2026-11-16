@@ -531,7 +531,8 @@ function room(proceed) {
     ...KEYS.map((K, i) => {
       const n = keyHave(K).length, open = n >= K.need;
       return door(K.cls, `第${['二', '三', '四'][i]}扇門`, open ? '已解鎖' : '上鎖', `${K.name}的鎖 ${Math.min(n, K.need)} / ${K.need}`, () => {
-        if (open) modal(`${K.name}的門打開了`, ['鑰匙完成,門鎖喀的一聲開了。', '不過這扇門後面的世界,還沒有開放。']);
+        if (open && K.k === 'y') Escape.slip(proceed);
+        else if (open) modal(`${K.name}的門打開了`, ['鑰匙完成,門鎖喀的一聲開了。', '不過這扇門後面的世界,還沒有開放。']);
         else modal(`${K.name}的門上了鎖`, [`需要集滿 ${K.need} 位${K.label},才能解開這道鎖。`, `目前集到 ${n} 位。每一場遊戲揭曉的人物若屬於這一類,就會得到一個鑰匙碎片。`]);
       }, `${K.name}的門,${open ? '已解鎖' : '上鎖'}`, `${K.cls}${open ? ' open' : ''}`);
     })];
@@ -611,10 +612,10 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261133').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261133').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261133').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
-  fetch('data/backdrops.json?v=20261133').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
+Promise.all([fetch('data/game.json?v=20261134').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261134').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261134').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('data/backdrops.json?v=20261134').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
   .then(([d, ex, h, b]) => { data = d; exam = ex; harm = h || {}; bd = b || {}; start(); })
   .catch(() => show(el('h1', {}, '找尋您的前世'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));

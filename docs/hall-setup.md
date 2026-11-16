@@ -86,3 +86,12 @@ alter table public.saves add constraint saves_id_check check (id ~ '^[A-Z0-9]{6,
 ```
 
 注意:自訂的 ID 比系統亂數產生的更容易被猜到(例如常見單字),而 ID 等同密碼,知道的人就能讀寫、刪除那份存檔。登入頁有「幫我想一組」按鈕可以產生亂數 ID。
+
+## 逃脫遊戲榜(新疆 xj、西藏 tb)
+
+穿越地圖的兩款逃脫遊戲各有一張榜。請在 SQL Editor 再執行一次(`hall_subject_check` 要加入兩個新科目):
+
+```sql
+alter table public.hall drop constraint hall_subject_check;
+alter table public.hall add constraint hall_subject_check check (subject in ('lang','lang_en','lang_jp','math','sci','soc','xj','tb'));
+```
