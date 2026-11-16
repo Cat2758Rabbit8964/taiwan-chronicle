@@ -11,7 +11,7 @@ const MAX_PRE = 3;         // 最後一章之前最多問幾個情境題
 const MIN_PRE = 2;         // 最後一章之前至少問幾個(加上最後一章,至少三個情境題)
 let data = null;
 let bd = {};     // data/backdrops.json:各時間帶的底圖(台灣事件簿的老照片)
-let harm = {};   // 結果頁「加害者是誰」區塊的資料(data/harm.json;網址加 ?harm=draft 可預覽審稿中的草稿)
+let harm = {};   // 結果頁「加害者是誰」區塊的資料(data/harm.json,由 scripts/game/harm_data.py --publish 產生)
 let exam = null;
 let st = null; // { birth, bands, band, pool, career, asked, usedSit }
 
@@ -354,6 +354,7 @@ function result() {
       el('a', { class: 'btn', href: `index.html#y=${p.ly}`, style: 'text-decoration:none' }, `到台灣事件簿,看 ${p.ly} 年前後的台灣`),
       el('button', { class: 'btn ghost', type: 'button', onclick: () => begin(st.birth, null, st.round + 1, st.usedBands) }, '再玩一次(換一個時間)'),
       el('button', { class: 'btn ghost', type: 'button', onclick: () => treasure(render) }, '查看尋寶狀態'),
+      el('button', { class: 'btn ghost', type: 'button', onclick: () => seen(render) }, '我看過的人物'),
       el('button', { class: 'btn ghost', type: 'button', onclick: birthdayPage }, '重新開始')),
     (saveEl = el('p', { class: 'persona' }, saveMsg)),
     el('p', { class: 'persona sec' }, '這是娛樂用的配對,不代表你「真的」是誰。故事的轉折是為了讓你走完全程而設計的虛構情節;「他/她真正做的」都取自出處條目已載的事實,條目沒寫的就不列。' + (harm[p.id] ? '對遭到迫害的人,我們不評斷他們的選擇;該被檢視的,是加害的一方做了什麼。' : '歷史人物的選擇受限於當時的處境,我們無法以今天的角度簡單評斷。'),));
@@ -565,6 +566,31 @@ async function persist() {
     return (await Save.put(acct.id, acct.nick, acct.got, acct.hist)) ? '已存檔。' : '存檔失敗:這個遊戲 ID 已不存在。';
   } catch (e) { return '存檔失敗(網路問題),下次揭曉人物時會再試一次。'; }
 }
+// 看過的人物:列出這個帳號(訪客則是這次)揭曉過的所有人物,每位後面有「查看」,點進去是他/她的介紹
+function seen(back) {
+  const list = (acct ? acct.got : []).map(personById).filter(Boolean);
+  show(el('h2', {}, '我看過的人物'),
+    el('p', { class: 'lead' }, list.length ? `共 ${list.length} 位。按「查看」可以讀這位人物的介紹。` : '還沒有看過任何人物,揭曉您的前世之後,這裡就會有名單。'),
+    !acct || !acct.id ? el('p', { class: 'persona' }, '你目前是訪客,這份名單只在這次遊戲裡有效。') : null,
+    el('ul', { class: 'seen' }, list.map((q) => el('li', {}, el('span', {}, el('b', {}, q.name), ` (${q.life} · ${q.job})`),
+      el('button', { class: 'btn ghost', type: 'button', 'aria-label': `查看${q.name}`, onclick: () => profile(q, () => seen(back)) }, '查看')))),
+    el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: back }, '回上一頁')));
+}
+function profile(q, back) {
+  const sources = [el('a', { href: q.ref, target: '_blank', rel: 'noopener' }, `${q.src}「${q.name}」`),
+    ...(q.refs || []).map((r) => el('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.label))];
+  show(el('p', { class: 'persona' }, '人物介紹'),
+    el('div', { class: 'card' }, el('div', { class: 'big' }, q.name),
+      el('p', {}, el('span', { class: 'tag' }, q.country), el('span', { class: 'tag' }, q.life), el('span', { class: 'tag' }, q.job)),
+      el('div', { class: 'sec' }, el('h3', {}, '他/她做過的事'), el('p', {}, q.story)),
+      el('div', { class: 'sec' }, el('h3', {}, '後來的遭遇'), el('p', {}, q.fate)),
+      harmBox(q),
+      q.note ? el('div', { class: 'sec' }, el('h3', {}, '資料註記'), el('p', { class: 'note' }, q.note)) : null,
+      el('p', { class: 'persona' }, '資料出處:', sources.flatMap((x, i) => (i ? [' · ', x] : [x])))),
+    el('div', { class: 'row' }, el('a', { class: 'btn', href: `index.html#y=${q.ly}`, style: 'text-decoration:none' }, `到台灣事件簿,看 ${q.ly} 年前後的台灣`),
+      el('button', { class: 'btn ghost', type: 'button', onclick: back }, '回到名單')));
+}
+
 // 尋寶狀態:各類收集進度,與仿戒嚴時期公文的名冊
 function treasure(back) {
   const sections = KEYS.map((K) => {
@@ -613,10 +639,10 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261137').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261137').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch(new URLSearchParams(location.search).get('harm') === 'draft' ? 'data/harm.draft.json' : 'data/harm.json?v=20261137').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
-  fetch('data/backdrops.json?v=20261137').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
+Promise.all([fetch('data/game.json?v=20261138').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261138').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/harm.json?v=20261138').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('data/backdrops.json?v=20261138').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
   .then(([d, ex, h, b]) => { data = d; exam = ex; harm = h || {}; bd = b || {}; start(); })
   .catch(() => show(el('h1', {}, '找尋您的前世'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
