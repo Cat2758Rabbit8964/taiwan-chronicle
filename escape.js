@@ -92,7 +92,6 @@ const ESC_GAMES = {
   xj: {
     id: 'xj', name: '新疆(東突厥斯坦)', mode: 'up', unit: '階', verb: '爬上',
     entry: '進入再教育營',
-    caution: '接下來是依公開調查報導改寫的虛構情境,內容涉及強制拘禁與骨肉分離。',
     story: ['您是一位進到再教育營的維吾爾族族人,在八年前被強制入營。那一刻和自己五歲的女兒分開,從此之後不被允許見面。', '今天是她的生日,您趁著管理員疏失,從建築物死角逃出……', '五十秒內,往上爬,避開每一個站著管理員的台階。'],
     keys: '←/→ 移動,空白鍵或↑跳躍',
     lose: ['您被再教育營的管理員發現,被押回原本的營區。'],
@@ -106,7 +105,6 @@ const ESC_GAMES = {
   tb: {
     id: 'tb', name: '西藏(圖博)', mode: 'down', unit: '階', verb: '逃下',
     entry: '1959 年・逃出關押處',
-    caution: '接下來是依史料與難民證詞改寫的虛構情境,內容涉及武力鎮壓、拘禁與骨肉分離。',
     story: ['1959 年三月,拉薩爆發抗暴,炮火落在羅布林卡一帶。您是一位藏族牧民,事發後被抓去關押,寺院被封,家裡的牲畜也被收走。',
       '被帶走的那一刻,您和家人分開了,此後再沒有見過面。今天夜裡,您趁著看守疏忽,從關押處逃出。',
       '只有往南,翻過雪山,才到得了印度。五十秒內,往下逃,避開每一個站著士兵的台階,也別被山壁擠到頭頂。'],
@@ -155,9 +153,9 @@ const Escape = {
     const leaveMap = () => { document.removeEventListener('keydown', this.keyHandler); this.keyHandler = null; };
     const choose = () => {
       const s = spots[sel];
-      if (s.id === 'tw') { this.ask('回到原本的社會?', ['要離開這個時空,回到原本的社會,繼續你的故事嗎?'], '繼續', '返回', () => { leaveMap(); proceed(); }); return; }
+      if (s.id === 'tw') { this.ask('回到原本的社會?', ['要離開這個時空,回到原本的社會,繼續你的故事嗎?'], '是', '否', () => { leaveMap(); proceed(); }); return; }
       const g = ESC_GAMES[s.id];
-      this.ask(g.entry, [g.caution, ...g.story], '繼續', '返回', () => { leaveMap(); this.play(g, proceed); });
+      this.ask(g.entry, [...g.story], '繼續', '返回', () => { leaveMap(); this.play(g, proceed); });
     };
     if (this.keyHandler) document.removeEventListener('keydown', this.keyHandler);
     this.keyHandler = (e) => {

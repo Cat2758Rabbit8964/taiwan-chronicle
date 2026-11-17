@@ -522,25 +522,101 @@ function accountBar() {
   render(); return box;
 }
 
+// 情境 2 分兩頁:第一頁醒來,第二頁是四扇門的房間
 function room(proceed) {
   if (st) backdrop(st.band.id, st.birth + 'room');
-  // 每扇門:門板(leaf)畫在房間的牆上,門鎖(lock)用對應的顏色;下面是文字標示
-  const door = (cls, tag, state, sub, onclick, aria, lock) => el('button', { class: `doorcol ${cls}`, type: 'button', onclick, 'aria-label': aria },
-    el('span', { class: 'leaf', 'aria-hidden': 'true' }, lock ? el('span', { class: `lock ${lock}` }) : null),
-    el('span', { class: 'dtag' }, tag), el('b', {}, state), el('small', {}, sub));
+  show(el('p', { class: 'persona' }, '情境 2'), el('h2', {}, '你在一個陌生的房間醒來'),
+    el('p', { class: 'scene' }, '您起了床,揉揉眼睛,看見眼前有幾道門。'),
+    el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: () => roomDoors(proceed) }, '繼續')));
+}
+// 立體房間:左牆兩扇門(粉紅在靠邊、開著的在靠中間),右牆兩扇門(黃在靠中間、藍在靠邊),門與門之間掛一盞燈或一幅畫
+function roomDoors(proceed) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const S = (tag, attrs = {}, ...kids) => { const n = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); kids.forEach((c) => c && n.append(c)); return n; };
+  // 牆面透視:side 'L'/'R';x 是離畫面邊緣的距離(0 最近、130 在最深處的牆角),f 是高度比例(0 地板、1 天花板)
+  const pt = (side, x, f) => { const yb = 280 - 0.6923 * x, yt = 0.5385 * x; return `${side === 'L' ? x : 400 - x},${(yb + (yt - yb) * f).toFixed(1)}`; };
+  const quad = (side, x1, x2, f1, f2) => [pt(side, x1, f1), pt(side, x1, f2), pt(side, x2, f2), pt(side, x2, f1)].join(' ');
+  const door = (cls, tag, state, sub, onclick, aria, lock) => ({ cls, tag, state, sub, onclick, aria, lock });
   const doors = [door('d0', '第一扇門', '開著', '繼續你的故事', proceed, '第一扇門,開著,可以繼續你的故事', null),
     ...KEYS.map((K, i) => {
       const n = keyHave(K).length, open = n >= K.need;
-      return door(K.cls, `第${['二', '三', '四'][i]}扇門`, open ? '已解鎖' : '上鎖', `${K.name}的鎖 ${Math.min(n, K.need)} / ${K.need}`, () => {
+      return door(K.cls, `${K.name}的門`, open ? '開著' : '關著', `鑰匙碎片 ${Math.min(n, K.need)} / ${K.need}`, () => {
         if (open && K.k === 'y') Escape.slip(proceed);
-        else if (open) modal(`${K.name}的門打開了`, ['鑰匙完成,門鎖喀的一聲開了。', '不過這扇門後面的世界,還沒有開放。']);
-        else modal(`${K.name}的門上了鎖`, [`需要集滿 ${K.need} 位${K.label},才能解開這道鎖。`, `目前集到 ${n} 位。每一場遊戲揭曉的人物若屬於這一類,就會得到一個鑰匙碎片。`]);
-      }, `${K.name}的門,${open ? '已解鎖' : '上鎖'}`, `${K.cls}${open ? ' open' : ''}`);
+        else if (open) modal(`${K.name}的門開著`, ['鑰匙完成,門微微打開了一道縫。', '不過這扇門後面的世界,還沒有開放。']);
+        else modal(`${K.name}的門還關著`, [`需要集滿 ${K.need} 位${K.label}的鑰匙碎片,這扇門才會打開。`, `目前集到 ${n} 位。每一場遊戲揭曉的人物若屬於這一類,就會得到一個鑰匙碎片。`]);
+      }, `${K.name}的門,${open ? '開著' : '關著'}`, `${K.cls}${open ? ' open' : ''}`);
     })];
-  show(el('p', { class: 'persona' }, '情境 2'), el('h2', {}, '你在一個陌生的房間醒來'),
-    el('p', { class: 'scene' }, '四周有四扇門。其中一扇敞開著,門縫透出光;另外三扇都上了鎖,鎖的顏色各不相同。'),
-    el('div', { class: 'roomview' }, el('div', { class: 'wall' }, doors), el('div', { class: 'floor', 'aria-hidden': 'true' })),
-    el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: () => treasure(() => room(proceed)) }, '查看尋寶狀態')));
+  const by = Object.fromEntries(doors.map((d) => [d.cls, d]));
+  // 門的顏色飽和度低:大致是灰色,略偏黃、淺藍或粉紅
+  const DOOR_TONE = { ky: ['#8b8672', '#6f6b59'], kb: ['#6f7b86', '#58636d'], kp: ['#887880', '#6e6068'] };
+  const place = { kp: ['L', 6, 44], d0: ['L', 80, 106], ky: ['R', 80, 106], kb: ['R', 6, 44] };
+  const svg = S('svg', { viewBox: '0 0 400 280', class: 'room3d', role: 'group', 'aria-label': '陌生的房間:左右牆各兩扇門' },
+    S('defs', {},
+      S('radialGradient', { id: 'glow' }, S('stop', { offset: '0', 'stop-color': '#ffb347', 'stop-opacity': '.55' }), S('stop', { offset: '1', 'stop-color': '#ffb347', 'stop-opacity': '0' })),
+      S('linearGradient', { id: 'light', x1: '0', x2: '1' }, S('stop', { offset: '0', 'stop-color': '#7a5a2a' }), S('stop', { offset: '.4', 'stop-color': '#f5dd92' }), S('stop', { offset: '1', 'stop-color': '#fff3c4' }))),
+    S('polygon', { points: '0,0 130,70 270,70 400,0', fill: '#15110d' }),
+    S('polygon', { points: '0,280 130,190 270,190 400,280', fill: '#1f1914' }),
+    ...[0.2, 0.4, 0.6, 0.8].map((t) => S('line', { x1: 130 + (0 - 130) * t * 1.0, y1: 190 + 90 * t, x2: 270 + 130 * t, y2: 190 + 90 * t, stroke: '#0f0c09', 'stroke-width': '1' })),
+    S('polygon', { points: '0,0 130,70 130,190 0,280', fill: '#3a3028' }),
+    S('polygon', { points: '400,0 270,70 270,190 400,280', fill: '#2c251f' }),
+    S('rect', { x: '130', y: '70', width: '140', height: '120', fill: '#2b241e' }),
+    S('rect', { x: '186', y: '120', width: '28', height: '70', fill: '#17120e' }),   // 房間盡頭的暗處
+    ...['L', 'R'].map((sd) => S('polygon', { points: quad(sd, 0, 130, 0, 0.08), fill: '#150f0a' })),   // 踢腳板
+  );
+  const hang = (side, x, kind) => {
+    const g = S('g', { 'aria-hidden': 'true' });
+    const [cx, cy] = pt(side, x, 0.58).split(',').map(Number);
+    if (kind === 'lamp') {
+      g.append(S('circle', { cx, cy, r: '34', fill: 'url(#glow)', class: 'flick' }),
+        S('rect', { x: cx - 2, y: cy + 4, width: '4', height: '12', fill: '#5a4020' }),
+        S('path', { d: `M${cx - 6},${cy + 4} h12 l-2,-6 h-8 z`, fill: '#6b4e26' }),
+        S('path', { d: `M${cx},${cy - 14} c5,5 6,8 0,12 c-6,-4 -5,-7 0,-12 z`, fill: '#ffcf6b', class: 'flick' }));
+    } else {
+      const p = [pt(side, x - 9, 0.42), pt(side, x - 9, 0.7), pt(side, x + 9, 0.7), pt(side, x + 9, 0.42)];
+      const q = [pt(side, x - 7, 0.46), pt(side, x - 7, 0.66), pt(side, x + 7, 0.66), pt(side, x + 7, 0.46)];
+      g.append(S('polygon', { points: p.join(' '), fill: '#8a6a2c' }), S('polygon', { points: q.join(' '), fill: '#2a3a3a' }),
+        S('polygon', { points: [q[0], q[1], pt(side, x + 7, 0.56), pt(side, x - 7, 0.54)].join(' '), fill: '#4a5a52' }));
+    }
+    return g;
+  };
+  svg.append(hang('L', 66, 'lamp'), hang('R', 62, 'art'), hang('L', 122, 'lamp'));   // 左牆兩門之間一盞燈、右牆兩門之間一幅畫
+  const doorG = (d) => {
+    const [sd, x1, x2] = place[d.cls], isOpen = d.cls === 'd0';
+    const g = S('g', { class: `rdoor ${d.cls}`, tabindex: '0', role: 'button', 'aria-label': d.aria });
+    const tone = DOOR_TONE[d.cls] || [];
+    g.append(S('polygon', { points: quad(sd, x1 - 3, x2 + 3, 0, 0.7), fill: '#1a130d' }));
+    if (isOpen) {
+      g.append(S('polygon', { class: 'body', points: quad(sd, x1, x2, 0, 0.66), fill: 'url(#light)', stroke: '#2a1a0c', 'stroke-width': '1.2' }));
+      return g;
+    }
+    const half = d.lock.includes('open');   // 鑰匙集滿:門保持半開
+    const at = (t, f) => pt(sd, x1 + (x2 - x1) * t, f).split(',').map(Number);
+    if (!half) {
+      g.append(S('polygon', { class: 'body', points: quad(sd, x1, x2, 0, 0.66), fill: tone[0], stroke: '#2a1a0c', 'stroke-width': '1.2' }),
+        S('polygon', { points: quad(sd, x1 + 4, x2 - 4, 0.07, 0.3), fill: 'none', stroke: tone[1], 'stroke-width': '.8' }), S('polygon', { points: quad(sd, x1 + 4, x2 - 4, 0.36, 0.6), fill: 'none', stroke: tone[1], 'stroke-width': '.8' }));
+      const [hx, hy] = at(0.22, 0.34);
+      g.append(S('circle', { cx: hx, cy: hy, r: '2.6', fill: '#cfc3a0', stroke: '#4a3c20', 'stroke-width': '.8' }));
+    } else {
+      // 半開、外推式:門框內是暗處,門扇以靠近畫面的一側為軸,往門裡(遠離畫面、牆的另一側)推開
+      const sw = sd === 'L' ? 1 : -1;   // 往房間中央的方向(畫面上的 x 方向)
+      const hb = at(0, 0), ht = at(0, 0.66), fb = at(0.62, 0), ft = at(0.62, 0.66);
+      const fbx = fb[0] - sw * 7, fby = fb[1] - 6, ftx = ft[0] - sw * 7, fty = ft[1] + 9;   // 自由端往牆裡推,離觀看者較遠,所以畫得較小
+      g.append(S('polygon', { class: 'body', points: quad(sd, x1, x2, 0, 0.66), fill: '#120e0a', stroke: '#2a1a0c', 'stroke-width': '1.2' }),
+        S('polygon', { points: quad(sd, x1 + 2, x2 - 2, 0, 0.64), fill: '#2e271d' }),
+        S('polygon', { points: `${hb[0]},${hb[1]} ${ht[0]},${ht[1]} ${ftx},${fty} ${fbx},${fby}`, fill: tone[0], stroke: '#2a1a0c', 'stroke-width': '1' }),
+        S('circle', { cx: fbx + (ftx - fbx) * 0.08 + (fb[0] - hb[0]) * -0.12, cy: fby + (fty - fby) * 0.5, r: '1.9', fill: '#cfc3a0', stroke: '#4a3c20', 'stroke-width': '.6' }));
+    }
+    return g;
+  };
+  svg.append(...['kp', 'd0', 'ky', 'kb'].map((c) => doorG(by[c])));
+  svg.addEventListener('click', (e) => { const g = e.target.closest && e.target.closest('.rdoor'); if (g) { const c = [...g.classList].find((x) => by[x]); if (c) by[c].onclick(); } });
+  svg.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('rdoor')) { e.preventDefault(); const c = [...e.target.classList].find((x) => by[x]); if (c) by[c].onclick(); } });
+  const legend = el('div', { class: 'dlegend' }, doors.map((d) => el('button', { type: 'button', class: `dl ${d.cls}${d.cls === 'd0' || d.lock.includes('open') ? ' on' : ''}`, onclick: d.onclick, 'aria-label': d.aria },
+    el('span', { class: 'dot', 'aria-hidden': 'true' }), el('span', {}, el('b', {}, `${d.tag}・${d.state}`), el('small', {}, d.sub)))));
+  show(el('p', { class: 'persona' }, '情境 2'), el('h2', {}, '四扇門'),
+    el('p', { class: 'scene' }, '左牆兩扇、右牆兩扇。其中一扇敞開著,門縫透出光;另外三扇關著,顏色各不相同。'),
+    el('div', { class: 'roomwrap' }, svg), legend,
+    el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', onclick: () => treasure(() => roomDoors(proceed)) }, '查看尋寶狀態')));
 }
 
 function collect(p) {
@@ -591,13 +667,21 @@ function profile(q, back) {
       el('button', { class: 'btn ghost', type: 'button', onclick: back }, '回到名單')));
 }
 
+// 鑰匙圖示:集滿顯示該顏色,未集滿是灰色
+function keyIcon(cls, full) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const S = (t, a) => { const n = document.createElementNS(NS, t); for (const [k, v] of Object.entries(a)) n.setAttribute(k, v); return n; };
+  const svg = S('svg', { viewBox: '0 0 32 16', class: `keyicon ${full ? cls : 'gray'}`, role: 'img', 'aria-label': full ? '鑰匙已完成' : '鑰匙尚未集滿' });
+  svg.append(S('circle', { cx: '7', cy: '8', r: '5', fill: 'none', 'stroke-width': '3' }), S('rect', { x: '12', y: '7', width: '18', height: '2.6' }), S('rect', { x: '24', y: '9', width: '2.4', height: '4' }), S('rect', { x: '28', y: '9', width: '2.4', height: '3' }));
+  return svg;
+}
 // 尋寶狀態:各類收集進度,與仿戒嚴時期公文的名冊
 function treasure(back) {
   const sections = KEYS.map((K) => {
     const have = keyHave(K), n = have.length, pct = Math.min(100, Math.round((n / K.need) * 100));
     return el('section', { class: 'sec' },
       el('h3', {}, `${K.name}鑰匙 · ${K.label}`),
-      el('div', { class: 'keybar' }, el('i', { class: K.cls, style: `width:${pct}%` })),
+      el('div', { class: 'keyrow' }, keyIcon(K.cls, n >= K.need), el('div', { class: 'keybar' }, el('i', { class: K.cls, style: `width:${pct}%` }))),
       el('p', { class: 'persona' }, `${n} / ${K.need}${n >= K.need ? ' · 鑰匙已完成' : ''}`),
       el('div', { class: 'register', role: 'region', 'aria-label': `${K.name}鑰匙名冊` },
         el('div', { class: 'stamp', 'aria-hidden': 'true' }, '密'),
@@ -639,10 +723,10 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261141').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261141').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/harm.json?v=20261141').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
-  fetch('data/backdrops.json?v=20261141').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
+Promise.all([fetch('data/game.json?v=20261152').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261152').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/harm.json?v=20261152').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('data/backdrops.json?v=20261152').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
   .then(([d, ex, h, b]) => { data = d; exam = ex; harm = h || {}; bd = b || {}; start(); })
   .catch(() => show(el('h1', {}, '找尋您的前世'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
