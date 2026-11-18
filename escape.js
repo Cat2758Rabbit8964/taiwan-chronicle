@@ -193,7 +193,7 @@ const Escape = {
     const down = kd(true), up = kd(false);
     document.addEventListener('keydown', down); document.addEventListener('keyup', up);
     const ctx = cv.getContext('2d');
-    let last = performance.now();
+    let last = performance.now(), wait = 3;
     const finish = () => {
       document.removeEventListener('keydown', down); document.removeEventListener('keyup', up);
       this.ending(g, sim, proceed);
@@ -201,7 +201,15 @@ const Escape = {
     const frame = (now) => {
       if (!cv.isConnected) { document.removeEventListener('keydown', down); document.removeEventListener('keyup', up); return; }
       const dt = (now - last) / 1000; last = now;
-      if (!document.querySelector('.modal-back')) sim.step(dt, inp);   // 跳出確認窗時暫停
+      const paused = !!document.querySelector('.modal-back');   // 跳出確認窗時暫停
+      if (wait > 0) {   // 開始前先倒數 3、2、1
+        if (!paused) wait -= dt;
+        this.draw(ctx, sim, g);
+        if (wait > 0) { ctx.fillStyle = 'rgba(20,16,12,.6)'; ctx.fillRect(110, 190, 140, 120); ctx.fillStyle = '#f3ead2'; ctx.font = '80px serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(Math.ceil(wait)), 180, 252); }
+        hud.textContent = '準備開始……';
+        requestAnimationFrame(frame); return;
+      }
+      if (!paused) sim.step(dt, inp);
       this.draw(ctx, sim, g);
       hud.textContent = `剩 ${Math.max(0, Math.ceil(ESC_SECONDS - sim.t))} 秒　${g.verb} ${sim.score} ${g.unit}`;
       if (sim.over) { setTimeout(finish, 400); return; }

@@ -95,3 +95,14 @@ alter table public.saves add constraint saves_id_check check (id ~ '^[A-Z0-9]{6,
 alter table public.hall drop constraint hall_subject_check;
 alter table public.hall add constraint hall_subject_check check (subject in ('lang','lang_en','lang_jp','math','sci','soc','xj','tb'));
 ```
+
+## 音樂科榜(music,分數後面標歌名)
+
+節奏遊戲(國旗歌、雨夜花)共用一張「音樂科」榜,分數後面用括號標示是哪一首歌。請在 SQL Editor 再執行一次:
+
+```sql
+alter table public.hall add column if not exists note text;
+alter table public.hall add constraint hall_note_check check (note is null or char_length(note) <= 8);
+alter table public.hall drop constraint hall_subject_check;
+alter table public.hall add constraint hall_subject_check check (subject in ('lang','lang_en','lang_jp','math','sci','soc','xj','tb','music'));
+```

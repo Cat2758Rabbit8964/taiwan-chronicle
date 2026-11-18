@@ -24,9 +24,9 @@ const Save = {
     const rows = await this.rpc('save_get', { p_id: id });
     if (!rows || !rows.length) return null;
     const d = rows[0].data || {};
-    return { nick: rows[0].nick, got: Array.isArray(d.got) ? d.got : [], hist: Array.isArray(d.hist) ? d.hist : [] };
+    return { nick: rows[0].nick, got: Array.isArray(d.got) ? d.got : [], hist: Array.isArray(d.hist) ? d.hist : [], flags: d.flags && typeof d.flags === 'object' ? d.flags : {} };
   },
-  async put(id, nick, got, hist) { return this.rpc('save_put', { p_id: id, p_nick: nick, p_data: { got, hist } }); },
+  async put(id, nick, got, hist, flags) { return this.rpc('save_put', { p_id: id, p_nick: nick, p_data: { got, hist, flags: flags || {} } }); },
   async del(id) { return this.rpc('save_del', { p_id: id }); },
   // 兩邊的進度合併(取聯集),避免不同裝置互相覆蓋
   merge(a, b) {
@@ -34,6 +34,6 @@ const Save = {
     const seen = new Set(); const hist = [];
     for (const h of [...(a.hist || []), ...(b.hist || [])]) { const k = `${h.id}|${h.t}`; if (!seen.has(k)) { seen.add(k); hist.push(h); } }
     hist.sort((x, y) => (x.t < y.t ? -1 : 1));
-    return { got, hist: hist.slice(-200) };
+    return { got, hist: hist.slice(-200), flags: { ...(a.flags || {}), ...(b.flags || {}) } };
   },
 };

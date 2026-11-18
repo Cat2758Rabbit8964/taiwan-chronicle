@@ -499,7 +499,7 @@ function welcome() {
   const msg = el('p', { class: 'err', role: 'alert' });
   const go = el('button', { class: 'btn', type: 'button', onclick: async () => {
     const nick = nickIn.value.trim(); if (!nick) { msg.textContent = '綽號不能是空的。'; return; }
-    if (nick !== acct.nick) { acct.nick = nick; Hall.nick = nick; try { await Save.put(acct.id, nick, acct.got, acct.hist); } catch (e) { msg.textContent = '綽號沒有存成功,但可以繼續玩。'; } }
+    if (nick !== acct.nick) { acct.nick = nick; Hall.nick = nick; try { await Save.put(acct.id, nick, acct.got, acct.hist, acct.flags); } catch (e) { msg.textContent = '綽號沒有存成功,但可以繼續玩。'; } }
     birthdayPage();
   } }, '繼續');
   nickIn.addEventListener('keydown', (e) => { if (e.key === 'Enter') go.click(); });
@@ -542,6 +542,7 @@ function roomDoors(proceed) {
       const n = keyHave(K).length, open = n >= K.need;
       return door(K.cls, `${K.name}的門`, open ? '開著' : '關著', `鑰匙碎片 ${Math.min(n, K.need)} / ${K.need}`, () => {
         if (open && K.k === 'y') Escape.slip(proceed);
+        else if (open && K.k === 'b') Music.campus(proceed);
         else if (open) modal(`${K.name}的門開著`, ['鑰匙完成,門微微打開了一道縫。', '不過這扇門後面的世界,還沒有開放。']);
         else modal(`${K.name}的門還關著`, [`需要集滿 ${K.need} 位${K.label}的鑰匙碎片,這扇門才會打開。`, `目前集到 ${n} 位。每一場遊戲揭曉的人物若屬於這一類,就會得到一個鑰匙碎片。`]);
       }, `${K.name}的門,${open ? '開著' : '關著'}`, `${K.cls}${open ? ' open' : ''}`);
@@ -638,8 +639,8 @@ async function persist() {
   try {
     const cur = await Save.load(acct.id);
     if (!cur) return '存檔失敗:這個遊戲 ID 已不存在。';
-    const m = Save.merge(acct, cur); acct.got = m.got; acct.hist = m.hist;
-    return (await Save.put(acct.id, acct.nick, acct.got, acct.hist)) ? '已存檔。' : '存檔失敗:這個遊戲 ID 已不存在。';
+    const m = Save.merge(acct, cur); acct.got = m.got; acct.hist = m.hist; acct.flags = m.flags;
+    return (await Save.put(acct.id, acct.nick, acct.got, acct.hist, acct.flags)) ? '已存檔。' : '存檔失敗:這個遊戲 ID 已不存在。';
   } catch (e) { return '存檔失敗(網路問題),下次揭曉人物時會再試一次。'; }
 }
 // 看過的人物:列出這個帳號(訪客則是這次)揭曉過的所有人物,每位後面有「查看」,點進去是他/她的介紹
@@ -723,10 +724,10 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261152').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261152').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/harm.json?v=20261152').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
-  fetch('data/backdrops.json?v=20261152').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
+Promise.all([fetch('data/game.json?v=20261176').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261176').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/harm.json?v=20261176').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('data/backdrops.json?v=20261176').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
   .then(([d, ex, h, b]) => { data = d; exam = ex; harm = h || {}; bd = b || {}; start(); })
   .catch(() => show(el('h1', {}, '找尋您的前世'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));

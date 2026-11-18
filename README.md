@@ -35,5 +35,6 @@
 ## 遊戲的存檔、芳名錄與鑰匙
 - `save.js`、`hall.js`、`hall-config.js`:以 Supabase 實作遊戲 ID 存檔與每科芳名錄,資料表與函式見 [docs/hall-setup.md](docs/hall-setup.md)。
 - `escape.js` 是黃色門之後的穿越地圖與兩款逃脫遊戲(新疆往上爬、西藏往下逃);遊戲邏輯 `EscSim` 與畫面分開,可用程式模擬調整難度。兩張榜 `xj`、`tb` 需要依 `docs/hall-setup.md` 最後一節更新 Supabase 的限制。
+- `music.js` 是藍色的門之後的戒嚴時期校園與節奏遊戲(國旗歌、雨夜花);旋律放在 `data/music.json`(只有音高與節奏,取自公共領域樂譜),音色由瀏覽器合成,不載入任何錄音、不放歌詞。雨夜花的旋律依站長提供的簡譜寫在 `rain` 欄位(兩段,第二段升到 E 大調);操場角落的白色捲軸要先唱完國旗歌才會出現。音樂科榜需要依 `docs/hall-setup.md` 最後一節更新 Supabase。
 - `scripts/game/tag_keys.py`:替每位人物標註鑰匙類別(黃=日治時期台灣人、淺藍=戰後政治受難者、粉紅=女性),寫入 `data/game.json` 的 `k` 欄位;名單是人工判定,規則寫在檔案開頭。
 - `archive/`:暫時下架的遊戲(數學 A 卷猜數字)。

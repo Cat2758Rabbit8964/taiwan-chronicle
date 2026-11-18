@@ -198,3 +198,23 @@ body.login .shopbar a{color:var(--red)}
 .keyicon.ky{color:#f2cf4b}
 .keyicon.kb{color:#7fb7d6}
 .keyicon.kp{color:#f09ab9}
+
+/* 藍色的門:校園 */
+.campuswrap{position:relative;left:50%;transform:translateX(-50%);width:min(960px,calc(100vw - 32px));margin:8px 0 12px;border:3px solid #2a2118;border-radius:8px;overflow:hidden;background:#1f2430}
+.campus{display:block;width:100%;height:auto}
+.spot{cursor:pointer}
+.spot:hover > *,.spot:focus-visible > *{filter:brightness(1.25)}
+.spot:focus{outline:none}
+.tip{display:none;position:absolute;pointer-events:none;background:rgba(20,16,12,.88);color:#f3ead2;padding:2px 10px;border-radius:4px;font-size:14px;z-index:3;white-space:nowrap}
+.sheet{cursor:pointer}
+.sheet:hover > *{filter:brightness(.92)}
+
+.sync input[type=range]{flex:1;min-width:160px}
+.sync .row{align-items:center;margin-top:6px}
+
+/* 節拍器切換器:開(綠燈)/關(紅燈),沒亮的那一邊是灰色 */
+.toggle{display:inline-flex;align-items:stretch;padding:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card);font-family:inherit;font-size:15px;cursor:pointer}
+.toggle span{display:block;min-width:56px;padding:6px 16px;text-align:center;color:#8a8579;background:transparent;transition:background .15s,color .15s}
+.toggle.is-on .on{background:#3f9b57;color:#fff;box-shadow:0 0 8px rgba(63,155,87,.7)}
+.toggle.is-off .off{background:#c0453a;color:#fff;box-shadow:0 0 8px rgba(192,69,58,.7)}
+.toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
