@@ -220,7 +220,7 @@ const Music = {
   setOffset(v) { try { localStorage.setItem('taiwan-chronicle-mu-offset', String(v)); } catch (e) { /* 略過 */ } },
   async load() {
     if (this.data) return this.data;
-    try { const r = await fetch('data/music.json?v=20261177'); this.data = r.ok ? await r.json() : {}; } catch (e) { this.data = {}; }
+    try { const r = await fetch('data/music.json?v=20261178'); this.data = r.ok ? await r.json() : {}; } catch (e) { this.data = {}; }
     return this.data;
   },
   // 校園:滑鼠移上去顯示地名;「教室」是國旗歌,「校門」是出口。國旗歌過關後,校園裡才會隨機出現一張半遮住的紙(雨夜花樂譜)
@@ -440,15 +440,16 @@ const Music = {
     const meta = MU_SONGS[id], score = sim.score, c = sim.counts;
     const join = () => Hall.offer('music', score, () => this.ending2(id, sim, back), true, meta.short);
     const canAsk = Hall.on && score > 0;
+    let joinB = null;
     show(el('p', { class: 'persona' }, meta.title), el('h2', {}, '曲子結束了'),
       el('p', { class: 'lead' }, `分數 ${score}(+2 有 ${c.good} 個、+1 有 ${c.ok} 個、+0 有 ${c.miss} 個;滿分 ${sim.max})`),
       ...meta.end.map((x) => el('p', { class: 'scene' }, x)),
       meta.link ? el('p', {}, el('a', { href: meta.link[1], target: '_blank', rel: 'noopener' }, meta.link[0])) : null,
       el('p', { class: 'persona' }, meta.basis),
       el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: () => this.play(id, back) }, '再玩一次'),
-        canAsk ? el('button', { class: 'btn ghost', type: 'button', onclick: join }, '加進芳名錄') : null,
+        canAsk ? (joinB = Hall.joinBtn('music', score, '分', join)) : null,
         Hall.on ? el('button', { class: 'btn ghost', type: 'button', onclick: () => Hall.page('music', () => this.ending2(id, sim, back)) }, '看芳名錄') : null,
         el('button', { class: 'btn ghost', type: 'button', onclick: back }, '回校園')));
-    if (popup && canAsk) Escape.ask('要加進芳名錄嗎?', [`這次的成績是 ${score} 分(${meta.short})。要把它加進「音樂科」的芳名錄嗎?`], '加進芳名錄', '不加入', join);
+    if (popup && canAsk) Hall.worthAsking('music', score).then((ok) => { if (ok && joinB && joinB.isConnected) Escape.ask('要加進芳名錄嗎?', [`這次的成績是 ${score} 分(${meta.short})。要把它加進「音樂科」的芳名錄嗎?`], '加進芳名錄', '不加入', join); });
   },
 };

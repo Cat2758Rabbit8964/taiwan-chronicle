@@ -242,6 +242,7 @@ const Escape = {
     const again = () => this.play(g, proceed), toMap = () => this.slip(proceed);
     const back = () => this.ending(g, sim, proceed, true);
     const canAsk = Hall.on && score > 0;
+    let joinB = null;
     const join = () => Hall.offer(g.id, score, back, true);
     const popup = () => this.ask('要加進芳名錄嗎?', [`這次的成績是${g.verb} ${score} ${g.unit}。要把它加進「${g.name}」的芳名錄嗎?`], '加進芳名錄', '不加入', join);
     show(el('p', { class: 'persona' }, g.name), el('h2', {}, win ? '您逃出來了' : (sim.over === 'fall' ? '失足掉落' : sim.over === 'crush' ? '被山壁擠住' : '被發現了')),
@@ -249,9 +250,9 @@ const Escape = {
       ...(win ? g.win : g.lose).map((x) => el('p', { class: 'scene' }, x)),
       el('p', { class: 'persona' }, g.basis),
       el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: again }, '再玩一次'),
-        canAsk ? el('button', { class: 'btn ghost', type: 'button', onclick: join }, '加進芳名錄') : null,
+        canAsk ? (joinB = Hall.joinBtn(g.id, score, g.unit, join)) : null,
         Hall.on ? el('button', { class: 'btn ghost', type: 'button', onclick: () => Hall.page(g.id, back) }, '看芳名錄') : null,
         el('button', { class: 'btn ghost', type: 'button', onclick: toMap }, '回到地圖')));
-    if (canAsk && !asked) popup();   // 結束後直接跳出詢問視窗
+    if (canAsk && !asked) Hall.worthAsking(g.id, score).then((ok) => { if (ok && joinB && joinB.isConnected) popup(); });   // 結束後直接跳出詢問視窗
   },
 };
