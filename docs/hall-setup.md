@@ -106,3 +106,47 @@ alter table public.hall add constraint hall_note_check check (note is null or ch
 alter table public.hall drop constraint hall_subject_check;
 alter table public.hall add constraint hall_subject_check check (subject in ('lang','lang_en','lang_jp','math','sci','soc','xj','tb','music'));
 ```
+
+## 每個帳號每科只留最高分(一人一筆)
+芳名錄改成:只有登入遊戲 ID 的玩家能留名(訪客不能),每個帳號在每個科目只保留自己的最高分。舊紀錄全部保留在 `hall` 表,不會被刪;玩家看到的榜單改讀 `hall_board` 檢視表,同一科目、同一個名字只顯示分數最高的一筆。請在 SQL Editor 執行:
+
+```sql
+-- 1. 帳號代號:遊戲 ID 加鹽後做 SHA-256,公開表看不出原本的 ID(舊紀錄這欄是空的)
+alter table public.hall add column if not exists acct text;
+create unique index if not exists hall_one_per_acct on public.hall (subject, acct) where acct is not null;
+
+-- 2. 前台榜單:同一科目、同一名字只取最高分(後台 hall 表仍保有全部紀錄)
+create or replace view public.hall_board as
+select distinct on (subject, name) subject, name, score, note, created_at
+from public.hall
+order by subject, name, score desc, created_at asc;
+
+-- 3. 留名函式:確認遊戲 ID 存在,新增或在更高分時更新
+create or replace function public.hall_submit(p_id text, p_subject text, p_name text, p_score int, p_note text)
+returns text language plpgsql security definer set search_path = public, extensions as $$
+declare h text; old int;
+begin
+  if not exists (select 1 from saves where id = p_id) then raise exception 'bad id'; end if;
+  h := encode(digest('hall:' || p_id, 'sha256'), 'hex');
+  select score into old from hall where subject = p_subject and acct = h;
+  if old is null then
+    insert into hall(subject, name, score, note, acct) values (p_subject, p_name, p_score, p_note, h);
+    return 'saved';
+  elsif p_score > old then
+    update hall set name = p_name, score = p_score, note = p_note, created_at = now() where subject = p_subject and acct = h;
+    return 'saved';
+  else
+    update hall set name = p_name where subject = p_subject and acct = h;
+    return 'kept';
+  end if;
+end $$;
+
+-- 4. 權限:匿名金鑰不能再直接新增或讀取 hall 表(才看不到 acct),只能讀檢視表和呼叫函式
+drop policy if exists "任何人可新增" on public.hall;
+revoke insert, update, delete, select on public.hall from anon, authenticated;
+revoke all on function public.hall_submit from public;
+grant execute on function public.hall_submit to anon;
+grant select on public.hall_board to anon;
+```
+
+注意:執行第 4 段後,舊版網頁(還在用直接新增的版本)會送不出成績,請在新版網頁上線後再執行,或兩者同時進行。刪除不當名字仍在 Table Editor 的 `hall` 表操作。

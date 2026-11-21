@@ -3,48 +3,50 @@
    需要 el()、show()(game.js)。設定見 hall-config.js、docs/hall-setup.md。 */
 const HALL_SUBJECTS = [['lang_en', '語文科・英文', '分數'], ['lang_jp', '語文科・日文', '分數'], ['math', '數學科', '分數'], ['sci', '自然科', '分數'], ['soc', '社會科', '分數'], ['xj', '逃脫・新疆', '階數'], ['tb', '逃脫・西藏', '階數'], ['music', '音樂科', '分數']];
 const Hall = {
+  id: null,     // 登入的遊戲 ID(訪客為 null);只用來向伺服器證明身分,不會顯示
   nick: null,   // 登入後由 game.js 設定:有綽號就用綽號留名
   get on() { const c = window.HALL_CONFIG || {}; return !!(c.url && c.key); },
   _h() { const c = window.HALL_CONFIG; return { apikey: c.key, Authorization: `Bearer ${c.key}`, 'Content-Type': 'application/json' }; },
   async top(subject, n = 5) {
     const c = window.HALL_CONFIG;
-    const r = await fetch(`${c.url}/rest/v1/hall?subject=eq.${encodeURIComponent(subject)}&select=name,score,note,created_at&order=score.desc,created_at.asc&limit=${n}`, { headers: this._h() });
+    const r = await fetch(`${c.url}/rest/v1/hall_board?subject=eq.${encodeURIComponent(subject)}&select=name,score,note,created_at&order=score.desc,created_at.asc&limit=${n}`, { headers: this._h() });
     if (!r.ok) throw new Error('讀取失敗');
     return r.json();
   },
-  async submit(subject, name, score, note) {
+  // 以遊戲 ID 留名:每個帳號在每個科目只有一筆,只在新成績較高時更新。回傳 'saved' 或 'kept'(沒有超過自己的紀錄)
+  async submit(subject, score, note) {
     const c = window.HALL_CONFIG;
-    const r = await fetch(`${c.url}/rest/v1/hall`, { method: 'POST', headers: { ...this._h(), Prefer: 'return=minimal' }, body: JSON.stringify(note ? { subject, name, score, note } : { subject, name, score }) });
+    const r = await fetch(`${c.url}/rest/v1/rpc/hall_submit`, { method: 'POST', headers: this._h(), body: JSON.stringify({ p_id: this.id, p_subject: subject, p_name: this.nick, p_score: score, p_note: note || null }) });
     if (!r.ok) throw new Error('送出失敗');
+    return r.json();
   },
   qualifies(rows, score) { return score > 0 && (rows.length < 5 || score > rows[rows.length - 1].score); },
-  // 顯示「進榜」頁:輸入名字後送出;done() 回到考場
+  // 顯示「進榜」頁;done() 回到考場。只有登入遊戲 ID 的玩家能留名(訪客不能)。say=true:玩家剛按了「加進芳名錄」
   async offer(subjectId, raw, done, say, note) {
     const meta = HALL_SUBJECTS.find((x) => x[0] === subjectId);
     if (!this.on || !(raw > 0)) return done();
     show(el('p', { class: 'lead' }, '正在查詢芳名錄…'));
     let rows;
     try { rows = await this.top(subjectId); } catch (e) { return done(); }
+    const notice = (title, text) => show(el('p', { class: 'persona' }, `${meta[1]} · 芳名錄`), el('h2', {}, title), el('p', { class: 'lead' }, text),
+      el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: () => this.page(subjectId, done) }, '看芳名錄'), el('button', { class: 'btn ghost', type: 'button', onclick: done }, '返回')));
     if (!this.qualifies(rows, raw)) {
       if (!say) return done();
-      return show(el('p', { class: 'persona' }, `${meta[1]} · 芳名錄`), el('h2', {}, '這次還沒進前五名'), el('p', { class: 'lead' }, `芳名錄只收各榜前五名。你這次的成績是 ${raw},再接再厲。`),
-        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: () => this.page(subjectId, done) }, '看芳名錄')));
+      return notice('這次還沒進前五名', `芳名錄只收各榜前五名。你這次的成績是 ${raw},再接再厲。`);
     }
-    if (say && this.nick) {   // 玩家剛按了「加進芳名錄」且已有綽號:直接以綽號留名
-      try { await this.submit(subjectId, this.nick, raw, note); } catch (e) { return show(el('p', { class: 'err', role: 'alert' }, '送出失敗,請稍後再試。'), el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: done }, '返回'))); }
-      return this.page(subjectId, done);
-    }
-    const input = this.nick ? null : el('input', { type: 'text', maxlength: '12', autocomplete: 'off', class: 'txt', 'aria-label': '你的名字(最多 12 字)', placeholder: '名字或暱稱' });
-    const msg = el('p', { class: 'err', role: 'alert' });
-    const send = el('button', { class: 'btn', type: 'button', onclick: async () => {
-      const name = this.nick || input.value.trim();
-      if (!name) { msg.textContent = '請輸入名字,或選擇「不留名」。'; return; }
-      send.disabled = true; msg.textContent = '';
-      try { await this.submit(subjectId, name, raw, note); this.page(subjectId, done); } catch (e) { msg.textContent = '送出失敗,請稍後再試。'; send.disabled = false; }
-    } }, this.nick ? `以「${this.nick}」留名` : '留名到芳名錄');
+    if (!this.id) return notice('登入遊戲 ID 才能留名', `你的成績 ${raw} 已經進得了前五名,但訪客不能上芳名錄。回到開頭用遊戲 ID 登入(或新建一個),下次就能留名。`);
+    const mine = rows.find((r) => r.name === this.nick);
+    if (mine && mine.score >= raw) { if (!say) return done(); return notice('還沒破你自己的紀錄', `你在這一科的最高紀錄是 ${mine.score},這次是 ${raw}。每個人在每一科只留最高分。`); }
+    const go = async (btn) => {
+      btn.disabled = true;
+      try { const res = await this.submit(subjectId, raw, note); if (res === 'kept') return notice('還沒破你自己的紀錄', '每個人在每一科只留最高分,這次沒有超過你之前的紀錄。'); this.page(subjectId, done); }
+      catch (e) { show(el('p', { class: 'err', role: 'alert' }, '送出失敗,請稍後再試。'), el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', onclick: done }, '返回'))); }
+    };
+    if (say) { const tmp = { disabled: false }; return go(tmp); }
+    const send = el('button', { class: 'btn', type: 'button', onclick: () => go(send) }, `以「${this.nick}」留名`);
     show(el('p', { class: 'persona' }, `${meta[1]} · 芳名錄`), el('h2', {}, `恭喜!你的${meta[2]} ${raw},進入前五名`),
-      el('p', { class: 'lead' }, '要不要把名字寫在芳名錄上?送出後全站玩家都看得到。請不要使用真實姓名以外的個資,也不要輸入不當字詞;站長可能移除不適當的名字。只會送出你輸入的名字、科目和成績。'),
-      input, msg, el('div', { class: 'row' }, send, el('button', { class: 'btn ghost', type: 'button', onclick: done }, '不留名')));
+      el('p', { class: 'lead' }, '要不要把綽號寫在芳名錄上?送出後全站玩家都看得到;每個人在每一科只留最高分。只會送出你的綽號、科目和成績。'),
+      el('div', { class: 'row' }, send, el('button', { class: 'btn ghost', type: 'button', onclick: done }, '不留名')));
   },
   // 芳名錄頁:四科各前五名
   async page(focus, back) {

@@ -220,7 +220,7 @@ const Music = {
   setOffset(v) { try { localStorage.setItem('taiwan-chronicle-mu-offset', String(v)); } catch (e) { /* 略過 */ } },
   async load() {
     if (this.data) return this.data;
-    try { const r = await fetch('data/music.json?v=20261176'); this.data = r.ok ? await r.json() : {}; } catch (e) { this.data = {}; }
+    try { const r = await fetch('data/music.json?v=20261177'); this.data = r.ok ? await r.json() : {}; } catch (e) { this.data = {}; }
     return this.data;
   },
   // 校園:滑鼠移上去顯示地名;「教室」是國旗歌,「校門」是出口。國旗歌過關後,校園裡才會隨機出現一張半遮住的紙(雨夜花樂譜)

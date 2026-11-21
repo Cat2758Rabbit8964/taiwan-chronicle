@@ -377,7 +377,7 @@ const KEYS = [
 let acct = null;   // { id|null(訪客), nick, got:[人物 id], hist:[{id,t}] }
 const personById = (id) => data.people.find((q) => q.id === id);
 const keyHave = (K) => acct.got.map(personById).filter((q) => q && (q.k || '').includes(K.k));
-function setAcct(a) { acct = a; if (typeof Hall !== 'undefined') Hall.nick = a && a.id ? a.nick : null; if (a && a.id) Save.remember(a.id); }
+function setAcct(a) { acct = a; if (typeof Hall !== 'undefined') { Hall.nick = a && a.id ? a.nick : null; Hall.id = a && a.id ? a.id : null; } if (a && a.id) Save.remember(a.id); }
 
 function modal(title, lines, onClose) {
   const back = el('div', { class: 'modal-back' });
@@ -724,10 +724,10 @@ function story(p, reveal) {
 }
 
 
-Promise.all([fetch('data/game.json?v=20261176').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/exam.json?v=20261176').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch('data/harm.json?v=20261176').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
-  fetch('data/backdrops.json?v=20261176').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
+Promise.all([fetch('data/game.json?v=20261177').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/exam.json?v=20261177').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch('data/harm.json?v=20261177').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('data/backdrops.json?v=20261177').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))])
   .then(([d, ex, h, b]) => { data = d; exam = ex; harm = h || {}; bd = b || {}; start(); })
   .catch(() => show(el('h1', {}, '找尋您的前世'),
     el('p', { class: 'err' }, '資料載入失敗。若是從檔案直接開啟,請改用本機伺服器或公開網址瀏覽。')));
